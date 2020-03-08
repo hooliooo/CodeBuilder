@@ -1,5 +1,5 @@
 //
-//  FunctionArgument.swift
+//  GroupFragment.swift
 //
 //  Copyright (c) Julio Miguel Alorro 2020
 //  MIT license, see LICENSE file for details
@@ -24,8 +24,6 @@ public class GroupFragment: MultiLineFragment {
                 $0.indent = self.indent
             }
 
-
-//        let indent: String = self.createIndent(with: 0)
         let content: String = self.children.reduce(into: "") { (currentContent: inout String, fragment: Fragment) -> Void in
             let fragmentContent: String = fragment.renderContent()
             if fragmentContent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
