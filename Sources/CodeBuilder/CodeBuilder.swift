@@ -1,7 +1,7 @@
 //
 //  CodeBuilder.swift
 //  
-//  Copyright (c) Julio Miguel Alorro 2019
+//  Copyright (c) Julio Miguel Alorro 2020
 //  MIT license, see LICENSE file for details
 //  Created by Julio Miguel Alorro on 01.03.20.
 //
@@ -100,7 +100,7 @@ public func define(_ typeName: String, type: DataType, inheritingFrom parents: [
  */
 public func documentation(
     _ content: String,
-    format: DocumentationFormat = .singleLine,
+    format: Documentation.Format = .singleLine,
     parameters: [Parameter] = [],
     returnValue: String? = nil,
     tag: String? = nil
@@ -121,7 +121,7 @@ public func documentation(
         : nil
 
     let fragments: [Fragment?] = parameters + [returnValue, tag]
-    return MultiLineFragment(content, type: .documentation(format), { fragments.compactMap { $0} })
+    return Documentation(content, format: format, { fragments.compactMap { $0} })
 }
 
 /**
@@ -134,15 +134,34 @@ public func function(
     access: Access = .internal,
     isStatic: Bool = false,
     genericSignature: String? = nil,
-    arguments: [FunctionArgument] = [],
+    arguments: [Function.Argument] = [],
     returnValue: String? = nil,
     @CodeBuilder _ builder: () -> [Fragment]
 ) -> Fragment {
-    let type: String = isStatic ? " static " : " "
+    let access: String = access == .internal ? "" : "\(access.rawValue) "
+    let type: String = isStatic ? "static " : ""
     let args: String = !arguments.isEmpty ? arguments.map { $0.renderContent() }.joined(separator: ", ") : ""
+    let genericSignature: String = genericSignature != nil ? "<\(genericSignature!)>" : ""
     let returnValue: String = returnValue != nil ? " -> \(returnValue!) {" : " {"
-    let functionSignature: String = "\(access.rawValue)\(type)func \(name)(\(args))\(returnValue)"
-    return MultiLineFragment(functionSignature, builder)
+    let functionSignature: String = "\(access)\(type)func \(name)\(genericSignature)(\(args))\(returnValue)"
+
+    if functionSignature.count > 120, arguments.count > 1 {
+
+        let fragments: [Fragment] = arguments
+            .dropLast()
+            .map { SingleLineFragment("\($0.renderContent()),") }
+
+        let lastFragment: Fragment = SingleLineFragment(arguments.last!.renderContent())
+        let children: [Fragment] = fragments + [lastFragment]
+        let first: MultiLineFragment = MultiLineFragment(
+            "\(access)\(type)func \(name)\(genericSignature)(",
+            { children }
+        )
+        let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
+        return GroupFragment(children: [first, second])
+    } else {
+        return MultiLineFragment(functionSignature, builder)
+    }
 }
 
 public func function(
@@ -150,7 +169,7 @@ public func function(
     access: Access = .internal,
     isStatic: Bool = false,
     genericSignature: String? = nil,
-    arguments: [FunctionArgument] = [],
+    arguments: [Function.Argument] = [],
     returnValue: String? = nil,
     @CodeBuilder _ builder: () -> Fragment
 ) -> Fragment {
