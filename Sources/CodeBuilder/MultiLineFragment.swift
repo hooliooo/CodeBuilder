@@ -85,8 +85,13 @@ class MultiLineFragment: Fragment {
     private func renderContentAsCode() -> String {
         var content: String = self.content + "\n"
         let indent: String = self.createIndent(with: 1)
-        content = self.children.reduce(into: content, { curr, fragment in
-            curr += (indent + fragment.renderContent())
+        content = self.children.reduce(into: content, { (currentContent: inout String, fragment: Fragment) -> Void in
+            let fragmentContent: String = fragment.renderContent()
+            if fragmentContent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
+                currentContent += fragmentContent
+            } else {
+                currentContent += (indent + fragmentContent)
+            }
         })
 
         return content

@@ -48,17 +48,22 @@ public func code(indent: String, @CodeBuilder _ builder: () -> Fragment) -> Stri
     String(indent, builder: { [builder()] })
 }
 
-//public func code(indent: String, _ builder: @escaping () -> Void) -> String {
-//    String(indent, builder: { [] })
-//}
-
 public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("\(statement) {", builder)
 }
 
-//public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-//    MultiLineFragment("\(statement) {", { [builder()] })
-//}
+public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    MultiLineFragment("\(statement) {", { [builder()] })
+}
+
+public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+    let t = MultiLineFragment("} else if \(statement) {", builder)
+    return t
+}
+
+public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    MultiLineFragment("} else if \(statement) {", { [builder()] })
+}
 
 public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("} else {", builder)
@@ -67,11 +72,7 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragmen
 public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("} else {", { [builder()] })
 }
-/// Ends scope
-///
-public func end() -> Fragment {
-    SingleLineFragment("}")
-}
+
 /// Make sure to call [documentation](x-source-tag://documentation) at some point when overriding.
 public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     var content: String = type.rawValue + " \(typeName)"
@@ -81,9 +82,9 @@ public func define(_ typeName: String, type: DataType, inheritingFrom parents: [
     return MultiLineFragment(content, builder)
 }
 
-//public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-//    define(typeName, type: type, inheritingFrom: parents, { [builder()] })
-//}
+public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    define(typeName, type: type, inheritingFrom: parents, { [builder()] })
+}
 
 /**
  Create a CodeFragment formatted for documentation
@@ -159,10 +160,23 @@ public func function(
 }
 
 /**
- asdfasd
+ Creates a SingleLineFragment out of a String
  - parameters:
-    - statement: Something
+    - statement: The string content of the SingleLineFragment
+ - returns: SingleLineFragment
  */
 public func statement(_ statement: String) -> Fragment {
     SingleLineFragment(statement)
+}
+
+/// Adds a line break
+///
+public func lineBreak() -> Fragment {
+    SingleLineFragment("")
+}
+
+/// Ends scope
+///
+public func end() -> Fragment {
+    SingleLineFragment("}")
 }

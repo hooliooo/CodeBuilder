@@ -1,10 +1,3 @@
-//
-//  DocumentationTests.swift
-//  
-//
-//  Created by Julio Miguel Alorro on 07.03.20.
-//
-
 import XCTest
 @testable import CodeBuilder
 
@@ -25,8 +18,6 @@ final class DocumentationTests: XCTestCase {
 
                               """
         let docString: String = generateString(documentation(content, format: DocumentationFormat.multiline))
-        print(example)
-        print(docString)
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
