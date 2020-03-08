@@ -96,12 +96,14 @@ class MultiLineFragment: Fragment {
         let type = self.documentationType!
         let prefix: String = type == .singleLine ? "/// " : " "
         let (newContent, truncatedContent) = self.lineBreak(content: self.content)
-        var content: String = (type == .singleLine ? newContent : "/**") + "\n"
+        var content: String = (type == .singleLine ? newContent.trimmingCharacters(in: CharacterSet.whitespaces) : "/**") + "\n"
 
         let indent: String = self.createIndent(with: 0)
 
         if type == .multiline {
-            content += indent + prefix + SingleLineFragment(newContent).renderContent()
+            content += !newContent.isEmpty
+                ? indent + prefix + SingleLineFragment(newContent).renderContent()
+                : "\n"
         }
 
         if let truncatedContent = truncatedContent {
@@ -117,7 +119,7 @@ class MultiLineFragment: Fragment {
         }
 
         if type == .multiline {
-            content += indent + SingleLineFragment("*/").renderContent()
+            content += indent + SingleLineFragment(" */").renderContent()
         }
 
         return content

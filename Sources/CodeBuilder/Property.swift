@@ -1,5 +1,5 @@
 //
-//  PropertyFragment.swift
+//  Property.swift
 //
 //  Copyright (c) Julio Miguel Alorro 2019
 //  MIT license, see LICENSE file for details
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- PropertyFragment represents the code that defines a property of a Swift data structure
+ Property represents the code that defines a property of a Swift data structure
  */
-public struct PropertyFragment: Fragment {
+public struct Property: Fragment {
 
     /**
      Access level of the property

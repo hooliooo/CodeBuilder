@@ -10,6 +10,10 @@ import Foundation
 
 @_functionBuilder
 public struct CodeBuilder {
+    public static func buildBlock() -> [Fragment] {
+        return []
+    }
+
     public static func buildBlock(_ fragments: Fragment...) -> [Fragment] {
         return fragments
     }
@@ -71,19 +75,9 @@ public func end() -> Fragment {
 /// Make sure to call [documentation](x-source-tag://documentation) at some point when overriding.
 public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     var content: String = type.rawValue + " \(typeName)"
-    content = {
-        switch parents.count {
-            case 0: return content + " {"
-            case 1: return content + ": \(String(describing: parents.first!))"
-            default:
-                let parentsExceptLast: ArraySlice<String> = parents.dropLast()
-                content += parentsExceptLast.reduce(into: ": ", { $0 += $1 + ", " })
-                content +=  parents.last!
-                content += " {"
-                return content + "\n"
-        }
-    }()
-
+    content += !parents.isEmpty
+        ? ": " + parents.joined(separator: ", ") + " {\n"
+        : " {\n"
     return MultiLineFragment(content, builder)
 }
 
@@ -106,14 +100,16 @@ public func define(_ typeName: String, type: DataType, inheritingFrom parents: [
 public func documentation(
     _ content: String,
     format: DocumentationFormat = .singleLine,
-    parameters: [ParameterFragment] = [],
+    parameters: [Parameter] = [],
     returnValue: String? = nil,
     tag: String? = nil
 ) -> Fragment {
     let prefix: String = format == .singleLine ? "/// " : ""
     let content: String = "\(prefix)\(content)"
 
-    let parameterCodeFragments: [Fragment] = parameters.map { SingleLineFragment($0.renderContent()) }
+    let parameters: [Fragment?] = !parameters.isEmpty
+        ? parameters.reduce(into: [SingleLineFragment("- parameters:")]) { $0.append(SingleLineFragment($1.renderContent())) }
+        : []
 
     let returnValue: Fragment? = returnValue != nil
         ? SingleLineFragment("- returns: \(returnValue!)")
@@ -123,11 +119,7 @@ public func documentation(
         ? SingleLineFragment("- Tag: \(tag!)")
         : nil
 
-    let fragment: SingleLineFragment? = !parameters.isEmpty
-        ? SingleLineFragment("- parameters:")
-        : nil
-
-    let fragments: [Fragment?] = [fragment] + parameterCodeFragments + [returnValue, tag]
+    let fragments: [Fragment?] = parameters + [returnValue, tag]
     return MultiLineFragment(content, type: .documentation(format), { fragments.compactMap { $0} })
 }
 
@@ -141,7 +133,7 @@ public func function(
     access: Access = .internal,
     isStatic: Bool = false,
     genericSignature: String? = nil,
-    arguments: [FunctionArgumentFragment] = [],
+    arguments: [FunctionArgument] = [],
     returnValue: String? = nil,
     @CodeBuilder _ builder: () -> [Fragment]
 ) -> Fragment {
@@ -157,18 +149,12 @@ public func function(
     access: Access = .internal,
     isStatic: Bool = false,
     genericSignature: String? = nil,
-    arguments: [FunctionArgumentFragment] = [],
+    arguments: [FunctionArgument] = [],
     returnValue: String? = nil,
     @CodeBuilder _ builder: () -> Fragment
 ) -> Fragment {
     return function(
-        name,
-        access: access,
-        isStatic: isStatic,
-        genericSignature: genericSignature,
-        arguments: arguments,
-        returnValue: returnValue,
-        { [builder()] }
+        name, access: access, isStatic: isStatic, genericSignature: genericSignature, arguments: arguments, returnValue: returnValue,{ [builder()] }
     )
 }
 
