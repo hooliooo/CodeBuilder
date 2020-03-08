@@ -1,16 +1,17 @@
 //
-//  PropertyCodeFragment.swift
-//  
+//  PropertyFragment.swift
 //
+//  Copyright (c) Julio Miguel Alorro 2019
+//  MIT license, see LICENSE file for details
 //  Created by Julio Miguel Alorro on 01.03.20.
 //
 
 import Foundation
 
 /**
- PropertyCodeFragment represents the code that defines a property of a Swift data structure
+ PropertyFragment represents the code that defines a property of a Swift data structure
  */
-public struct PropertyCodeFragment: CodeFragment {
+public struct PropertyFragment: Fragment {
 
     /**
      Access level of the property
@@ -38,7 +39,7 @@ public struct PropertyCodeFragment: CodeFragment {
     public let value: String?
 
     /**
-     The SingleCodeFragment as a String. It is the content appended with a newline.
+     The SingleLineFragment as a String. It is the content appended with a newline.
      */
     public func renderContent() -> String {
         var content: String = self.access == .internal ? "" : "\(self.access.rawValue) "

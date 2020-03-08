@@ -1,5 +1,5 @@
 //
-//  ParameterFragment.swift
+//  FunctionArgumentFragment.swift
 //
 //  Copyright (c) Julio Miguel Alorro 2019
 //  MIT license, see LICENSE file for details
@@ -8,15 +8,13 @@
 
 import Foundation
 
-public struct ParameterFragment: Fragment {
+public struct FunctionArgumentFragment: Fragment {
 
     // MARK: Stored Properties
     public let name: String
-    public let documentation: String
+    public let type: String
 
-    // MARK: Methods
-    
     public func renderContent() -> String {
-        return "   - \(self.name): \(self.documentation)"
+        return "\(self.name): \(self.type)"
     }
 }

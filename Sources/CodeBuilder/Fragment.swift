@@ -1,7 +1,8 @@
 //
 //  CodeFragment.swift
-//  
 //
+//  Copyright (c) Julio Miguel Alorro 2019
+//  MIT license, see LICENSE file for details
 //  Created by Julio Miguel Alorro on 01.03.20.
 //
 
@@ -10,10 +11,10 @@ import Foundation
 /**
  Represents a line or block of Swift code
  */
-public protocol CodeFragment {
+public protocol Fragment {
 
     /**
-     Generates a String representation of the Swift code represented by this CodeFragment
+     Generates a String representation of the Swift code represented by this Fragment
      */
     func renderContent() -> String
 

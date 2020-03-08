@@ -24,7 +24,7 @@ import XCTest
 //                               */
 //
 //                              """
-//        let docString: String = generateString(documentation(content, format: ParameterDocumentation.Format.multiline))
+//        let docString: String = generateString(documentation(content, format: ParameterFragment.Format.multiline))
 //        XCTAssertTrue(example == docString, "Both strings should equal each other")
 //    }
 //
