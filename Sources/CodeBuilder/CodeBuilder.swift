@@ -126,16 +126,8 @@ public func documentation(
         ? SingleCodeFragment("- parameters:")
         : nil
 
-    switch format {
-        case .singleLine:
-            let fragments: [CodeFragment?] = [fragment] + parameterCodeFragments + [returnValue, tag]
-            return MultiCodeFragment(content, type: .documentation(.singleLine), { fragments.compactMap { $0} })
-
-        case .multiline:
-            let fragments: [CodeFragment?] = [fragment] + parameterCodeFragments + [returnValue, tag]
-            let multiFragment = MultiCodeFragment(content, type: .documentation(.multiline), { fragments.compactMap { $0 } })
-            return multiFragment
-    }
+    let fragments: [CodeFragment?] = [fragment] + parameterCodeFragments + [returnValue, tag]
+    return MultiCodeFragment(content, type: .documentation(format), { fragments.compactMap { $0} })
 }
 
 /**
