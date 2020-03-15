@@ -4,13 +4,13 @@ import XCTest
 final class CodeBuilderTests: XCTestCase {
     func testCode() {
         print(
-            code(indent: "    ") {
-                documentation("Test doc for Test") as Fragment
+            fileSpec(indent: "    ") {
+                documentationSpec("Test doc for Test") as Fragment
                 typeSpec("Test", type: .class, inheritingFrom: ["This", "That"]) {
-                    documentation("Test doc2") as Fragment
+                    documentationSpec("Test doc2") as Fragment
                     Property(access: .public, isMutable: true, name: "testOne", type: "String", value: nil)
                     Property(access: .public, isMutable: false, name: "testTwo", type: "Bool", value: nil) as Fragment
-                    documentation(
+                    documentationSpec(
                         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
                         format: .multiline,
                         parameters: [
@@ -22,9 +22,9 @@ final class CodeBuilderTests: XCTestCase {
                         tag: "testDoc"
                     ) as Fragment
                     typeSpec("Test2", type: .struct) {
-                        documentation("Test doc4") as Fragment
+                        documentationSpec("Test doc4") as Fragment
                         Property(access: .internal, isMutable: false, name: "testOne", type: "Bool", value: nil) as Fragment
-                        documentation(
+                        documentationSpec(
                             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
                             format: .singleLine,
                             parameters: [

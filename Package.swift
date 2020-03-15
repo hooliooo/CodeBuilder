@@ -7,8 +7,14 @@ let package = Package(
     name: "CodeBuilder",
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        .library(name: "CodeBuilder",
-                 targets: ["CodeBuilder"]),
+        .library(
+            name: "Core",
+            targets: ["CodeBuilder"]
+        ),
+        .library(
+            name: "Specs",
+            targets: ["CodeBuilder"]
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,7 +27,7 @@ let package = Package(
             name: "CodeBuilder",
             dependencies: []),
         .testTarget(
-            name: "CodeBuilderTests",
+            name: "Unit Tests",
             dependencies: ["CodeBuilder"]),
     ]
 )

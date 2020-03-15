@@ -4,7 +4,7 @@ import XCTest
 final class FunctionTests: XCTestCase {
 
     private func generateString(@CodeBuilder _ builder: () -> [Fragment]) -> String {
-        code(indent: "    ", builder)
+        fileSpec(indent: "    ", builder)
     }
 
     private func generateString(@CodeBuilder _ builder: () -> Fragment) -> String {

@@ -4,7 +4,7 @@ import XCTest
 final class DocumentationTests: XCTestCase {
 
     private func generateString(_ fragment: Fragment) -> String {
-        code(indent: "") {
+        fileSpec(indent: "") {
             fragment
         }
     }
@@ -17,7 +17,7 @@ final class DocumentationTests: XCTestCase {
                                */
 
                               """
-        let docString: String = generateString(documentation(content, format: Documentation.Format.multiline))
+        let docString: String = generateString(documentationSpec(content, format: Documentation.Format.multiline))
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
@@ -40,7 +40,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.multiline,
                 parameters: parameters
@@ -59,7 +59,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.multiline,
                 returnValue: "Some value"
@@ -78,7 +78,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.multiline,
                 tag: "Some value"
@@ -107,7 +107,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "Some content",
                 format: Documentation.Format.multiline,
                 parameters: parameters,
@@ -125,7 +125,7 @@ final class DocumentationTests: XCTestCase {
 
                              """
 
-        let docString: String = generateString(documentation(content, format: Documentation.Format.singleLine))
+        let docString: String = generateString(documentationSpec(content, format: Documentation.Format.singleLine))
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
@@ -146,7 +146,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.singleLine,
                 parameters: parameters
@@ -164,7 +164,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.singleLine,
                 returnValue: "Some value"
@@ -182,7 +182,7 @@ final class DocumentationTests: XCTestCase {
                               """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "",
                 format: Documentation.Format.singleLine,
                 tag: "Some value"
@@ -210,7 +210,7 @@ final class DocumentationTests: XCTestCase {
                              """
 
         let docString: String = generateString(
-            documentation(
+            documentationSpec(
                 "Some content",
                 format: Documentation.Format.singleLine,
                 parameters: parameters,

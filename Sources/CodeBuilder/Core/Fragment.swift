@@ -1,5 +1,5 @@
 //
-//  CodeFragment.swift
+//  Fragment.swift
 //
 //  Copyright (c) Julio Miguel Alorro 2020
 //  MIT license, see LICENSE file for details

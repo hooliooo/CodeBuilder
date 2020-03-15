@@ -21,8 +21,9 @@ public func typeSpec(_ name: String, access: Access = .internal, type: DataType,
     let access: String = access == .internal ? "" : "\(access.rawValue)"
     var content: String = "\(access)\(type.rawValue) \(name)"
     content += !parents.isEmpty
-        ? ": " + parents.joined(separator: ", ") + " {\n"
-        : " {\n"
+        ? ": " + parents.joined(separator: ", ")
+        : ""
+    content += " {\n"
     return GroupFragment(children: [MultiLineFragment(content, builder), end()])
 }
 

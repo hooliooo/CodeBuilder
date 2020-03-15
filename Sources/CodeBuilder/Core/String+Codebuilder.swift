@@ -11,10 +11,10 @@ import Foundation
 public extension String {
 
     init(_ indent: String, @CodeBuilder builder: () -> [Fragment]) {
-        let fragments = builder()
-        self = fragments.reduce(into: "") { (curr, fragment) in
+        let fragments: [Fragment] = builder()
+        self = fragments.reduce(into: "") { (string: inout String, fragment: Fragment) -> Void in
             if let multi = fragment as? MultiLineFragment { multi.indent = indent }
-            curr += fragment.renderContent()
+            string += fragment.renderContent()
         }
     }
 

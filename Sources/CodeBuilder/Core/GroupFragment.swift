@@ -39,18 +39,3 @@ public class GroupFragment: MultiLineFragment {
         return content
     }
 }
-
-public enum Function {
-    public struct Argument: Fragment {
-
-        // MARK: Stored Properties
-        public let name: String
-        public let type: String
-
-        public func renderContent() -> String {
-            return "\(self.name): \(self.type)"
-        }
-    }
-
-}
-

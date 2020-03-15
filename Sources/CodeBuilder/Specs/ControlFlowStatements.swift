@@ -13,7 +13,7 @@ import Foundation
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"Hello, \\(word)\")")
     }
@@ -40,7 +40,7 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"Hello, \\(word)\")")
     }
@@ -67,7 +67,7 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
@@ -100,7 +100,7 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
@@ -132,7 +132,7 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) 
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
@@ -168,7 +168,7 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragmen
 
  Example:
  ```
- code("   ") {
+ fileSpec("   ") {
     beginControlFlow("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
