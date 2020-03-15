@@ -20,7 +20,7 @@ import Foundation
     CodeFragment formatted specifically as documentation
  - Tag: documentation
  */
-public func documentationSpec(
+@inlinable public func documentationSpec(
     _ content: String,
     format: Documentation.Format = .singleLine,
     parameters: [Parameter] = [],

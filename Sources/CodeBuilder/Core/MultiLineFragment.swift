@@ -45,7 +45,7 @@ public class MultiLineFragment: Fragment {
         self.children = builder()
     }
 
-    func createIndent(with startingLevel: Int) -> String {
+    @usableFromInline func createIndent(with startingLevel: Int) -> String {
         weak var parentsParent: MultiLineFragment? = self.parent
         var level: Int = startingLevel
         while parentsParent != nil {
@@ -56,7 +56,7 @@ public class MultiLineFragment: Fragment {
         return String(repeating: self.indent, count: level)
     }
 
-    func setUpChildren() {
+    @usableFromInline func setUpChildren() {
         self.children
             .compactMap { (fragment: Fragment) -> MultiLineFragment? in
                 fragment as? MultiLineFragment
@@ -67,7 +67,7 @@ public class MultiLineFragment: Fragment {
             }
     }
 
-    public func renderContent() -> String {
+    @inlinable public func renderContent() -> String {
         self.setUpChildren()
         var content: String = self.content + "\n"
         let indent: String = self.createIndent(with: 1)

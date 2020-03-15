@@ -15,7 +15,7 @@ public enum Function {
         public let name: String
         public let type: String
 
-        public func renderContent() -> String {
+        @inlinable public func renderContent() -> String {
             return "\(self.name): \(self.type)"
         }
     }

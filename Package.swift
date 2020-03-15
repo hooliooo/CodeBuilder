@@ -27,7 +27,7 @@ let package = Package(
             name: "CodeBuilder",
             dependencies: []),
         .testTarget(
-            name: "Unit Tests",
+            name: "IntegrationTests",
             dependencies: ["CodeBuilder"]),
     ]
 )

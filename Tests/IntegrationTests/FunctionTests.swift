@@ -130,8 +130,6 @@ final class FunctionTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        print(example)
-        print(docString)
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 

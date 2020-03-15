@@ -31,7 +31,7 @@ import Foundation
     - statement: String representing the logic for the control flow.
     - builder: Fragments that represent the body of the control flow.
  */
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("\(statement) {", builder)
 }
 
@@ -58,7 +58,7 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
     - statement: String representing the logic for the control flow.
     - builder: Fragment that represent the body of the control flow.
  */
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("\(statement) {", { [builder()] })
 }
 
@@ -90,7 +90,7 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
     - statement: String representing the Bool logic for the `else if` control flow.
     - builder: Fragments that represent the body of the `else if` control flow.
  */
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     let t = MultiLineFragment("} else if \(statement) {", builder)
     return t
 }
@@ -123,7 +123,7 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]
     - statement: String representing the Bool logic for the `else if` control flow.
     - builder: Fragments that represent the body of the `else if` control flow.
  */
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("} else if \(statement) {", { [builder()] })
 }
 
@@ -159,7 +159,7 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) 
  - parameters:
     - builder: Fragments that represent the body of the `else` control flow.
  */
-public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("} else {", builder)
 }
 
@@ -195,6 +195,80 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragmen
  - parameters:
     - builder: Fragment that represent the body of the `else` control flow.
  */
-public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("} else {", { [builder()] })
+}
+
+/**
+ Creates a Fragment formatted specifically for `guard` Swift control flow statements
+
+ Example:
+ ```
+ fileSpec("   ") {
+     guardSpec(
+         statements: {
+             statement("x == 0")
+             statement("y == 0")
+         },
+         elseBlock: {
+             statement(
+                 """
+                print("Bool failed")
+                """
+             )
+             statement("return")
+         }
+     )
+ }
+ ```
+ renders:
+ ```
+ guard
+     x == 0,
+     y == 0
+ else {
+     print("Bool failed")
+     return
+ }
+ ```
+
+ - parameters:
+    - builder: Fragment that represent a `guard` control flow.
+*/
+@inlinable public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
+    let statements: [Fragment] = statements()
+    var content: String = "guard"
+    let fragments: [Fragment]
+    if statements.count > 1, let statements = statements as? [SingleLineFragment] {
+        let lastStatement: SingleLineFragment = statements.last!
+        let newStatements: [SingleLineFragment] = statements
+            .dropLast()
+            .map {
+                SingleLineFragment($0.content + ",")
+            }
+        fragments = [
+            MultiLineFragment(content, { newStatements + [lastStatement] }),
+            MultiLineFragment("else {", elseBlock)
+        ]
+    } else if let statement = statements.first {
+        content += " "
+        content += statement.renderContent().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        content += " else {"
+        fragments = [MultiLineFragment(content, elseBlock)]
+    } else {
+        fragments = []
+    }
+    return GroupFragment(children: fragments + [end()])
+}
+
+@inlinable public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
+    guardSpec(statements: { [statement()] }, elseBlock: { [elseBlock()] })
+}
+
+@inlinable public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
+    guardSpec(statements: statements, elseBlock: { [elseBlock()] })
+}
+
+@inlinable public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
+    guardSpec(statements: { [statement()] }, elseBlock: elseBlock)
 }

@@ -1,7 +1,11 @@
 import XCTest
 
-import CodeBuilderTests
+import IntegrationTests
 
-var tests = [XCTestCaseEntry]()
-tests += CodeBuilderTests.allTests()
+var tests: [XCTestCaseEntry] = [
+    CodeBuilderTests.allTests(),
+    ControlFlowTest.allTests(),
+    DocumentationTests.allTests(),
+    FunctionTests.allTests()
+]
 XCTMain(tests)

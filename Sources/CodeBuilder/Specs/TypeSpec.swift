@@ -17,14 +17,14 @@ Creates a Fragment formatted specifically for defining a Swift type
    - parents: The parent class/protocols the type inherits or conforms to
    - builder: Fragments that represent the body of the type's definition
 */
-public func typeSpec(_ name: String, access: Access = .internal, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable public func typeSpec(_ name: String, access: Access = .internal, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     let access: String = access == .internal ? "" : "\(access.rawValue)"
     var content: String = "\(access)\(type.rawValue) \(name)"
     content += !parents.isEmpty
         ? ": " + parents.joined(separator: ", ")
         : ""
     content += " {\n"
-    return GroupFragment(children: [MultiLineFragment(content, builder), end()])
+    return GroupFragment(children: [MultiLineFragment(content, builder), lineBreak(), end()])
 }
 
 /**
@@ -36,6 +36,6 @@ Creates a Fragment formatted specifically for defining a Swift type
    - parents: The parent class/protocols the type inherits or conforms to
    - builder: Fragments that represent the body of the type's definition
 */
-public func typeSpec(_ typeName: String, access: Access = .internal, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    typeSpec(typeName, type: type, inheritingFrom: parents, { [builder()] })
+@inlinable public func typeSpec(_ name: String, access: Access = .internal, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    typeSpec(name, access: access, type: type, inheritingFrom: parents, { [builder()] })
 }

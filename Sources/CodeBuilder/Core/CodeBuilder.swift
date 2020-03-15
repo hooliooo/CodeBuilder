@@ -46,18 +46,18 @@ public struct CodeBuilder {
     - statement: The string content of the SingleLineFragment
  - returns: SingleLineFragment
  */
-public func statement(_ statement: String) -> Fragment {
+@inlinable public func statement(_ statement: String) -> Fragment {
     SingleLineFragment(statement)
 }
 
 /// Adds a line break
 ///
-public func lineBreak() -> Fragment {
+@inlinable public func lineBreak() -> Fragment {
     SingleLineFragment("")
 }
 
 /// Ends scope
 ///
-public func end() -> Fragment {
+@inlinable public func end() -> Fragment {
     SingleLineFragment("}")
 }
