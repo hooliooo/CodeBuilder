@@ -9,17 +9,18 @@ final class ControlFlowTest: XCTestCase {
 
     func testControlFlow() {
         let example: String = """
-                              if true {
-                                  print(\"Hello, World\")
+                              if word == "That" {
+                                  print("Hello, \\(word)")
                               }
 
                               """
         let docString: String = generateString {
-            beginControlFlow("if true") {
-                statement("print(\"Hello, World\")")
+            beginControlFlow("if word == \"That\"") {
+                statement("print(\"Hello, \\(word)\")")
             }
             end()
         }
+
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 

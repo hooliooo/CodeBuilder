@@ -6,7 +6,7 @@ final class CodeBuilderTests: XCTestCase {
         print(
             code(indent: "    ") {
                 documentation("Test doc for Test") as Fragment
-                define("Test", type: .class, inheritingFrom: ["This", "That"]) {
+                typeSpec("Test", type: .class, inheritingFrom: ["This", "That"]) {
                     documentation("Test doc2") as Fragment
                     Property(access: .public, isMutable: true, name: "testOne", type: "String", value: nil)
                     Property(access: .public, isMutable: false, name: "testTwo", type: "Bool", value: nil) as Fragment
@@ -21,7 +21,7 @@ final class CodeBuilderTests: XCTestCase {
                         returnValue: "String",
                         tag: "testDoc"
                     ) as Fragment
-                    define("Test2", type: .struct) {
+                    typeSpec("Test2", type: .struct) {
                         documentation("Test doc4") as Fragment
                         Property(access: .internal, isMutable: false, name: "testOne", type: "Bool", value: nil) as Fragment
                         documentation(
@@ -35,7 +35,7 @@ final class CodeBuilderTests: XCTestCase {
                             returnValue: "String",
                             tag: "testDoc"
                         ) as Fragment
-                        function(
+                        functionSpec(
                             "test",
                             arguments: [
                                 Function.Argument(name: "testOne", type: "String")
@@ -46,11 +46,8 @@ final class CodeBuilderTests: XCTestCase {
                                 statement("return t")
                             }
                         )
-                        end()
                     }
-                    end()
                 }
-                end()
             }
         )
     }

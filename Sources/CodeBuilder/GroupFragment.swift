@@ -23,14 +23,17 @@ public class GroupFragment: MultiLineFragment {
                 $0.parent = self.parent
                 $0.indent = self.indent
             }
-
+        let indent: String = self.createIndent(with: 0)
         let content: String = self.children.reduce(into: "") { (currentContent: inout String, fragment: Fragment) -> Void in
-            let fragmentContent: String = fragment.renderContent()
-            if fragmentContent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
-                currentContent += fragmentContent
+            let fragmentContent: String
+
+            if let fragment = fragment as? SingleLineFragment {
+                fragmentContent = "\(indent)\(fragment.renderContent())"
             } else {
-                currentContent += (fragmentContent)
+                fragmentContent = fragment.renderContent()
             }
+
+            currentContent += fragmentContent
         }
 
         return content

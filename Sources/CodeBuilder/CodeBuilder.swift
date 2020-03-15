@@ -40,50 +40,24 @@ public struct CodeBuilder {
     }
 }
 
+/**
+ Builds a String with Fragments
+ - parameters:
+    - indent: Whitespace indentation used to render Swift code
+    - builder: Creates Fragments that build the String representing Swift code.
+ */
 public func code(indent: String, @CodeBuilder _ builder: () -> [Fragment]) -> String {
     String(indent, builder: builder)
 }
 
+/**
+Builds a String with a Fragment
+- parameters:
+   - indent: Whitespace indentation used to render Swift code
+   - builder: Creates a single Fragment that builds the String representing Swift code.
+*/
 public func code(indent: String, @CodeBuilder _ builder: () -> Fragment) -> String {
     String(indent, builder: { [builder()] })
-}
-
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    MultiLineFragment("\(statement) {", builder)
-}
-
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("\(statement) {", { [builder()] })
-}
-
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    let t = MultiLineFragment("} else if \(statement) {", builder)
-    return t
-}
-
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("} else if \(statement) {", { [builder()] })
-}
-
-public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    MultiLineFragment("} else {", builder)
-}
-
-public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("} else {", { [builder()] })
-}
-
-/// Make sure to call [documentation](x-source-tag://documentation) at some point when overriding.
-public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    var content: String = type.rawValue + " \(typeName)"
-    content += !parents.isEmpty
-        ? ": " + parents.joined(separator: ", ") + " {\n"
-        : " {\n"
-    return MultiLineFragment(content, builder)
-}
-
-public func define(_ typeName: String, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    define(typeName, type: type, inheritingFrom: parents, { [builder()] })
 }
 
 /**
@@ -122,60 +96,6 @@ public func documentation(
 
     let fragments: [Fragment?] = parameters + [returnValue, tag]
     return Documentation(content, format: format, { fragments.compactMap { $0} })
-}
-
-/**
- asdfasd
- - parameters:
-    - statement: Something
- */
-public func function(
-    _ name: String,
-    access: Access = .internal,
-    isStatic: Bool = false,
-    genericSignature: String? = nil,
-    arguments: [Function.Argument] = [],
-    returnValue: String? = nil,
-    @CodeBuilder _ builder: () -> [Fragment]
-) -> Fragment {
-    let access: String = access == .internal ? "" : "\(access.rawValue) "
-    let type: String = isStatic ? "static " : ""
-    let args: String = !arguments.isEmpty ? arguments.map { $0.renderContent() }.joined(separator: ", ") : ""
-    let genericSignature: String = genericSignature != nil ? "<\(genericSignature!)>" : ""
-    let returnValue: String = returnValue != nil ? " -> \(returnValue!) {" : " {"
-    let functionSignature: String = "\(access)\(type)func \(name)\(genericSignature)(\(args))\(returnValue)"
-
-    if functionSignature.count > 120, arguments.count > 1 {
-
-        let fragments: [Fragment] = arguments
-            .dropLast()
-            .map { SingleLineFragment("\($0.renderContent()),") }
-
-        let lastFragment: Fragment = SingleLineFragment(arguments.last!.renderContent())
-        let children: [Fragment] = fragments + [lastFragment]
-        let first: MultiLineFragment = MultiLineFragment(
-            "\(access)\(type)func \(name)\(genericSignature)(",
-            { children }
-        )
-        let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
-        return GroupFragment(children: [first, second])
-    } else {
-        return MultiLineFragment(functionSignature, builder)
-    }
-}
-
-public func function(
-    _ name: String,
-    access: Access = .internal,
-    isStatic: Bool = false,
-    genericSignature: String? = nil,
-    arguments: [Function.Argument] = [],
-    returnValue: String? = nil,
-    @CodeBuilder _ builder: () -> Fragment
-) -> Fragment {
-    return function(
-        name, access: access, isStatic: isStatic, genericSignature: genericSignature, arguments: arguments, returnValue: returnValue,{ [builder()] }
-    )
 }
 
 /**

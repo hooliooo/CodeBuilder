@@ -7,6 +7,12 @@ final class FunctionTests: XCTestCase {
         code(indent: "    ", builder)
     }
 
+    private func generateString(@CodeBuilder _ builder: () -> Fragment) -> String {
+        generateString {
+            [builder()]
+        }
+    }
+
     func testFunc() {
         let example: String = """
                              func testOne() {
@@ -15,10 +21,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne") {
+            functionSpec("testOne") {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -31,10 +36,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", access: .open) {
+            functionSpec("testOne", access: .open) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -47,10 +51,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", access: .public) {
+            functionSpec("testOne", access: .public) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -63,10 +66,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", access: .internal) {
+            functionSpec("testOne", access: .internal) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -79,10 +81,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", access: .fileprivate) {
+            functionSpec("testOne", access: .fileprivate) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -95,10 +96,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", access: .private) {
+            functionSpec("testOne", access: .private) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -111,11 +111,27 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", isStatic: true) {
+            functionSpec("testOne", isStatic: true) {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testThrowingFunc() {
+        let example: String = """
+                             func testOne() throws {
+                                 print(\"Hello, World\")
+                             }
+
+                             """
+        let docString: String = generateString {
+            functionSpec("testOne", throwsError: true) {
+                statement("print(\"Hello, World\")")
+            }
+        }
+        print(example)
+        print(docString)
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
@@ -127,10 +143,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("testOne", genericSignature: "T: NSObject") {
+            functionSpec("testOne", genericSignature: "T: NSObject") {
                 statement("print(\"Hello, World\")")
             }
-            end()
         }
         
         XCTAssertTrue(example == docString, "Both strings should equal each other")
@@ -144,7 +159,7 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function(
+            functionSpec(
                 "repeat",
                 arguments: [
                     Function.Argument(name: "content", type: "String"),
@@ -153,7 +168,6 @@ final class FunctionTests: XCTestCase {
             ) {
                 statement("print(String(repeating: content, count: count))")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -166,10 +180,9 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function("this", returnValue: "(Int, String)") {
+            functionSpec("this", returnValue: "(Int, String)") {
                 statement("print(String(repeating: content, count: count))")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -183,20 +196,20 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function(
-            "transform",
-            access: .private,
-            isStatic: true,
-            genericSignature: "T: NSObject",
-            arguments: [
-                Function.Argument(name: "object", type: "NSObject"),
-                Function.Argument(name: "transform", type: "(NSObject) -> T")
-            ],
-            returnValue: "T") {
+            functionSpec(
+                "transform",
+                access: .private,
+                isStatic: true,
+                genericSignature: "T: NSObject",
+                arguments: [
+                    Function.Argument(name: "object", type: "NSObject"),
+                    Function.Argument(name: "transform", type: "(NSObject) -> T")
+                ],
+                returnValue: "T"
+            ) {
                 statement("let newObject: T = transform(object)")
                 statement("return newObject")
             }
-            end()
         }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
@@ -215,7 +228,7 @@ final class FunctionTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            function(
+            functionSpec(
             "transform",
             access: .private,
             isStatic: true,
@@ -230,7 +243,6 @@ final class FunctionTests: XCTestCase {
             returnValue: "String") {
                 statement("return test1 + test2 + test3 + test4 + test5")
             }
-            end()
         }
 
         XCTAssertTrue(example == docString, "Both strings should equal each other")
