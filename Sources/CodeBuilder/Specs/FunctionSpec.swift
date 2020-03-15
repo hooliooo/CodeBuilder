@@ -20,7 +20,8 @@ import Foundation
     - returnValue: The return value of the function
     - builder: Fragments that represent the body of the function
  */
-@inlinable public func functionSpec(
+@inlinable
+public func functionSpec(
     _ name: String,
     access: Access = .internal,
     isStatic: Bool = false,
@@ -69,7 +70,8 @@ Creates a Fragment formatted specifically for Swift functions
    - returnValue: The return value of the function
    - builder: Fragment that represent the body of the function
 */
-@inlinable public func functionSpec(
+@inlinable
+public func functionSpec(
     _ name: String,
     access: Access = .internal,
     isStatic: Bool = false,

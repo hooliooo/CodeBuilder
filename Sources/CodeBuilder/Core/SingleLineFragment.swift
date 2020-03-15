@@ -30,7 +30,8 @@ public struct SingleLineFragment: Fragment {
     /**
      The SingleLineFragment as a String. It is the content appended with a newline.
      */
-    @inlinable public func renderContent() -> String {
+    @inlinable
+    public func renderContent() -> String {
         return self.content + "\n"
     }
 

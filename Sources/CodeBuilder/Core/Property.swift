@@ -41,7 +41,8 @@ public struct Property: Fragment {
     /**
      The SingleLineFragment as a String. It is the content appended with a newline.
      */
-    @inlinable public func renderContent() -> String {
+    @inlinable
+    public func renderContent() -> String {
         var content: String = self.access == .internal ? "" : "\(self.access.rawValue) "
         content += self.isMutable ? "var" : "let"
         content += " \(self.name)"

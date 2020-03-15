@@ -31,7 +31,8 @@ import Foundation
     - statement: String representing the logic for the control flow.
     - builder: Fragments that represent the body of the control flow.
  */
-@inlinable public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable
+public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("\(statement) {", builder)
 }
 
@@ -58,7 +59,8 @@ import Foundation
     - statement: String representing the logic for the control flow.
     - builder: Fragment that represent the body of the control flow.
  */
-@inlinable public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable
+public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("\(statement) {", { [builder()] })
 }
 
@@ -90,7 +92,8 @@ import Foundation
     - statement: String representing the Bool logic for the `else if` control flow.
     - builder: Fragments that represent the body of the `else if` control flow.
  */
-@inlinable public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable
+public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     let t = MultiLineFragment("} else if \(statement) {", builder)
     return t
 }
@@ -123,7 +126,8 @@ import Foundation
     - statement: String representing the Bool logic for the `else if` control flow.
     - builder: Fragments that represent the body of the `else if` control flow.
  */
-@inlinable public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable
+public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("} else if \(statement) {", { [builder()] })
 }
 
@@ -159,7 +163,8 @@ import Foundation
  - parameters:
     - builder: Fragments that represent the body of the `else` control flow.
  */
-@inlinable public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+@inlinable
+public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("} else {", builder)
 }
 
@@ -195,7 +200,8 @@ import Foundation
  - parameters:
     - builder: Fragment that represent the body of the `else` control flow.
  */
-@inlinable public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
+@inlinable
+public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
     MultiLineFragment("} else {", { [builder()] })
 }
 
@@ -235,7 +241,8 @@ import Foundation
  - parameters:
     - builder: Fragment that represent a `guard` control flow.
 */
-@inlinable public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
+@inlinable
+public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
     let statements: [Fragment] = statements()
     var content: String = "guard"
     let fragments: [Fragment]
@@ -261,14 +268,17 @@ import Foundation
     return GroupFragment(children: fragments + [end()])
 }
 
-@inlinable public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
+@inlinable
+public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
     guardSpec(statements: { [statement()] }, elseBlock: { [elseBlock()] })
 }
 
-@inlinable public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
+@inlinable
+public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
     guardSpec(statements: statements, elseBlock: { [elseBlock()] })
 }
 
-@inlinable public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
+@inlinable
+public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
     guardSpec(statements: { [statement()] }, elseBlock: elseBlock)
 }

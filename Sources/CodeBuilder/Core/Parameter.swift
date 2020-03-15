@@ -16,7 +16,8 @@ public struct Parameter: Fragment {
 
     // MARK: Methods
     
-    @inlinable public func renderContent() -> String {
+    @inlinable
+    public func renderContent() -> String {
         return "   - \(self.name): \(self.documentation)"
     }
 }
