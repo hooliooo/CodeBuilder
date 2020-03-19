@@ -14,6 +14,7 @@ public class GroupFragment: MultiLineFragment {
         super.init("", { children })
     }
 
+    @inlinable
     public override func renderContent() -> String {
         self.children
             .compactMap { (fragment: Fragment) -> MultiLineFragment? in

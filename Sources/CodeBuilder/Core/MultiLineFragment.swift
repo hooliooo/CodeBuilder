@@ -74,14 +74,14 @@ public class MultiLineFragment: Fragment {
         self.setUpChildren()
         var content: String = self.content + "\n"
         let indent: String = self.createIndent(with: 1)
-        content = self.children.reduce(into: content, { (currentContent: inout String, fragment: Fragment) -> Void in
+        content = self.children.reduce(into: content) { (currentContent: inout String, fragment: Fragment) -> Void in
             let fragmentContent: String = fragment.renderContent()
             if fragmentContent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
                 currentContent += fragmentContent
             } else {
                 currentContent += (indent + fragmentContent)
             }
-        })
+        }
 
         return content
     }

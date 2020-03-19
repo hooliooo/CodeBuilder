@@ -16,6 +16,7 @@ public protocol Fragment {
     /**
      Generates a String representation of the Swift code represented by this Fragment
      */
+    @inlinable
     func renderContent() -> String
 
 }
