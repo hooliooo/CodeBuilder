@@ -305,21 +305,130 @@ public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseB
     guardSpec(statements: { [statement()] }, elseBlock: elseBlock)
 }
 
+/**
+ Creates a Fragment formatted specifically for `do` Swift control flow statements
+
+ Example:
+ ```
+ fileSpec("   ") {
+     doSpec {
+         statement("let realm = try Realm()")
+         statement("print(realm)")
+     }
+     end()
+ }
+ ```
+ renders:
+ ```
+ do {
+     let realm = try Realm()
+     print(realm)
+ }
+ ```
+
+ - parameters:
+    - builder: The Fragments that represent the `do` control flow's body.
+*/
 @inlinable
 public func doSpec(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     controlFlowSpec("do", builder)
 }
 
+/**
+ Creates a Fragment formatted specifically for `do` Swift control flow statements
+
+ Example:
+ ```
+ fileSpec("   ") {
+     doSpec {
+         statement("let realm = try Realm()")
+     }
+     end()
+ }
+ ```
+ renders:
+ ```
+ do {
+     let realm = try Realm()
+ }
+ ```
+
+ - parameters:
+    - builder: The Fragment that represents the `do` control flow's body.
+*/
 @inlinable
 public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
     doSpec { [builder()] }
 }
 
+/**
+ Creates a Fragment formatted specifically for `catch` Swift control flow statements
+
+ Example:
+ ```
+ fileSpec("   ") {
+     doSpec {
+         statement("let realm = try Realm()")
+         statement("print(realm)")
+     }
+     catchSpec(statement: "let error") {
+         statement(""""print("failed")""")
+         statement("print(error.localizedDescription)"
+     }
+     end()
+ }
+ ```
+ renders:
+ ```
+ do {
+     let realm = try Realm()
+     print(realm)
+ } catch let error {
+     print("failed")
+     print(error.localziedDescription)
+ }
+ ```
+
+ - parameters:
+    - statement: The catch statement
+    - builder: The Fragments that represent the `catch` control flow's body.
+*/
 @inlinable
-public func catchSpec(statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    MultiLineFragment("} catch \(statement) {", builder)
+public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+    let statement: String = statement != nil ? " \(statement!) " : " "
+    MultiLineFragment("} catch\(statement){", builder)
 }
 
+/**
+ Creates a Fragment formatted specifically for `catch` Swift control flow statements
+
+ Example:
+ ```
+ fileSpec("   ") {
+     doSpec {
+         statement("let realm = try Realm()")
+         statement("print(realm)")
+     }
+     catchSpec(statement: "let error") {
+         statement(""""print("failed")""")
+     }
+     end()
+ }
+ ```
+ renders:
+ ```
+ do {
+     let realm = try Realm()
+     print(realm)
+ } catch let error {
+     print("failed")
+ }
+ ```
+
+ - parameters:
+    - statement: The catch statement
+    - builder: The Fragment that represents the `catch` control flow's body.
+*/
 @inlinable
 public func catchSpec(statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
     catchSpec(statement: statement) { [builder()] }
