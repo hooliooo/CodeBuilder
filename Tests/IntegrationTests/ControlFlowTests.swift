@@ -19,7 +19,7 @@ final class ControlFlowTest: XCTestCase {
 
                               """
         let docString: String = generateString {
-            beginControlFlow("if word == \"That\"") {
+            controlFlowSpec("if word == \"That\"") {
                 statement("print(\"Hello, \\(word)\")")
             }
             end()
@@ -38,10 +38,10 @@ final class ControlFlowTest: XCTestCase {
 
                               """
         let docString: String = generateString {
-            beginControlFlow("if string.isEmpty") {
+            controlFlowSpec("if string.isEmpty") {
                 statement("print(\"string is empty\")")
             }
-            elseControlFlow {
+            elseSpec {
                 statement("print(\"string is not empty\")")
             }
             end()
@@ -59,10 +59,10 @@ final class ControlFlowTest: XCTestCase {
 
                               """
         let docString: String = generateString {
-            beginControlFlow("if x == 0") {
+            controlFlowSpec("if x == 0") {
                 statement("print(\"x is 0\")")
             }
-            elseIf("x == 1") {
+            elseIfSpec("x == 1") {
                 statement("print(\"x is 1\")")
             }
             end()
@@ -84,10 +84,10 @@ final class ControlFlowTest: XCTestCase {
 
                               """
         let docString: String = generateString {
-            beginControlFlow("if x == 0") {
+            controlFlowSpec("if x == 0") {
                 statement("print(\"x is 0\")")
             }
-            elseIf("x == 1") {
+            elseIfSpec("x == 1") {
                 statement("print(\"x is 1\")")
                 statement("print(\"Hello, World\")")
                 lineBreak()

@@ -14,7 +14,7 @@ import Foundation
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"Hello, \\(word)\")")
     }
     end()
@@ -32,7 +32,7 @@ import Foundation
     - builder: Fragments that represent the body of the control flow.
  */
 @inlinable
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("\(statement) {", builder)
 }
 
@@ -42,7 +42,7 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"Hello, \\(word)\")")
     }
     end()
@@ -60,8 +60,8 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
     - builder: Fragment that represent the body of the control flow.
  */
 @inlinable
-public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("\(statement) {", { [builder()] })
+public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    controlFlowSpec(statement, { [builder()] })
 }
 
 /**
@@ -70,10 +70,10 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
-    elseIf("word == \"This\"") {
+    elseIfSpec("word == \"This\"") {
         statement("print(\"word is This\")")
     }
     end()
@@ -93,9 +93,8 @@ public func beginControlFlow(_ statement: String, @CodeBuilder _ builder: () -> 
     - builder: Fragments that represent the body of the `else if` control flow.
  */
 @inlinable
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
-    let t = MultiLineFragment("} else if \(statement) {", builder)
-    return t
+public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+    MultiLineFragment("} else if \(statement) {", builder)
 }
 
 /**
@@ -104,10 +103,10 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
-    elseIf("word == \"This\"") {
+    elseIfSpec("word == \"This\"") {
         statement("print(\"word is This\")")
     }
     end()
@@ -127,8 +126,8 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]
     - builder: Fragments that represent the body of the `else if` control flow.
  */
 @inlinable
-public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("} else if \(statement) {", { [builder()] })
+public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    elseIfSpec(statement, { [builder()] })
 }
 
 /**
@@ -137,13 +136,13 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) 
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
-    elseIf("word == \"This\"") {
+    elseIfSpec("word == \"This\"") {
         statement("print(\"word is This\")")
     }
-    elseControlFlow {
+    elseSpec {
         statement("print(\"word is neither That or This\")")
     }
     end()
@@ -164,7 +163,7 @@ public func elseIf(_ statement: String, @CodeBuilder _ builder: () -> Fragment) 
     - builder: Fragments that represent the body of the `else` control flow.
  */
 @inlinable
-public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func elseSpec(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     MultiLineFragment("} else {", builder)
 }
 
@@ -174,13 +173,13 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragmen
  Example:
  ```
  fileSpec("   ") {
-    beginControlFlow("if word == \"That\"") {
+    controlFlowSpec("if word == \"That\"") {
         statement("print(\"word is That\")")
     }
-    elseIf("word == \"This\"") {
+    elseIfSpec("word == \"This\"") {
         statement("print(\"word is This\")")
     }
-    elseControlFlow {
+    elseSpec {
         statement("print(\"word is neither That or This\")")
     }
     end()
@@ -201,8 +200,8 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> [Fragment]) -> Fragmen
     - builder: Fragment that represent the body of the `else` control flow.
  */
 @inlinable
-public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    MultiLineFragment("} else {", { [builder()] })
+public func elseSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    elseSpec { [builder()] }
 }
 
 /**
@@ -239,7 +238,9 @@ public func elseControlFlow(@CodeBuilder _ builder: () -> Fragment) -> Fragment 
  ```
 
  - parameters:
-    - builder: Fragment that represent a `guard` control flow.
+    - statements: The Fragments that represent the `guard` control flow's body.
+    - elseBlock : The Fragment that represent a `guard` control flow's else block.
+ - Tag: mainGuardSpec
 */
 @inlinable
 public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
@@ -268,17 +269,58 @@ public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder el
     return GroupFragment(children: fragments + [end()])
 }
 
+/**
+ Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
+
+ - parameters:
+    - statement: The single Fragment that represents the `guard` control flow's body.
+    - elseBlock: The single Fragment that represents the `guard` control flow's else block.
+ */
 @inlinable
 public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
     guardSpec(statements: { [statement()] }, elseBlock: { [elseBlock()] })
 }
 
+/**
+Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
+
+- parameters:
+   - statement: The Fragments that represents the `guard` control flow's body.
+   - elseBlock: The single Fragment that represents the `guard` control flow's else block.
+*/
 @inlinable
 public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
     guardSpec(statements: statements, elseBlock: { [elseBlock()] })
 }
 
+/**
+Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
+
+- parameters:
+   - statement: The single Fragment that represents the `guard` control flow's body.
+   - elseBlock: The Fragments that represents the `guard` control flow's else block.
+*/
 @inlinable
 public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
     guardSpec(statements: { [statement()] }, elseBlock: elseBlock)
+}
+
+@inlinable
+public func doSpec(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+    controlFlowSpec("do", builder)
+}
+
+@inlinable
+public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    doSpec { [builder()] }
+}
+
+@inlinable
+public func catchSpec(statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+    MultiLineFragment("} catch \(statement) {", builder)
+}
+
+@inlinable
+public func catchSpec(statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
+    catchSpec(statement: statement) { [builder()] }
 }
