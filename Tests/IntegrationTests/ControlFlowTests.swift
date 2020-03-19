@@ -92,7 +92,7 @@ final class ControlFlowTest: XCTestCase {
                 statement("print(\"Hello, World\")")
                 lineBreak()
             }
-            elseControlFlow {
+            elseSpec {
                 statement("print(\"x is not 0 or 1\")")
             }
             end()
@@ -152,13 +152,85 @@ final class ControlFlowTest: XCTestCase {
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
+    func testDoSpecMultiline() {
+        let example: String = """
+                              do {
+                                  let realm = try Realm()
+                                  print(realm)
+                              }
+
+                              """
+        let docString: String = generateString {
+            doSpec {
+                statement("let realm = try Realm()")
+                statement("print(realm)")
+            }
+            end()
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testDoSpecSingleline() {
+        let example: String = """
+                              do {
+                                  let realm = try Realm()
+                              }
+
+                              """
+        let docString: String = generateString {
+            doSpec {
+                statement("let realm = try Realm()")
+            }
+            end()
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testCatchSpecMultiline() {
+        let example: String = """
+                              } catch let error {
+                                  print("failed")
+                                  print(error.localziedDescription)
+                              }
+
+                              """
+        let docString: String = generateString {
+            catchSpec(statement: "let error") {
+                statement(#"print("failed")"#)
+                statement("print(error.localziedDescription)")
+            }
+            end()
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testCatchSpecSingleline() {
+        let example: String = """
+                              } catch let error {
+                                  print("failed")
+                              }
+
+                              """
+        let docString: String = generateString {
+            catchSpec(statement: "let error") {
+                statement(#"print("failed")"#)
+            }
+            end()
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
     static var allTests: [(String, (ControlFlowTest) -> () -> ())] = [
         ("testControlFlow", testControlFlow),
         ("testControlFlowWithElse", testControlFlowWithElse),
         ("testControlFlowWithElseIf", testControlFlowWithElseIf),
         ("testControlFlowWithElseIfAndElse", testControlFlowWithElseIfAndElse),
         ("testGuardSpec", testGuardSpec),
-        ("testGuardSpecMultiline", testGuardSpecMultiline)
+        ("testGuardSpecMultiline", testGuardSpecMultiline),
+        ("testDoSpecMultiline", testDoSpecMultiline),
+        ("testDoSpecSingleline", testDoSpecSingleline),
+        ("testCatchSpecMultiline", testCatchSpecMultiline),
+        ("testCatchSpecSingleline", testCatchSpecSingleline)
     ]
 
 }

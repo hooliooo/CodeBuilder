@@ -372,8 +372,8 @@ public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
          statement("print(realm)")
      }
      catchSpec(statement: "let error") {
-         statement(""""print("failed")""")
-         statement("print(error.localizedDescription)"
+         statement(#"print("failed")"#)
+         statement("print(error.localizedDescription)")
      }
      end()
  }
@@ -396,7 +396,7 @@ public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
 @inlinable
 public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
     let statement: String = statement != nil ? " \(statement!) " : " "
-    MultiLineFragment("} catch\(statement){", builder)
+    return MultiLineFragment("} catch\(statement){", builder)
 }
 
 /**
