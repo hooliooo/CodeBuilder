@@ -22,10 +22,6 @@ public struct CodeBuilder {
         return [fragment]
     }
 
-    public static func buildExpression(_ fragment: Fragment) -> [Fragment] {
-        return [fragment]
-    }
-
     public static func buildIf(_ component: Fragment?) -> [Fragment] {
         guard let component = component else { return [] }
         return [component]
@@ -40,27 +36,14 @@ public struct CodeBuilder {
     }
 }
 
-/**
- Creates a SingleLineFragment out of a String
- - parameters:
-    - statement: The string content of the SingleLineFragment
- - returns: SingleLineFragment
- */
-@inlinable
-public func statement(_ statement: String) -> Fragment {
-    SingleLineFragment(statement)
-}
+public enum Code {
+    case fragment(Fragment)
+    case fragments([Fragment])
 
-/// Adds a line break
-///
-@inlinable
-public func lineBreak() -> Fragment {
-    SingleLineFragment("")
-}
-
-/// Ends scope
-///
-@inlinable
-public func end() -> Fragment {
-    SingleLineFragment("}")
+    var fragments: [Fragment] {
+        switch self {
+            case .fragments(let fragments): return fragments
+            case .fragment(let fragment): return [fragment]
+        }
+    }
 }

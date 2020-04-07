@@ -52,7 +52,7 @@ public struct Property: Fragment {
             content += " = \(value)"
         }
 
-        return content + "\n\n"
+        return content + "\n"
     }
 }
 
