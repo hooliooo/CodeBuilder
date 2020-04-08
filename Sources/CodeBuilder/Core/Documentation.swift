@@ -12,7 +12,7 @@ public class Documentation: MultiLineFragment {
 
     public let format: Documentation.Format
 
-    public init(_ content: String, format: Documentation.Format = .singleLine, _ builder: () -> [Fragment]) {
+    public init(_ content: String, format: Documentation.Format = .singleLine, _ builder: () -> Code) {
         self.format = format
         super.init(content, builder)
     }

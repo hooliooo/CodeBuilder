@@ -3,9 +3,9 @@ import XCTest
 
 final class DocumentationTests: XCTestCase {
 
-    private func generateString(_ fragment: Fragment) -> String {
+    private func generateString(_ code: CodeRepresentable) -> String {
         fileSpec(indent: "") {
-            fragment
+            code
         }
     }
 

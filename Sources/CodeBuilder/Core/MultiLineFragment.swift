@@ -40,9 +40,9 @@ public class MultiLineFragment: Fragment {
         - content: The content of this MultiLineFragment.
         - builder: The CodeFragments to be nested under this MultiLineFragment's content.
      */
-    public init(_ content: String, @CodeBuilder _ builder: () -> [Fragment]) {
+    public init(_ content: String, @CodeBuilder _ builder: () -> CodeRepresentable) {
         self.content = content
-        self.children = builder()
+        self.children = builder().asCode.fragments
     }
 
     @usableFromInline

@@ -27,7 +27,7 @@ public func documentationSpec(
     parameters: [Parameter] = [],
     returnValue: String? = nil,
     tag: String? = nil
-) -> Fragment {
+) -> CodeRepresentable {
     let prefix: String = format == .singleLine ? "/// " : ""
     let content: String = "\(prefix)\(content)"
 
@@ -44,5 +44,5 @@ public func documentationSpec(
         : nil
 
     let fragments: [Fragment?] = parameters + [returnValue, tag]
-    return Documentation(content, format: format, { fragments.compactMap { $0} })
+    return Documentation(content, format: format, { .fragments(fragments.compactMap { $0 }) })
 }

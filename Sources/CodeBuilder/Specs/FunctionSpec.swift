@@ -29,8 +29,8 @@ public func functionSpec(
     genericSignature: String? = nil,
     arguments: [Function.Argument] = [],
     returnValue: String? = nil,
-    @CodeBuilder _ builder: () -> [Fragment]
-) -> Fragment {
+    @CodeBuilder _ builder: () -> CodeRepresentable
+) -> CodeRepresentable {
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     let type: String = isStatic ? "static " : ""
     let args: String = !arguments.isEmpty ? arguments.map { $0.renderContent() }.joined(separator: ", ") : ""
@@ -49,46 +49,11 @@ public func functionSpec(
         let children: [Fragment] = fragments + [lastFragment]
         let first: MultiLineFragment = MultiLineFragment(
             "\(access)\(type)func \(name)\(genericSignature)(",
-            { children }
+            { Code.fragments(children) }
         )
         let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
-        return GroupFragment(children: [first, second, end()])
+        return GroupFragment(children: .fragments([first, second, end()]))
     } else {
-        return GroupFragment(children: [MultiLineFragment(functionSignature, builder), end()])
+        return GroupFragment(children: .fragments([MultiLineFragment(functionSignature, builder), end()]))
     }
-}
-
-/**
-Creates a Fragment formatted specifically for Swift functions
-- parameters:
-   - name: The name of the function
-   - access: The access level of the function
-   - isStatic: Bool flag that determines whether or not the function is a static method
-   - throwsError: Bool flag that determines whether or not the function throws
-   - genericSignature: The generic signature of the function
-   - arguments: The arguments of the function
-   - returnValue: The return value of the function
-   - builder: Fragment that represent the body of the function
-*/
-@inlinable
-public func functionSpec(
-    _ name: String,
-    access: Access = .internal,
-    isStatic: Bool = false,
-    throwsError: Bool = false,
-    genericSignature: String? = nil,
-    arguments: [Function.Argument] = [],
-    returnValue: String? = nil,
-    @CodeBuilder _ builder: () -> Fragment
-) -> Fragment {
-    return functionSpec(
-        name,
-        access: access,
-        isStatic: isStatic,
-        throwsError: throwsError,
-        genericSignature: genericSignature,
-        arguments: arguments,
-        returnValue: returnValue,
-        { [builder()] }
-    )
 }

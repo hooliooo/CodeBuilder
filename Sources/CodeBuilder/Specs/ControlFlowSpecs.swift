@@ -32,39 +32,11 @@ import Foundation
     - builder: Fragments that represent the body of the control flow.
  */
 @inlinable
-public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
     MultiLineFragment("\(statement) {", builder)
 }
 
 /**
- Creates a Fragment formatted specifically for Swift control flow statements
-
- Example:
- ```
- fileSpec("   ") {
-    controlFlowSpec("if word == \"That\"") {
-        statement("print(\"Hello, \\(word)\")")
-    }
-    end()
- }
- ```
- renders:
- ```
- if word == "That" {
-     print("Hello, \(word)")
- }
- ```
-
- - parameters:
-    - statement: String representing the logic for the control flow.
-    - builder: Fragment that represent the body of the control flow.
- */
-@inlinable
-public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    controlFlowSpec(statement, { [builder()] })
-}
-
-/**
  Creates a Fragment formatted specifically for `else if` Swift control flow statements
 
  Example:
@@ -93,41 +65,8 @@ public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> F
     - builder: Fragments that represent the body of the `else if` control flow.
  */
 @inlinable
-public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
     MultiLineFragment("} else if \(statement) {", builder)
-}
-
-/**
- Creates a Fragment formatted specifically for `else if` Swift control flow statements
-
- Example:
- ```
- fileSpec("   ") {
-    controlFlowSpec("if word == \"That\"") {
-        statement("print(\"word is That\")")
-    }
-    elseIfSpec("word == \"This\"") {
-        statement("print(\"word is This\")")
-    }
-    end()
- }
- ```
- renders:
- ```
- if word == "That" {
-     print("word is That")
- } else if word == "This" {
-     print("word is This")
- }
- ```
-
- - parameters:
-    - statement: String representing the Bool logic for the `else if` control flow.
-    - builder: Fragments that represent the body of the `else if` control flow.
- */
-@inlinable
-public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    elseIfSpec(statement, { [builder()] })
 }
 
 /**
@@ -163,45 +102,8 @@ public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> Fragme
     - builder: Fragments that represent the body of the `else` control flow.
  */
 @inlinable
-public func elseSpec(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func elseSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
     MultiLineFragment("} else {", builder)
-}
-
-/**
- Creates a Fragment formatted specifically for `else` Swift control flow statements
-
- Example:
- ```
- fileSpec("   ") {
-    controlFlowSpec("if word == \"That\"") {
-        statement("print(\"word is That\")")
-    }
-    elseIfSpec("word == \"This\"") {
-        statement("print(\"word is This\")")
-    }
-    elseSpec {
-        statement("print(\"word is neither That or This\")")
-    }
-    end()
- }
- ```
- renders:
- ```
- if word == "That" {
-     print("word is That")
- } else if word == "This" {
-     print("word is This")
- } else {
-    print("word is neither That or This")
- }
- ```
-
- - parameters:
-    - builder: Fragment that represent the body of the `else` control flow.
- */
-@inlinable
-public func elseSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    elseSpec { [builder()] }
 }
 
 /**
@@ -243,10 +145,10 @@ public func elseSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
  - Tag: mainGuardSpec
 */
 @inlinable
-public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
-    let statements: [Fragment] = statements()
+public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBuilder elseBlock: () -> CodeRepresentable) -> CodeRepresentable {
+    let statements: [Fragment] = statements().asCode.fragments
     var content: String = "guard"
-    let fragments: [Fragment]
+    var fragments: [Fragment]
     if statements.count > 1, let statements = statements as? [SingleLineFragment] {
         let lastStatement: SingleLineFragment = statements.last!
         let newStatements: [SingleLineFragment] = statements
@@ -266,43 +168,8 @@ public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder el
     } else {
         fragments = []
     }
-    return GroupFragment(children: fragments + [end()])
-}
-
-/**
- Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
-
- - parameters:
-    - statement: The single Fragment that represents the `guard` control flow's body.
-    - elseBlock: The single Fragment that represents the `guard` control flow's else block.
- */
-@inlinable
-public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
-    guardSpec(statements: { [statement()] }, elseBlock: { [elseBlock()] })
-}
-
-/**
-Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
-
-- parameters:
-   - statement: The Fragments that represents the `guard` control flow's body.
-   - elseBlock: The single Fragment that represents the `guard` control flow's else block.
-*/
-@inlinable
-public func guardSpec(@CodeBuilder statements: () -> [Fragment], @CodeBuilder elseBlock: () -> Fragment) -> Fragment {
-    guardSpec(statements: statements, elseBlock: { [elseBlock()] })
-}
-
-/**
-Convenience method of [guardSpec](x-source-tag://mainGuardSpec)
-
-- parameters:
-   - statement: The single Fragment that represents the `guard` control flow's body.
-   - elseBlock: The Fragments that represents the `guard` control flow's else block.
-*/
-@inlinable
-public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseBlock: () -> [Fragment]) -> Fragment {
-    guardSpec(statements: { [statement()] }, elseBlock: elseBlock)
+    fragments.append(end())
+    return GroupFragment(fragments: fragments)
 }
 
 /**
@@ -330,35 +197,8 @@ public func guardSpec(@CodeBuilder statement: () -> Fragment, @CodeBuilder elseB
     - builder: The Fragments that represent the `do` control flow's body.
 */
 @inlinable
-public func doSpec(@CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func doSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
     controlFlowSpec("do", builder)
-}
-
-/**
- Creates a Fragment formatted specifically for `do` Swift control flow statements
-
- Example:
- ```
- fileSpec("   ") {
-     doSpec {
-         statement("let realm = try Realm()")
-     }
-     end()
- }
- ```
- renders:
- ```
- do {
-     let realm = try Realm()
- }
- ```
-
- - parameters:
-    - builder: The Fragment that represents the `do` control flow's body.
-*/
-@inlinable
-public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    doSpec { [builder()] }
 }
 
 /**
@@ -394,42 +234,7 @@ public func doSpec(@CodeBuilder _ builder: () -> Fragment) -> Fragment {
     - builder: The Fragments that represent the `catch` control flow's body.
 */
 @inlinable
-public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> [Fragment]) -> Fragment {
+public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
     let statement: String = statement != nil ? " \(statement!) " : " "
     return MultiLineFragment("} catch\(statement){", builder)
-}
-
-/**
- Creates a Fragment formatted specifically for `catch` Swift control flow statements
-
- Example:
- ```
- fileSpec("   ") {
-     doSpec {
-         statement("let realm = try Realm()")
-         statement("print(realm)")
-     }
-     catchSpec(statement: "let error") {
-         statement(""""print("failed")""")
-     }
-     end()
- }
- ```
- renders:
- ```
- do {
-     let realm = try Realm()
-     print(realm)
- } catch let error {
-     print("failed")
- }
- ```
-
- - parameters:
-    - statement: The catch statement
-    - builder: The Fragment that represents the `catch` control flow's body.
-*/
-@inlinable
-public func catchSpec(statement: String, @CodeBuilder _ builder: () -> Fragment) -> Fragment {
-    catchSpec(statement: statement) { [builder()] }
 }

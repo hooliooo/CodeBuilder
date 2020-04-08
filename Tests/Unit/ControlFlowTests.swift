@@ -3,12 +3,8 @@ import XCTest
 
 final class ControlFlowTest: XCTestCase {
 
-    private func generateString(@CodeBuilder _ builder: () -> [Fragment]) -> String {
+    private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
         fileSpec(indent: "    ", builder)
-    }
-
-    private func generateString(@CodeBuilder _ builder: () -> Fragment) -> String {
-        fileSpec(indent: "    ", { [builder()] })
     }
 
     func testControlFlow() {
@@ -109,7 +105,7 @@ final class ControlFlowTest: XCTestCase {
                               """
         let docString: String = generateString {
             guardSpec(
-                statement: {
+                statements: {
                     statement("x == 0")
                 },
                 elseBlock: {

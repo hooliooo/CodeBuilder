@@ -3,14 +3,8 @@ import XCTest
 
 final class FunctionTests: XCTestCase {
 
-    private func generateString(@CodeBuilder _ builder: () -> [Fragment]) -> String {
+    private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
         fileSpec(indent: "    ", builder)
-    }
-
-    private func generateString(@CodeBuilder _ builder: () -> Fragment) -> String {
-        generateString {
-            [builder()]
-        }
     }
 
     func testFunc() {
@@ -145,7 +139,7 @@ final class FunctionTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        
+
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 

@@ -15,17 +15,6 @@ import Foundation
     - builder: Creates Fragments that build the String representing Swift code.
  */
 @inlinable
-public func fileSpec(indent: String, @CodeBuilder _ builder: () -> [Fragment]) -> String {
-    String(indent, builder: builder)
-}
-
-/**
-Builds a String that represents a file of generated Swift code using Fragments to build the file's content
-- parameters:
-   - indent: Whitespace indentation used to render Swift code
-   - builder: Creates a single Fragment that builds the String representing Swift code.
-*/
-@inlinable
-public func fileSpec(indent: String, @CodeBuilder _ builder: () -> Fragment) -> String {
-    String(indent, builder: { [builder()] })
+public func fileSpec(indent: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> String {
+    String(indent, builder: { builder().asCode })
 }

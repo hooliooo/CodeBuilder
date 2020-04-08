@@ -10,8 +10,12 @@ import Foundation
 
 public class GroupFragment: MultiLineFragment {
 
-    public init(children: [Fragment]) {
+    public init(children: Code) {
         super.init("", { children })
+    }
+
+    public convenience init(fragments: [Fragment]) {
+        self.init(children: .fragments(fragments))
     }
 
     @inlinable
