@@ -25,6 +25,7 @@ public enum Code: CodeRepresentable {
     /**
      Code as an array of Fragments
      */
+    @inlinable
     public var fragments: [Fragment] {
         switch self {
             case .fragment(let fragment): return [fragment]
@@ -32,6 +33,7 @@ public enum Code: CodeRepresentable {
         }
     }
 
+    @inlinable
     public var asCode: Code {
         self
     }
@@ -45,5 +47,6 @@ public protocol CodeRepresentable {
     /**
      A representation of this CodeRepresentable instance as a Code case
      */
+    @inlinable
     var asCode: Code { get }
 }

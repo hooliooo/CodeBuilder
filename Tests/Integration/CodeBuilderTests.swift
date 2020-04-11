@@ -8,8 +8,8 @@ final class CodeBuilderTests: XCTestCase {
                 documentationSpec("Test doc for Test")
                 typeSpec("Test", type: .class, inheritingFrom: ["This", "That"]) {
                     documentationSpec("Test doc2")
-                    Property(access: .public, isMutable: true, name: "testOne", type: "String", value: nil)
-                    Property(access: .public, isMutable: false, name: "testTwo", type: "Bool", value: nil)
+                    StoredProperty(access: .public, isMutable: true, name: "testOne", type: "String", value: nil)
+                    StoredProperty(access: .public, isMutable: false, name: "testTwo", type: "Bool", value: nil)
                     documentationSpec(
                         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
                         format: .multiline,
@@ -23,7 +23,7 @@ final class CodeBuilderTests: XCTestCase {
                     )
                     typeSpec("Test2", type: .struct) {
                         documentationSpec("Test doc4")
-                        Property(access: .internal, isMutable: false, name: "testOne", type: "Bool", value: nil)
+                        StoredProperty(access: .internal, isMutable: false, name: "testOne", type: "Bool", value: nil)
                         documentationSpec(
                             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
                             format: .singleLine,

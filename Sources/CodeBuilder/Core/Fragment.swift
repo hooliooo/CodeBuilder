@@ -23,6 +23,7 @@ public protocol Fragment: CodeRepresentable {
 
 public extension Fragment {
 
+    @inlinable
     var asCode: Code {
         .fragment(self)
     }

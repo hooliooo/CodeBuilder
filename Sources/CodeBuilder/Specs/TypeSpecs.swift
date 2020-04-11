@@ -43,11 +43,60 @@ public func classSpec(_ name: String, access: Access = .internal, inheritingFrom
 /**
 Creates a Fragment formatted specifically for defining a Swift class type
 - parameters:
-    - name: The name of the struct being defined
-    - access: The access level of the struct
-    - parents: The protocols the struct conforms to
-    - builder: Fragments that represent the body of the struct's definition
+    - name     : The name of the struct being defined
+    - access   : The access level of the struct
+    - protocols: The protocols the struct conforms to
+    - body     : Fragments that represent the body of the struct's definition
 */
-public func structSpec(_ name: String, access: Access = .internal, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
-    typeSpec(name, access: access, type: DataType.struct, inheritingFrom: parents, builder)
+public func structSpec(_ name: String, access: Access = .internal, inheritingFrom protocols: [String] = [], @CodeBuilder _ body: () -> CodeRepresentable) -> CodeRepresentable {
+    typeSpec(name, access: access, type: DataType.struct, inheritingFrom: protocols, body)
+}
+
+/**
+Creates a Fragment formatted specifically for defining a Swift enum type with either normal enum cases, associated value cases, or both
+- parameters:
+    - access   : The access level of the enum
+    - enumSpec : The enum specification
+    - protocols: The protocols the enum conforms to
+    - body     : Fragments that represent the body of the enum's definition. This should not contain cases.
+*/
+public func enumSpec(
+    access: Access = .internal,
+    enumSpec: Enum,
+    inheritingFrom protocols: [String] = [],
+    @CodeBuilder _ body: () -> CodeRepresentable = { Code.fragments([]) }
+) -> CodeRepresentable {
+
+    let access: String = access == .internal ? "" : "\(access.rawValue) "
+    var content: String = "\(access)enum \(enumSpec.name)"
+    content += !protocols.isEmpty
+        ? ": " + protocols.joined(separator: ", ")
+        : ""
+    content += " {\n"
+
+    let fragments: [Fragment] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+
+    switch enumSpec.cases.isEmpty {
+        case true:
+            return GroupFragment(
+                fragments: [
+                    MultiLineFragment(content, body),
+                    end()
+                ]
+            )
+        case false:
+            return GroupFragment(
+                fragments: [
+                    MultiLineFragment(
+                        content,
+                        {
+                            Code.fragments(fragments)
+                            lineBreak()
+                            body()
+                        }
+                    ),
+                    end()
+                ]
+            )
+    }
 }

@@ -20,16 +20,13 @@ final class TypeSpecTests: XCTestCase {
                               """
         let docString: String = generateString {
             typeSpec("Test", access: Access.internal, type: DataType.class, inheritingFrom: ["NSObject"]) {
-                Property(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+                StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
                 lineBreak()
-                Property(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+                StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
             }
         }
-        print(example)
-        print(docString)
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
-
 
     static var allTests: [(String, (TypeSpecTests) -> () -> ())] = [
         ("testTypeSpecClass", testTypeSpecClass),

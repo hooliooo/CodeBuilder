@@ -1,5 +1,5 @@
 //
-//  Property.swift
+//  StoredProperty.swift
 //
 //  Copyright (c) Julio Miguel Alorro 2020
 //  MIT license, see LICENSE file for details
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- Property represents the code that defines a property of a Swift data structure
+ StoredProperty represents the code that defines a property of a Swift data structure
  */
-public struct Property: Fragment {
+public struct StoredProperty: Fragment {
 
     /**
      Access level of the property
