@@ -8,14 +8,25 @@
 
 import Foundation
 
+/**
+ A MultilineFragment that groups its children at the same indent level
+ */
 public class GroupFragment: MultiLineFragment {
 
-    public init(children: Code) {
+    /**
+     Creates a GroupFragment using a CodeRepresentable instance
+     */
+    @inlinable
+    public init(children: CodeRepresentable) {
         super.init("", { children })
     }
 
+    /**
+     Creates a GroupFragment using an array of Fragments
+     */
+    @inlinable
     public convenience init(fragments: [Fragment]) {
-        self.init(children: .fragments(fragments))
+        self.init(children: Code.fragments(fragments))
     }
 
     @inlinable

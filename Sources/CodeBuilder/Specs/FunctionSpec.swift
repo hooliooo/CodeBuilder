@@ -52,8 +52,8 @@ public func functionSpec(
             { Code.fragments(children) }
         )
         let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
-        return GroupFragment(children: .fragments([first, second, end()]))
+        return GroupFragment(fragments: [first, second, end()])
     } else {
-        return GroupFragment(children: .fragments([MultiLineFragment(functionSignature, builder), end()]))
+        return GroupFragment(fragments: [MultiLineFragment(functionSignature, builder), end()])
     }
 }

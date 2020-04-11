@@ -37,6 +37,13 @@ public enum Code: CodeRepresentable {
     }
 }
 
+/**
+ A type that represents a piece of Swift code
+ */
 public protocol CodeRepresentable {
+
+    /**
+     A representation of this CodeRepresentable instance as a Code case
+     */
     var asCode: Code { get }
 }

@@ -9,6 +9,8 @@
 import Foundation
 
 extension Array: CodeRepresentable where Element: CodeRepresentable {
+
+    @inlinable
     public var asCode: Code {
         return .fragments(self.flatMap { $0.asCode.fragments })
     }

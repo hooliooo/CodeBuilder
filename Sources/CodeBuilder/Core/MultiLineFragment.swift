@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- A MultiLineFragment represents a multiple lines of Swift code
+ A MultiLineFragment represents a multiple lines of Swift code where the children are indented under its content
  */
 public class MultiLineFragment: Fragment {
 
@@ -40,11 +40,19 @@ public class MultiLineFragment: Fragment {
         - content: The content of this MultiLineFragment.
         - builder: The CodeFragments to be nested under this MultiLineFragment's content.
      */
+    @inlinable
     public init(_ content: String, @CodeBuilder _ builder: () -> CodeRepresentable) {
         self.content = content
         self.children = builder().asCode.fragments
     }
 
+    /**
+     Creates an indent level based on the number of parents from this MultilineFragment
+     - parameters:
+        - startingLevel: Determines starting number to multiply the indent level
+     - returns:
+        returns a whitespace String representing the indent level to use.
+     */
     @usableFromInline
     func createIndent(with startingLevel: Int) -> String {
         weak var parentsParent: MultiLineFragment? = self.parent
@@ -57,9 +65,12 @@ public class MultiLineFragment: Fragment {
         return String(repeating: self.indent, count: level)
     }
 
+    /**
+     Sets the indent level and parent of all children that are MultiLineFragments
+     */
     @usableFromInline
     func setUpChildren() {
-        self.children
+        self.children.lazy
             .compactMap { (fragment: Fragment) -> MultiLineFragment? in
                 fragment as? MultiLineFragment
             }

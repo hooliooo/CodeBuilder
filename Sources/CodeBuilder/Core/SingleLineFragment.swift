@@ -23,6 +23,7 @@ public struct SingleLineFragment: Fragment {
      - parameters:
         - content: The textual representation of the Swift code this Fragment represents.
      */
+    @inlinable
     public init(_ content: String) {
         self.content = content
     }

@@ -8,11 +8,26 @@
 
 import Foundation
 
+/**
+ A namespace for function related types
+ */
 public enum Function {
+
+    /**
+     A function argument
+     */
     public struct Argument: Fragment {
 
         // MARK: Stored Properties
+
+        /**
+         Name of the argument
+         */
         public let name: String
+
+        /**
+         A text representation of the function argument type
+         */
         public let type: String
 
         @inlinable

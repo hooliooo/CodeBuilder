@@ -44,5 +44,5 @@ public func documentationSpec(
         : nil
 
     let fragments: [Fragment?] = parameters + [returnValue, tag]
-    return Documentation(content, format: format, { .fragments(fragments.compactMap { $0 }) })
+    return Documentation(content, format: format, { Code.fragments(fragments.compactMap { $0 }) })
 }

@@ -56,6 +56,9 @@ public struct Property: Fragment {
     }
 }
 
+/**
+ The access level modifiers available in Swift expressed as an enum
+ */
 public enum Access: String {
     case `open`, `public`, `internal`, `fileprivate`, `private`
 }

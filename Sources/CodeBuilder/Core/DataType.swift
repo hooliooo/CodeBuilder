@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ A data structure type
+ */
 public enum DataType: String {
     case `class`, `enum`, `struct`
 }
