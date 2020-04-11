@@ -174,6 +174,7 @@ final class EnumSpecTests: XCTestCase {
 
                                   case test = "Hello"
                                   case testTwo = "World"
+                                  case testThree
 
                               }
 
@@ -184,7 +185,8 @@ final class EnumSpecTests: XCTestCase {
                     name: "Test",
                     cases: [
                         RawValueEnumCase(name: "test", value: #""Hello""#),
-                        RawValueEnumCase(name: "testTwo", value: #""World""#)
+                        RawValueEnumCase(name: "testTwo", value: #""World""#),
+                        RawValueEnumCase(name: "testThree", value: nil)
                     ]
                 )
             )
@@ -252,6 +254,7 @@ final class EnumSpecTests: XCTestCase {
 
                                   case test = "Hello"
                                   case testTwo = "World"
+                                  case testThree
 
                                   var testProp: String {
                                       return "Hello, World"
@@ -270,7 +273,8 @@ final class EnumSpecTests: XCTestCase {
                     name: "Test",
                     cases: [
                         RawValueEnumCase(name: "test", value: #""Hello""#),
-                        RawValueEnumCase(name: "testTwo", value: #""World""#)
+                        RawValueEnumCase(name: "testTwo", value: #""World""#),
+                        RawValueEnumCase(name: "testThree", value: nil)
                     ]
                 ),
                 inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"],
@@ -285,8 +289,6 @@ final class EnumSpecTests: XCTestCase {
                 }
             )
         }
-        print(example)
-        print(docString)
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
