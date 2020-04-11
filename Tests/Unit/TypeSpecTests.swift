@@ -95,7 +95,7 @@ final class TypeSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
-    func testTypeSpecClass() {
+    func testTypeSpecAll() {
         let example: String = """
                               open class Test: NSObject, TestProtocolOne, TestProtocolTwo {
 
@@ -135,12 +135,99 @@ final class TypeSpecTests: XCTestCase {
                 }
             }
         }
-        print(example)
-        print(docString)
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testClassSpec() {
+        let example: String = """
+                              open class Test: NSObject, TestProtocolOne, TestProtocolTwo {
+
+                                  init(testOne: String, testTwo: String) {
+                                      self.testOne = testOne
+                                      self.testTwo = testTwo
+                                  }
+
+                                  var testOne: String = "this"
+
+                                  var testTwo: String = "this"
+
+                                  func test() {
+                                      print("Hello, World")
+                                  }
+                              }
+
+                              """
+
+        let propOne = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let docString: String = generateString {
+            classSpec(
+                "Test",
+                access: Access.open,
+                inheritingFrom: ["NSObject", "TestProtocolOne", "TestProtocolTwo"]
+            ) {
+                initializerSpec(arguments: [propOne.asArgument, propTwo.asArgument])
+                lineBreak()
+                propOne
+                lineBreak()
+                propTwo
+                lineBreak()
+                functionSpec("test") {
+                    statement("print(\"Hello, World\")")
+                }
+            }
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testStructSpec() {
+        let example: String = """
+                              public struct Test: TestProtocolOne, TestProtocolTwo {
+
+                                  init(testOne: String, testTwo: String) {
+                                      self.testOne = testOne
+                                      self.testTwo = testTwo
+                                  }
+
+                                  var testOne: String = "this"
+
+                                  var testTwo: String = "this"
+
+                                  func test() {
+                                      print("Hello, World")
+                                  }
+                              }
+
+                              """
+
+        let propOne = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let docString: String = generateString {
+            structSpec(
+                "Test",
+                access: Access.public,
+                inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"]
+            ) {
+                initializerSpec(arguments: [propOne.asArgument, propTwo.asArgument])
+                lineBreak()
+                propOne
+                lineBreak()
+                propTwo
+                lineBreak()
+                functionSpec("test") {
+                    statement("print(\"Hello, World\")")
+                }
+            }
+        }
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
     static var allTests: [(String, (TypeSpecTests) -> () -> ())] = [
-        ("testTypeSpecClass", testTypeSpecClass),
+        ("testTypeSpecAccess", testTypeSpecAccess),
+        ("testTypeSpecInheritance", testTypeSpecInheritance),
+        ("testTypeSpecBody", testTypeSpecBody),
+        ("testTypeSpecAll", testTypeSpecAll),
+        ("testClassSpec", testClassSpec),
+        ("testStructSpec", testStructSpec)
     ]
 }
