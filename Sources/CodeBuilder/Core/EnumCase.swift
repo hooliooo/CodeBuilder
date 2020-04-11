@@ -28,7 +28,7 @@ public struct NormalEnumCase: MixableEnumCase {
 
 }
 
-public struct RawValueEnumCase<V: RawRepresentable>: EnumCase {
+public struct RawValueEnumCase<V>: EnumCase {
 
     public let name: String
 
@@ -37,7 +37,7 @@ public struct RawValueEnumCase<V: RawRepresentable>: EnumCase {
     @inlinable
     public func renderContent() -> String {
         if let value = self.value {
-            return "case \(self.name) = \(value.rawValue)"
+            return "case \(self.name) = \(value)"
         } else {
             return "case \(self.name)"
         }
@@ -65,7 +65,7 @@ public protocol EnumSpec {
 
 }
 
-public struct RawValueEnum<T: RawRepresentable>: EnumSpec {
+public struct RawValueEnum<T>: EnumSpec {
 
     public let name: String
 
@@ -74,10 +74,10 @@ public struct RawValueEnum<T: RawRepresentable>: EnumSpec {
     public let cases: [RawValueEnumCase<T>]
 
     @inlinable
-    public init(name: String, c: [RawValueEnumCase<T>]) {
+    public init(name: String, cases: [RawValueEnumCase<T>]) {
         self.name = name
         self.typeDeescription = String(describing: T.self)
-        self.cases = c
+        self.cases = cases
     }
 
 }

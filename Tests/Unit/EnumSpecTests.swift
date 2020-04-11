@@ -107,7 +107,7 @@ final class EnumSpecTests: XCTestCase {
 
     func testEnumSpecAll() {
         let example: String = """
-                              enum Test: TestProtocolOne, TestProtocolTwo {
+                              private enum Test: TestProtocolOne, TestProtocolTwo {
 
                                   case one
                                   case two
@@ -125,12 +125,152 @@ final class EnumSpecTests: XCTestCase {
                               """
         let docString: String = generateString {
             enumSpec(
+                access: .private,
                 enumSpec: Enum(
                     name: "Test",
                     cases: [
                         NormalEnumCase(name: "one"),
                         NormalEnumCase(name: "two"),
                         AssociatedValueEnumCase(name: "three", types: ["String", "Data"])
+                    ]
+                ),
+                inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"],
+                {
+                    computedPropertySpec("testProp", returnValue: "String") {
+                        statement(#"return "Hello, World""#)
+                    }
+                    lineBreak()
+                    functionSpec("test") {
+                        statement("print(\"Hello, World\")")
+                    }
+                }
+            )
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testRawValueEnumSpecAccess() {
+        let example: String = """
+                              public enum Test: String {
+
+                              }
+
+                              """
+        let docString: String = generateString {
+            rawValueEnumSpec(
+                access: .public,
+                enumSpec: RawValueEnum<String>(
+                    name: "Test",
+                    cases: []
+                )
+            )
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testRawValueEnumSpecCases() {
+        let example: String = """
+                              enum Test: String {
+
+                                  case test = "Hello"
+                                  case testTwo = "World"
+
+                              }
+
+                              """
+        let docString: String = generateString {
+            rawValueEnumSpec(
+                enumSpec: RawValueEnum<String>(
+                    name: "Test",
+                    cases: [
+                        RawValueEnumCase(name: "test", value: #""Hello""#),
+                        RawValueEnumCase(name: "testTwo", value: #""World""#)
+                    ]
+                )
+            )
+        }
+
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testRawValueEnumSpecInheritingProtocols() {
+        let example: String = """
+                              enum Test: String, TestProtocolOne, TestProtocolTwo {
+
+                              }
+
+                              """
+        let docString: String = generateString {
+            rawValueEnumSpec(
+                enumSpec: RawValueEnum<String>(
+                    name: "Test",
+                    cases: []
+                ),
+                inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"]
+            )
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testRawValueEnumSpecBody() {
+        let example: String = """
+                              enum Test: String {
+
+                                  var testProp: String {
+                                      return "Hello, World"
+                                  }
+
+                                  func test() {
+                                      print("Hello, World")
+                                  }
+                              }
+
+                              """
+        let docString: String = generateString {
+            rawValueEnumSpec(
+                enumSpec: RawValueEnum<String>(
+                    name: "Test",
+                    cases: []
+                ),
+                {
+                    computedPropertySpec("testProp", returnValue: "String") {
+                        statement(#"return "Hello, World""#)
+                    }
+                    lineBreak()
+                    functionSpec("test") {
+                        statement("print(\"Hello, World\")")
+                    }
+                }
+            )
+        }
+        XCTAssertTrue(example == docString, "Both strings should equal each other")
+    }
+
+    func testRawValueEnumSpecAll() {
+        let example: String = """
+                              private enum Test: String, TestProtocolOne, TestProtocolTwo {
+
+                                  case test = "Hello"
+                                  case testTwo = "World"
+
+                                  var testProp: String {
+                                      return "Hello, World"
+                                  }
+
+                                  func test() {
+                                      print("Hello, World")
+                                  }
+                              }
+
+                              """
+        let docString: String = generateString {
+            rawValueEnumSpec(
+                access: .private,
+                enumSpec: RawValueEnum<String>(
+                    name: "Test",
+                    cases: [
+                        RawValueEnumCase(name: "test", value: #""Hello""#),
+                        RawValueEnumCase(name: "testTwo", value: #""World""#)
                     ]
                 ),
                 inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"],
@@ -155,6 +295,11 @@ final class EnumSpecTests: XCTestCase {
         ("testEnumSpecCases", testEnumSpecCases),
         ("testEnumSpecInheritingProtocols", testEnumSpecInheritingProtocols),
         ("testEnumSpecBody", testEnumSpecBody),
-        ("testEnumSpecAll", testEnumSpecAll)
+        ("testEnumSpecAll", testEnumSpecAll),
+        ("testRawValueEnumSpecAccess", testRawValueEnumSpecAccess),
+        ("testRawValueEnumSpecCases", testRawValueEnumSpecCases),
+        ("testRawValueEnumSpecInheritingProtocols", testRawValueEnumSpecInheritingProtocols),
+        ("testRawValueEnumSpecBody", testRawValueEnumSpecBody),
+        ("testRawValueEnumSpecAll", testRawValueEnumSpecAll)
     ]
 }
