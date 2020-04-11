@@ -38,7 +38,7 @@ final class CodeBuilderTests: XCTestCase {
                         functionSpec(
                             "test",
                             arguments: [
-                                Function.Argument(name: "testOne", type: "String")
+                                Argument(name: "testOne", type: "String")
                             ],
                             returnValue: "String",
                             {

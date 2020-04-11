@@ -18,14 +18,20 @@ Creates a Fragment formatted specifically for defining a Swift type
    - builder: Fragments that represent the body of the type's definition
 */
 @inlinable
-public func typeSpec(_ name: String, access: Access = .internal, type: DataType, inheritingFrom parents: [String] = [], @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
-    let access: String = access == .internal ? "" : "\(access.rawValue)"
+public func typeSpec(
+    _ name: String,
+    access: Access = .internal,
+    type: DataType,
+    inheritingFrom parents: [String] = [],
+    @CodeBuilder _ builder: () -> CodeRepresentable = { Code.fragments([]) }
+) -> CodeRepresentable {
+    let access: String = access == .internal ? "" : "\(access.rawValue) "
     var content: String = "\(access)\(type.rawValue) \(name)"
     content += !parents.isEmpty
         ? ": " + parents.joined(separator: ", ")
         : ""
     content += " {\n"
-    return GroupFragment(fragments: [MultiLineFragment(content, builder), lineBreak(), end()])
+    return GroupFragment(fragments: [MultiLineFragment(content, builder), end()])
 }
 
 /**

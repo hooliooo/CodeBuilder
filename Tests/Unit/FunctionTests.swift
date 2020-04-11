@@ -154,8 +154,8 @@ final class FunctionTests: XCTestCase {
             functionSpec(
                 "repeat",
                 arguments: [
-                    Function.Argument(name: "content", type: "String"),
-                    Function.Argument(name: "count", type: "Int")
+                    Argument(name: "content", type: "String"),
+                    Argument(name: "count", type: "Int")
                 ]
             ) {
                 statement("print(String(repeating: content, count: count))")
@@ -194,8 +194,8 @@ final class FunctionTests: XCTestCase {
                 isStatic: true,
                 genericSignature: "T: NSObject",
                 arguments: [
-                    Function.Argument(name: "object", type: "NSObject"),
-                    Function.Argument(name: "transform", type: "(NSObject) -> T")
+                    Argument(name: "object", type: "NSObject"),
+                    Argument(name: "transform", type: "(NSObject) -> T")
                 ],
                 returnValue: "T"
             ) {
@@ -226,11 +226,11 @@ final class FunctionTests: XCTestCase {
             isStatic: true,
             genericSignature: "T: NSObject",
             arguments: [
-                Function.Argument(name: "test1", type: "String"),
-                Function.Argument(name: "test2", type: "String"),
-                Function.Argument(name: "test3", type: "String"),
-                Function.Argument(name: "test4", type: "String"),
-                Function.Argument(name: "test5", type: "String")
+                Argument(name: "test1", type: "String"),
+                Argument(name: "test2", type: "String"),
+                Argument(name: "test3", type: "String"),
+                Argument(name: "test4", type: "String"),
+                Argument(name: "test5", type: "String")
             ],
             returnValue: "String") {
                 statement("return test1 + test2 + test3 + test4 + test5")

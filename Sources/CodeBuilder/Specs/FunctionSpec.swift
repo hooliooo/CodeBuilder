@@ -27,7 +27,7 @@ public func functionSpec(
     isStatic: Bool = false,
     throwsError: Bool = false,
     genericSignature: String? = nil,
-    arguments: [Function.Argument] = [],
+    arguments: [Argument] = [],
     returnValue: String? = nil,
     @CodeBuilder _ builder: () -> CodeRepresentable
 ) -> CodeRepresentable {

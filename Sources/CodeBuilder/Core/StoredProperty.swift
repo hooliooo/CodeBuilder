@@ -54,6 +54,13 @@ public struct StoredProperty: Fragment {
 
         return content + "\n"
     }
+
+    /**
+     Transforms this StoredProperty instance into an Argument instance
+     */
+    public var asArgument: Argument {
+        Argument(name: self.name, type: self.type)
+    }
 }
 
 /**
