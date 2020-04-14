@@ -26,6 +26,11 @@ public struct Argument: Fragment {
     public let type: String
 
     @inlinable
+    public func asParameter(documentation: String) -> Parameter {
+        Parameter(name: self.name, documentation: documentation)
+    }
+
+    @inlinable
     public func renderContent() -> String {
         return "\(self.name): \(self.type)"
     }

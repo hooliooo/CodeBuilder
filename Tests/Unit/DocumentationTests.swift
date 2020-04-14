@@ -4,9 +4,9 @@ import XCTest
 final class DocumentationTests: XCTestCase {
 
     private func generateString(_ code: CodeRepresentable) -> String {
-        fileSpec(indent: "") {
+        fileSpec(fileName: "", indent: "    ") {
             code
-        }
+        }.string
     }
 
     func testContentMultiline() {
@@ -62,7 +62,7 @@ final class DocumentationTests: XCTestCase {
             documentationSpec(
                 "",
                 format: Documentation.Format.multiline,
-                returnValue: "Some value"
+                returns: "Some value"
             )
         )
         XCTAssertTrue(example == docString, "Both strings should equal each other")
@@ -111,7 +111,7 @@ final class DocumentationTests: XCTestCase {
                 "Some content",
                 format: Documentation.Format.multiline,
                 parameters: parameters,
-                returnValue: "Some return value",
+                returns: "Some return value",
                 tag: "Some tag"
             )
         )
@@ -167,7 +167,7 @@ final class DocumentationTests: XCTestCase {
             documentationSpec(
                 "",
                 format: Documentation.Format.singleLine,
-                returnValue: "Some value"
+                returns: "Some value"
             )
         )
 
@@ -214,7 +214,7 @@ final class DocumentationTests: XCTestCase {
                 "Some content",
                 format: Documentation.Format.singleLine,
                 parameters: parameters,
-                returnValue: "Some return value",
+                returns: "Some return value",
                 tag: "Some tag"
             )
         )

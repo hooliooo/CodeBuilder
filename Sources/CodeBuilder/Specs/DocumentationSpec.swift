@@ -14,7 +14,7 @@ import Foundation
     - content            : The content of the documentation
     - format             : Determines whether or not the content will use single line or multiline documentaion notation
     - parameters         : The parameters documentation
-    - returnValue        : The return value documentation
+    - returnsValue       : The return value documentation
     - tag                : The tag link to this documentation
  - returns:
     CodeFragment formatted specifically as documentation
@@ -25,7 +25,7 @@ public func documentationSpec(
     _ content: String,
     format: Documentation.Format = .singleLine,
     parameters: [Parameter] = [],
-    returnValue: String? = nil,
+    returns returnsValue: String? = nil,
     tag: String? = nil
 ) -> CodeRepresentable {
     let prefix: String = format == .singleLine ? "/// " : ""
@@ -35,14 +35,14 @@ public func documentationSpec(
         ? parameters.reduce(into: [SingleLineFragment("- parameters:")]) { $0.append(SingleLineFragment($1.renderContent())) }
         : []
 
-    let returnValue: Fragment? = returnValue != nil
-        ? SingleLineFragment("- returns: \(returnValue!)")
+    let returnString: Fragment? = returnsValue != nil
+        ? SingleLineFragment("- returns: \(returnsValue!)")
         : nil
 
     let tag: Fragment? = tag != nil
         ? SingleLineFragment("- Tag: \(tag!)")
         : nil
 
-    let fragments: [Fragment?] = parameters + [returnValue, tag]
+    let fragments: [Fragment?] = parameters + [returnString, tag]
     return Documentation(content, format: format, { Code.fragments(fragments.compactMap { $0 }) })
 }

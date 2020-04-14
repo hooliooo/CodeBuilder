@@ -4,7 +4,7 @@ import XCTest
 final class ControlFlowTest: XCTestCase {
 
     private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
-        fileSpec(indent: "    ", builder)
+        fileSpec(fileName: "", indent: "    ", builder).string
     }
 
     func testControlFlow() {

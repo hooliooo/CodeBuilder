@@ -4,7 +4,7 @@ import XCTest
 final class TypeSpecTests: XCTestCase {
 
     private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
-        fileSpec(indent: "    ", builder)
+        fileSpec(fileName: "", indent: "    ", builder).string
     }
 
     func testTypeSpecAccess() {

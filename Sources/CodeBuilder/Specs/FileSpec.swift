@@ -9,12 +9,14 @@
 import Foundation
 
 /**
- Builds a String that represents a file of generated Swift code using Fragments to build the file's content
+ Creates a File that represents the Swift code built from the Fragments.
  - parameters:
-    - indent: Whitespace indentation used to render Swift code
-    - builder: Creates Fragments that build the String representing Swift code.
+    - fileName: The name of the Swift file to be created
+    - indent  : Whitespace indentation used to render Swift code
+    - builder : Creates Fragments that build the String representing Swift code.
  */
 @inlinable
-public func fileSpec(indent: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> String {
-    String(indent, builder: { builder().asCode })
+public func fileSpec(fileName: String, indent: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> File {
+    File(name: fileName, indent: indent, body: builder)
 }
+
