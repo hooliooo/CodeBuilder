@@ -15,10 +15,17 @@ public protocol EnumCase: Fragment {
     var name: String { get }
 }
 
+/**
+ A protocol adopted by NormalEnumCase and AssociatedValueEnumCase to ensure type safety
+ */
 public protocol MixableEnumCase: EnumCase {}
 
+/**
+ A Fragment that is rendered as a normal enum case
+ */
 public struct NormalEnumCase: MixableEnumCase {
 
+    /// The name of the enum case
     public let name: String
 
     @inlinable
@@ -28,10 +35,15 @@ public struct NormalEnumCase: MixableEnumCase {
 
 }
 
+/**
+ A Fragment that is rendered as a raw value enum case
+ */
 public struct RawValueEnumCase<V>: EnumCase {
 
+    /// The name of the enum case
     public let name: String
 
+    /// The rawValue of the enum case
     public let value: V?
 
     @inlinable
@@ -45,10 +57,15 @@ public struct RawValueEnumCase<V>: EnumCase {
 
 }
 
+/**
+ A Fragment that is rendered as an enum case with an associated value
+ */
 public struct AssociatedValueEnumCase: MixableEnumCase {
 
+    /// The name of the enum case
     public let name: String
 
+    /// The associated value data types of the enum case
     public let types: [String]
 
     @inlinable
@@ -59,18 +76,18 @@ public struct AssociatedValueEnumCase: MixableEnumCase {
 
 }
 
-public protocol EnumSpec {
+/**
+ Represents an raw value enum definition
+ */
+public struct RawValueEnum<T> {
 
-    var name: String { get }
-
-}
-
-public struct RawValueEnum<T>: EnumSpec {
-
+    /// The name of the enum definition
     public let name: String
 
+    /// The String representation of the raw value type of the enum
     public let typeDeescription: String
 
+    /// The cases of the enum
     public let cases: [RawValueEnumCase<T>]
 
     @inlinable
@@ -82,12 +99,15 @@ public struct RawValueEnum<T>: EnumSpec {
 
 }
 
-public struct Enum: EnumSpec {
+/**
+Represents an enum definition
+*/
+public struct Enum {
 
+    /// The name of the enum definition
     public let name: String
 
+    /// The cases of the enum
     public let cases: [MixableEnumCase]
 
 }
-
-
