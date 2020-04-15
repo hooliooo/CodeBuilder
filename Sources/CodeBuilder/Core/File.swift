@@ -37,6 +37,7 @@ public struct File: CustomStringConvertible {
         self.indent = indent
 
         let date: Date = Date()
+        self.date = date
         let fragments: [Fragment] = [
             SingleLineFragment("/// Generated code by CodeBuilder on \(File.formatter.string(from: date)) - DO NOT EDIT!"),
             lineBreak()
@@ -44,6 +45,7 @@ public struct File: CustomStringConvertible {
 
         let formattingCode: Code = Code.fragments(fragments)
         let code: Code = body().asCode
+
         self.code = GroupFragment(fragments: formattingCode.fragments + code.fragments).asCode
         self.originalCode = code
     }
@@ -55,6 +57,9 @@ public struct File: CustomStringConvertible {
 
     /// The string used for indenting Swift code
     public let indent: String
+
+    /// The current date at the creation of this instance
+    public let date: Date
 
     /// The body of the Swift file
     public let code: Code
