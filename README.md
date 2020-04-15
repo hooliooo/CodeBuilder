@@ -9,7 +9,7 @@ The Swift Package Manager is a tool for managing the distribution of Swift code.
 
 ```swift
 dependencies: [
-     .package(url: "https://github.com/hooliooo/CodeBuilder", from: "0.1.0")
+     .package(url: "https://github.com/hooliooo/CodeBuilder.git", from: "0.1.0")
 ]
 ```
 ## Example
