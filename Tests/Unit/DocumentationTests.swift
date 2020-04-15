@@ -1,6 +1,5 @@
 import XCTest
-@testable import Core
-@testable import Specs
+@testable import CodeBuilder
 
 final class DocumentationTests: XCTestCase {
 

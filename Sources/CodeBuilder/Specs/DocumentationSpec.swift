@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Core
 
 /**
  Create a CodeFragment formatted for documentation

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Core
 
 @inlinable
 public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument], @CodeBuilder _ body: () -> CodeRepresentable) -> CodeRepresentable {

@@ -8,10 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "CodeBuilder",
-            targets: ["Core", "Specs"]
-        ),
-        .library(name: "CodeBuilderCore", targets: ["Core"]),
-        .library(name: "CodeBuilderSpecs", targets: ["Specs"]),
+            targets: ["CodeBuilder"]
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,20 +19,18 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "Core",
-            dependencies: []
-        ),
-        .target(
-            name: "Specs",
-            dependencies: [.product(name: "FileKit", package: "FileKit")]
+            name: "CodeBuilder",
+            dependencies: [
+                .product(name: "FileKit", package: "FileKit")
+            ]
         ),
         .testTarget(
             name: "Unit",
-            dependencies: ["Core", "Specs"]
+            dependencies: ["CodeBuilder"]
         ),
         .testTarget(
             name: "Integration",
-            dependencies: ["Core", "Specs"]
+            dependencies: ["CodeBuilder"]
         ),
     ]
 )

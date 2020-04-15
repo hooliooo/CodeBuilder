@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Core
 
 /**
  Creates a Fragment formatted specifically for Swift computed properties

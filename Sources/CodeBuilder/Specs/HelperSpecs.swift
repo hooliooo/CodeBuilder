@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Core
 
 /**
  Creates a SingleLineFragment out of a String

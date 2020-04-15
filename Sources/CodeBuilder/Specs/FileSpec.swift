@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Core
 
 /**
  Creates a File that represents the Swift code built from the Fragments.
