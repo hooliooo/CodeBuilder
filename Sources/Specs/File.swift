@@ -6,6 +6,7 @@
 //  Created by Julio Miguel Alorro on 4/14/20.
 //
 
+import Core
 import Foundation
 import FileKit
 

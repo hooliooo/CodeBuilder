@@ -6,6 +6,7 @@
 //  Created by Julio Miguel Alorro on 08.03.20.
 //
 
+import Core
 import Foundation
 
 /**

@@ -6,15 +6,12 @@ import PackageDescription
 let package = Package(
     name: "CodeBuilder",
     products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "Core",
-            targets: ["CodeBuilder"]
+            name: "CodeBuilder",
+            targets: ["Core", "Specs"]
         ),
-        .library(
-            name: "Specs",
-            targets: ["CodeBuilder"]
-        )
+        .library(name: "CodeBuilderCore", targets: ["Core"]),
+        .library(name: "CodeBuilderSpecs", targets: ["Specs"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,18 +21,20 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "CodeBuilder",
-            dependencies: [
-                .product(name: "FileKit", package: "FileKit")
-            ]
+            name: "Core",
+            dependencies: []
+        ),
+        .target(
+            name: "Specs",
+            dependencies: [.product(name: "FileKit", package: "FileKit")]
         ),
         .testTarget(
             name: "Unit",
-            dependencies: ["CodeBuilder"]
+            dependencies: ["Core", "Specs"]
         ),
         .testTarget(
             name: "Integration",
-            dependencies: ["CodeBuilder"]
+            dependencies: ["Core", "Specs"]
         ),
     ]
 )
