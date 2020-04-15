@@ -1,6 +1,6 @@
 # CodeBuilder
 
-CodeBuilder started out as an exercise learning about Swift function builders. It was slowly iterated on with the intention of wirting code that creates Swift code.
+CodeBuilder started out as an exercise learning about Swift function builders then evolved into a small library that leverages function builders to create Swift code/files.
 
 ## Installation
 ### [Swift Package Manager](https://swift.org/package-manager/)
