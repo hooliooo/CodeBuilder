@@ -16,7 +16,8 @@ dependencies: [
 
 ```swift
 /// Create file using the simple API
-
+let arg1 = Argument(name: "x", type: "Int")
+let arg2 = Argument(name: "y", type: "Int")
 let file: File = fileSpec(fileName: "Test", indent: "    ") {
     documentationSpec(
         "Sums up two integers",
