@@ -32,7 +32,7 @@ let file: File = fileSpec(fileName: "Test", indent: "    ") {
     }
 }
 
-/// yields the following Swift code as a string
+/// print(file.string) yields the following Swift code as a string
 
 /**
  Sums up two integers
