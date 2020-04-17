@@ -1,0 +1,131 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Argument.swift",
+      "line": 29,
+      "symbol": "Argument.asParameter(documentation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 12,
+      "symbol": "CodeBuilder",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 17,
+      "symbol": "CodeBuilder.buildBlock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.class",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.enum",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.struct",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Documentation.swift",
+      "line": 60,
+      "symbol": "Documentation.renderContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Enum.swift",
+      "line": 15,
+      "symbol": "EnumCase.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Enum.swift",
+      "line": 94,
+      "symbol": "RawValueEnum.init(name:cases:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/GroupFragment.swift",
+      "line": 33,
+      "symbol": "GroupFragment.renderContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 70,
+      "symbol": "Access.fileprivate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 70,
+      "symbol": "Access.internal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 70,
+      "symbol": "Access.open",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 70,
+      "symbol": "Access.private",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 70,
+      "symbol": "Access.public",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Specs/File.swift",
+      "line": 81,
+      "symbol": "File.string",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Specs/InitializerSpec.swift",
+      "line": 12,
+      "symbol": "initializerSpec(access:documentation:arguments:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Specs/InitializerSpec.swift",
+      "line": 22,
+      "symbol": "initializerSpec(access:documentation:arguments:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/hooliooo/Swift/CodeBuilder"
+}
