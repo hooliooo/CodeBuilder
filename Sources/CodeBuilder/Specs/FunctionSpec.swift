@@ -19,6 +19,7 @@ import Foundation
     - arguments: The arguments of the function
     - returnValue: The return value of the function
     - builder: Fragments that represent the body of the function
+ - returns: A GroupFragment typed as a CodeRepresentable
  */
 @inlinable
 public func functionSpec(

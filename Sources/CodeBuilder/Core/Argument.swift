@@ -30,6 +30,14 @@ public struct Argument: Fragment {
         Parameter(name: self.name, documentation: documentation)
     }
 
+    /**
+     Renders this Argument as a string.
+
+     The String format is as follows:
+     ```
+     "\(self.name): \(self.type)"
+     ```
+     */
     @inlinable
     public func renderContent() -> String {
         return "\(self.name): \(self.type)"

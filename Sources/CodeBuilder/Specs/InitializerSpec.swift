@@ -8,6 +8,16 @@
 
 import Foundation
 
+/**
+ Creates a Fragment formatted specifically as an initializer.
+ - parameters:
+    - access       : The access level of the initializer
+    - documentation: The documentation of the initializer
+    - arguments    : The arguments of the initializer
+    - body         : The body of the initializer
+
+ - returns: A GroupFragment typed as a CodeRepresentable
+ */
 @inlinable
 public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument], @CodeBuilder _ body: () -> CodeRepresentable) -> CodeRepresentable {
     let access: String = access == .internal ? "" : "\(access.rawValue) "
@@ -18,6 +28,15 @@ public func initializerSpec(access: Access = .internal, documentation: Documenta
     return GroupFragment(fragments: fragments.compactMap { $0 })
 }
 
+/**
+ Creates a Fragment formatted specifically as an initializer with no custom body other than assigning arguments.
+ - parameters:
+    - access       : The access level of the initializer
+    - documentation: The documentation of the initializer
+    - arguments    : The arguments of the initializer
+
+ - returns: A GroupFragment typed as a CodeRepresentable
+ */
 @inlinable
 public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument]) -> CodeRepresentable {
     let fragments: [Fragment] = arguments.map { SingleLineFragment("self.\($0.name) = \($0.name)")}

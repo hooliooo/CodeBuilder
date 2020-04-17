@@ -30,6 +30,7 @@ import Foundation
  - parameters:
     - statement: String representing the logic for the control flow.
     - builder: Fragments that represent the body of the control flow.
+ - returns: A MultiLineFragment typed as CodeRepresentable
  */
 @inlinable
 public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
@@ -63,6 +64,7 @@ public func controlFlowSpec(_ statement: String, @CodeBuilder _ builder: () -> C
  - parameters:
     - statement: String representing the Bool logic for the `else if` control flow.
     - builder: Fragments that represent the body of the `else if` control flow.
+ - returns: A MultiLineFragment typed as CodeRepresentable
  */
 @inlinable
 public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
@@ -100,6 +102,7 @@ public func elseIfSpec(_ statement: String, @CodeBuilder _ builder: () -> CodeRe
 
  - parameters:
     - builder: Fragments that represent the body of the `else` control flow.
+ - returns: A MultiLineFragment typed as CodeRepresentable
  */
 @inlinable
 public func elseSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
@@ -142,7 +145,7 @@ public func elseSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRep
  - parameters:
     - statements: The Fragments that represent the `guard` control flow's body.
     - elseBlock : The Fragment that represent a `guard` control flow's else block.
- - Tag: mainGuardSpec
+ - returns: A GroupFragment typed as CodeRepresentable
 */
 @inlinable
 public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBuilder elseBlock: () -> CodeRepresentable) -> CodeRepresentable {
@@ -195,6 +198,7 @@ public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBui
 
  - parameters:
     - builder: The Fragments that represent the `do` control flow's body.
+ - returns: A GroupFragment typed as CodeRepresentable
 */
 @inlinable
 public func doSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
@@ -232,6 +236,7 @@ public func doSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepre
  - parameters:
     - statement: The catch statement
     - builder: The Fragments that represent the `catch` control flow's body.
+ - returns: A MultiLineFragment typed as CodeRepresentable
 */
 @inlinable
 public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {

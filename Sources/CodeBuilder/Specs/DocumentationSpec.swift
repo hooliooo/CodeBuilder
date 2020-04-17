@@ -16,9 +16,7 @@ import Foundation
     - parameters         : The parameters documentation
     - returnsValue       : The return value documentation
     - tag                : The tag link to this documentation
- - returns:
-    CodeFragment formatted specifically as documentation
- - Tag: documentation
+ - returns: A Documentation typed as CodeRepresentable
  */
 @inlinable
 public func documentationSpec(

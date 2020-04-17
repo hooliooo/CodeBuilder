@@ -56,6 +56,21 @@ public class Documentation: MultiLineFragment {
         return (String(newContent), String(truncatedContent))
     }
 
+    /**
+    Renders this Documentation as a string.
+
+    The String format is as follows:
+    ```
+    /// This is a single line documentation format
+
+    ```
+     or
+     ```
+     /**
+      This is a multiline documentation format
+      */
+     ```
+    */
     @inlinable
     public override func renderContent() -> String {
         self.setUpChildren()

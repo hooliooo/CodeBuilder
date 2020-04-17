@@ -16,6 +16,8 @@ import Foundation
     - isStatic: Bool flag that determines whether or not the computed property is static
     - returnValue: The return value of the function
     - body: Fragments that represent the body of the computed property
+
+ - returns: A GroupFragment typed as CodeRepresentable
  */
 @inlinable
 public func computedPropertySpec(

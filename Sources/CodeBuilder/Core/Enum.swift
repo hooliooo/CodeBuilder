@@ -28,6 +28,14 @@ public struct NormalEnumCase: MixableEnumCase {
     /// The name of the enum case
     public let name: String
 
+    /**
+     Renders this NormalEnumCase as a string.
+
+     The String format is as follows:
+     ```
+     "case \(self.name)"
+     ```
+     */
     @inlinable
     public func renderContent() -> String {
         return "case \(self.name)"
@@ -46,6 +54,20 @@ public struct RawValueEnumCase<V>: EnumCase {
     /// The rawValue of the enum case
     public let value: V?
 
+    /**
+     Renders this RawValueEnumCase as a string.
+
+     The String format is as follows:
+     when value is not nil:
+     ```
+     "case \(self.name) = \(value)"
+     ```
+
+     when value is nil:
+     ```
+     "case \(self.name)"
+     ```
+     */
     @inlinable
     public func renderContent() -> String {
         if let value = self.value {
@@ -68,6 +90,14 @@ public struct AssociatedValueEnumCase: MixableEnumCase {
     /// The associated value data types of the enum case
     public let types: [String]
 
+    /**
+     Renders this AssociatedValueEnumCase as a string.
+
+     The String format is as follows:
+     ```
+     "case \(self.name) = \(types)" // where types is a comma separated String
+     ```
+     */
     @inlinable
     public func renderContent() -> String {
         let types: String = self.types.joined(separator: ", ")
@@ -77,9 +107,22 @@ public struct AssociatedValueEnumCase: MixableEnumCase {
 }
 
 /**
- Represents an raw value enum definition
+ Represents a Swift raw value enum definition
  */
 public struct RawValueEnum<T> {
+
+    /**
+     Creates a RawValueEnum instance which represents a Swift raw value enum definition
+     - parameters:
+        - name : The name of this raw value enum
+        - cases: The cases of this raw value enum
+     */
+    @inlinable
+    public init(name: String, cases: [RawValueEnumCase<T>]) {
+        self.name = name
+        self.typeDeescription = String(describing: T.self)
+        self.cases = cases
+    }
 
     /// The name of the enum definition
     public let name: String
@@ -89,13 +132,6 @@ public struct RawValueEnum<T> {
 
     /// The cases of the enum
     public let cases: [RawValueEnumCase<T>]
-
-    @inlinable
-    public init(name: String, cases: [RawValueEnumCase<T>]) {
-        self.name = name
-        self.typeDeescription = String(describing: T.self)
-        self.cases = cases
-    }
 
 }
 

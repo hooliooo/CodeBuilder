@@ -33,6 +33,14 @@ public struct Parameter: Fragment {
     public let documentation: String
 
     // MARK: Methods
+    /**
+     Renders this Parameter as a string.
+
+     The String format is as follows:
+     ```
+     "   - \(self.name): \(self.documentation)"
+     ```
+     */
     @inlinable
     public func renderContent() -> String {
         return "   - \(self.name): \(self.documentation)"

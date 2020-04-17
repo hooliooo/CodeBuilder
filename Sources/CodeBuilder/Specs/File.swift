@@ -16,6 +16,10 @@ import Foundation
 public struct File: CustomStringConvertible {
 
     // MARK: Static Properties
+
+    /**
+     A DateFormatter with a dateFormat of MM/dd/yyyy
+     */
     @usableFromInline
     internal static let formatter: DateFormatter = {
         let f = DateFormatter()
@@ -78,6 +82,9 @@ public struct File: CustomStringConvertible {
                """
     }
 
+    /**
+     A String representation of the File's code content
+     */
     public var string: String {
         String(self.indent, builder: { self.originalCode })
     }

@@ -10,6 +10,10 @@ import Foundation
 
 extension Array: CodeRepresentable where Element: CodeRepresentable {
 
+    /**
+     Transforms this Array into a Code.fragments instance that transforms each element into a [Fragment] instance
+     and flatmaps it
+     */
     @inlinable
     public var asCode: Code {
         return .fragments(self.flatMap { $0.asCode.fragments })

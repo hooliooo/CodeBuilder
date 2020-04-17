@@ -14,6 +14,7 @@ import Foundation
     - fileName: The name of the Swift file to be created
     - indent  : Whitespace indentation used to render Swift code
     - builder : Creates Fragments that build the String representing Swift code.
+ - returns: A File instance
  */
 @inlinable
 public func fileSpec(fileName: String, indent: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> File {
