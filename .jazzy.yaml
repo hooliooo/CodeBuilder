@@ -1,0 +1,7 @@
+author: Julio Alorro
+author_url: https://hooliooo.github.io
+github_url: https://github.com/hooliooo/CodeBuilder
+root_url: https://hooliooo.github.io/CodeBuilder/
+module: CodeBuilder
+output: docs
+theme: fullwidth
