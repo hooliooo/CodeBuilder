@@ -12,6 +12,9 @@ dependencies: [
      .package(url: "https://github.com/hooliooo/CodeBuilder.git", from: "0.1.0")
 ]
 ```
+## Documentation
+Can be found at https://hooliooo.github.io/CodeBuilder/
+
 ## Example
 
 ```swift
