@@ -3,9 +3,10 @@ import XCTest
 import IntegrationTests
 
 var tests: [XCTestCaseEntry] = [
-    CodeBuilderTests.allTests(),
-    ControlFlowTest.allTests(),
-    DocumentationTests.allTests(),
-    FunctionTests.allTests()
+    FileSpecTests.allTests(),
+    FreeFunctionTests.allTests(),
+    ControlFlowSpecTest.allTests(),
+    DocumentationSpecTests.allTests(),
+    FunctionSpecTests.allTests()
 ]
 XCTMain(tests)

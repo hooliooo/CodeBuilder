@@ -1,7 +1,7 @@
 import XCTest
 @testable import CodeBuilder
 
-final class DocumentationTests: XCTestCase {
+final class DocumentationSpecTests: XCTestCase {
 
     private func generateString(_ code: CodeRepresentable) -> String {
         fileSpec(fileName: "", indent: "    ") {
@@ -221,7 +221,7 @@ final class DocumentationTests: XCTestCase {
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
-    static var allTests: [(String, (DocumentationTests) -> () -> ())] = [
+    static var allTests: [(String, (DocumentationSpecTests) -> () -> ())] = [
         ("testContentMultiline", testContentMultiline),
         ("testParametersMultiline", testParametersMultiline),
         ("testReturnValueMultiline", testReturnValueMultiline),

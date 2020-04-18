@@ -1,7 +1,7 @@
 import XCTest
 @testable import CodeBuilder
 
-final class ControlFlowTest: XCTestCase {
+final class ControlFlowSpecTest: XCTestCase {
 
     private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
         fileSpec(fileName: "", indent: "    ", builder).string
@@ -216,7 +216,7 @@ final class ControlFlowTest: XCTestCase {
         XCTAssertTrue(example == docString, "Both strings should equal each other")
     }
 
-    static var allTests: [(String, (ControlFlowTest) -> () -> ())] = [
+    static var allTests: [(String, (ControlFlowSpecTest) -> () -> ())] = [
         ("testControlFlow", testControlFlow),
         ("testControlFlowWithElse", testControlFlowWithElse),
         ("testControlFlowWithElseIf", testControlFlowWithElseIf),
