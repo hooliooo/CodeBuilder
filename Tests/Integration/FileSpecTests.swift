@@ -50,6 +50,26 @@ final class FileSpecTests: XCTestCase {
                             statement("return t")
                         }
                     )
+                    lineBreak()
+                    rawSpec(
+                        """
+                       class Test {
+                           private init() {
+
+                           }
+
+                           func testOne() {
+                               print(\"Hello, World\")
+                           }
+
+                           enum TestTwo {
+                               case one
+                               case two
+                           }
+                       }
+                       """
+                    )
+
                 }
             }
         }
@@ -98,10 +118,26 @@ final class FileSpecTests: XCTestCase {
                                          let t: String = "Hello, \\(testOne)"
                                          return t
                                      }
+
+                                     class Test {
+                                         private init() {
+
+                                         }
+
+                                         func testOne() {
+                                             print(\"Hello, World\")
+                                         }
+
+                                         enum TestTwo {
+                                             case one
+                                             case two
+                                         }
+                                     }
                                  }
                              }
 
                              """
+        print(generateFile().string)
         XCTAssert(content == generateFile().string, "content should equal the file's content")
     }
 
@@ -151,6 +187,21 @@ final class FileSpecTests: XCTestCase {
                                      func test(testOne: String) -> String {
                                          let t: String = "Hello, \\(testOne)"
                                          return t
+                                     }
+
+                                     class Test {
+                                         private init() {
+
+                                         }
+
+                                         func testOne() {
+                                             print(\"Hello, World\")
+                                         }
+
+                                         enum TestTwo {
+                                             case one
+                                             case two
+                                         }
                                      }
                                  }
                              }
