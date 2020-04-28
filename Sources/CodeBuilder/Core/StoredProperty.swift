@@ -14,6 +14,23 @@ import Foundation
 public struct StoredProperty: Fragment {
 
     /**
+     Creates a Stored Property instance.
+     - parameters:
+        - access   : Access level of the property
+        - isMutable: Bool flag that determines if the property is a `let` or `var`
+        - name     : The name of the property
+        - type     : The type of the property
+        - value    : The default value of the property
+     */
+    public init(access: Access, isMutable: Bool, name: String, type: String, value: String? = nil) {
+        self.access = access
+        self.isMutable = isMutable
+        self.name = name
+        self.type = type
+        self.value = value
+    }
+
+    /**
      Access level of the property
      */
     public let access: Access
