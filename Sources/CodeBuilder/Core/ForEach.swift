@@ -34,7 +34,6 @@ public struct ForEach<T: RandomAccessCollection>: CodeRepresentable {
     /**
      The closure executed on each element that produces a CodeRepresentable
      */
-    @inlinable
     public let builder: (T.Element) -> CodeRepresentable
 
     /**
