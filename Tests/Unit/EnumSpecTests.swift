@@ -1,6 +1,21 @@
 import XCTest
 @testable import CodeBuilder
 
+protocol ReadableTestCase {}
+extension ReadableTestCase {
+    func message(expected string: String, actual actualString: String) -> String {
+        return """
+               Both strings should equal each other
+               Example:
+               \(string)
+               Actual:
+               \(actualString)
+               """
+    }
+}
+
+extension XCTestCase: ReadableTestCase {}
+
 final class EnumSpecTests: XCTestCase {
 
     private func generateString(@CodeBuilder _ builder: () -> CodeRepresentable) -> String {
@@ -23,7 +38,7 @@ final class EnumSpecTests: XCTestCase {
                 )
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testEnumSpecCases() {
@@ -49,7 +64,7 @@ final class EnumSpecTests: XCTestCase {
                 )
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testEnumSpecInheritingProtocols() {
@@ -68,7 +83,7 @@ final class EnumSpecTests: XCTestCase {
                 inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"]
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testEnumSpecBody() {
@@ -102,7 +117,7 @@ final class EnumSpecTests: XCTestCase {
                 }
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testEnumSpecAll() {
@@ -146,7 +161,7 @@ final class EnumSpecTests: XCTestCase {
                 }
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testRawValueEnumSpecAccess() {
@@ -165,7 +180,7 @@ final class EnumSpecTests: XCTestCase {
                 )
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testRawValueEnumSpecCases() {
@@ -192,7 +207,7 @@ final class EnumSpecTests: XCTestCase {
             )
         }
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testRawValueEnumSpecInheritingProtocols() {
@@ -211,7 +226,7 @@ final class EnumSpecTests: XCTestCase {
                 inheritingFrom: ["TestProtocolOne", "TestProtocolTwo"]
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testRawValueEnumSpecBody() {
@@ -245,7 +260,7 @@ final class EnumSpecTests: XCTestCase {
                 }
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testRawValueEnumSpecAll() {
@@ -289,7 +304,7 @@ final class EnumSpecTests: XCTestCase {
                 }
             )
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     static var allTests: [(String, (EnumSpecTests) -> () -> ())] = [

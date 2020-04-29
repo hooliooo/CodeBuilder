@@ -15,7 +15,7 @@ public struct CodeBuilder {
 //    }
 
     public static func buildBlock(_ components: CodeRepresentable...) -> Code {
-        .fragments(components.flatMap { $0.asCode.fragments })
+        components.asCode
     }
 
 //    public static func buildIf(_ component: CodeRepresentable?) -> Code {

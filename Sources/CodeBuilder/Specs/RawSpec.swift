@@ -18,10 +18,10 @@ import Foundation
  */
 @inlinable
 public func rawSpec(_ content: String) -> CodeRepresentable {
-    let fragments: [Fragment] = content
+    return content
         .components(separatedBy: "\n")
         .lazy
         .map { $0.replacingOccurrences(of: "\\s+$", with: "",options: .regularExpression) }
         .map { SingleLineFragment($0) }
-    return Code.fragments(fragments)
+        .asCode
 }

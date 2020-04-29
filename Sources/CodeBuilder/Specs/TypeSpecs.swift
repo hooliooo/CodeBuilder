@@ -33,7 +33,7 @@ public func typeSpec(
         ? ": " + parents.joined(separator: ", ")
         : ""
     content += " {\n"
-    return GroupFragment(fragments: [MultiLineFragment(content, builder), end()])
+    return GroupFragment(children: [MultiLineFragment(content, builder), end()])
 }
 
 /**
@@ -96,14 +96,14 @@ public func enumSpec(
     switch enumSpec.cases.isEmpty {
         case true:
             return GroupFragment(
-                fragments: [
+                children: [
                     MultiLineFragment(content, body),
                     end()
                 ]
             )
         case false:
             return GroupFragment(
-                fragments: [
+                children: [
                     MultiLineFragment(
                         content,
                         {
@@ -147,14 +147,14 @@ public func rawValueEnumSpec<T>(
     switch enumSpec.cases.isEmpty {
         case true:
             return GroupFragment(
-                fragments: [
+                children: [
                     MultiLineFragment(content, body),
                     end()
                 ]
             )
         case false:
             return GroupFragment(
-                fragments: [
+                children: [
                     MultiLineFragment(
                         content,
                         {

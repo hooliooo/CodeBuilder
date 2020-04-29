@@ -43,15 +43,13 @@ public struct File: CustomStringConvertible {
 
         let date: Date = Date()
         self.date = date
-        let fragments: [Fragment] = [
+        let formattingCode: Code = [
             SingleLineFragment("/// Generated code by CodeBuilder on \(File.formatter.string(from: date)) - DO NOT EDIT!"),
             lineBreak()
-        ]
-
-        let formattingCode: Code = Code.fragments(fragments)
+        ].asCode
         let code: Code = body().asCode
 
-        self.code = GroupFragment(fragments: formattingCode.fragments + code.fragments).asCode
+        self.code = GroupFragment(children: [formattingCode] + [code]).asCode
         self.originalCode = code
     }
 

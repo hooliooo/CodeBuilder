@@ -21,14 +21,6 @@ public class GroupFragment: MultiLineFragment {
         super.init("", { children })
     }
 
-    /**
-     Creates a GroupFragment using an array of Fragments
-     */
-    @inlinable
-    public convenience init(fragments: [Fragment]) {
-        self.init(children: Code.fragments(fragments))
-    }
-
     @inlinable
     public override func renderContent() -> String {
         self.children
@@ -43,10 +35,10 @@ public class GroupFragment: MultiLineFragment {
         let content: String = self.children.reduce(into: "") { (currentContent: inout String, fragment: Fragment) -> Void in
             let fragmentContent: String
 
-            if let fragment = fragment as? SingleLineFragment {
-                fragmentContent = "\(indent)\(fragment.renderContent())"
-            } else {
+            if let fragment = fragment as? MultiLineFragment {
                 fragmentContent = fragment.renderContent()
+            } else {
+                fragmentContent = "\(indent)\(fragment.renderContent())"
             }
 
             currentContent += fragmentContent

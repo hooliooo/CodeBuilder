@@ -19,7 +19,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithOpenAccess() {
@@ -34,7 +34,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithPublicAccess() {
@@ -49,7 +49,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithInternalAccess() {
@@ -64,7 +64,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithFileprivateAccess() {
@@ -79,7 +79,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithPrivateAccess() {
@@ -94,7 +94,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testStaticFunc() {
@@ -109,7 +109,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testThrowingFunc() {
@@ -124,7 +124,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(\"Hello, World\")")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testGenericFunc() {
@@ -140,7 +140,7 @@ final class FunctionSpecTests: XCTestCase {
             }
         }
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithArgs() {
@@ -161,7 +161,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(String(repeating: content, count: count))")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncWithReturnValue() {
@@ -176,7 +176,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("print(String(repeating: content, count: count))")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testFuncAll() {
@@ -203,7 +203,7 @@ final class FunctionSpecTests: XCTestCase {
                 statement("return newObject")
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testLongFuncAll() {
@@ -237,7 +237,7 @@ final class FunctionSpecTests: XCTestCase {
             }
         }
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     static var allTests: [(String, (FunctionSpecTests) -> () -> ())] = [

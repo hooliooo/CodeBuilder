@@ -47,14 +47,14 @@ public func functionSpec(
             .map { SingleLineFragment("\($0.renderContent()),") }
 
         let lastFragment: Fragment = SingleLineFragment(arguments.last!.renderContent())
-        let children: [Fragment] = fragments + [lastFragment]
+        let children: Code = (fragments + [lastFragment]).asCode
         let first: MultiLineFragment = MultiLineFragment(
             "\(access)\(type)func \(name)\(genericSignature)(",
-            { Code.fragments(children) }
+            { children }
         )
         let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
-        return GroupFragment(fragments: [first, second, end()])
+        return GroupFragment(children: [first, second, end()])
     } else {
-        return GroupFragment(fragments: [MultiLineFragment(functionSignature, builder), end()])
+        return GroupFragment(children: [MultiLineFragment(functionSignature, builder), end()])
     }
 }

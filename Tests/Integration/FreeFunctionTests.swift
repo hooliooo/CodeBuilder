@@ -28,12 +28,23 @@ final class FreeFunctionTests: XCTestCase {
                                   return x + y
                               }
 
+                              /**
+                               Sums up two integers
+                               - parameters:
+                                  - x: First Int
+                                  - y: Second Int
+                               - returns: The sum of the two Ints
+                               */
+                              public func there(x: Int, y: Int) -> Int {
+                                  return x + y
+                              }
+
                               """
         let arg1 = Argument(name: "x", type: "Int")
         let arg2 = Argument(name: "y", type: "Int")
         let actual: String = fileSpec(fileName: "", indent: "    ") {
 
-            ForEach(["this", "that"]) { element in
+            ForEach(["this", "that", "there"]) { element in
                 documentationSpec(
                     "Sums up two integers",
                     format: Documentation.Format.multiline,

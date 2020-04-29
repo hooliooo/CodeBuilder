@@ -18,7 +18,7 @@ final class DocumentationSpecTests: XCTestCase {
 
                               """
         let docString: String = generateString(documentationSpec(content, format: Documentation.Format.multiline))
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testParametersMultiline() {
@@ -46,7 +46,7 @@ final class DocumentationSpecTests: XCTestCase {
                 parameters: parameters
             )
         )
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testReturnValueMultiline() {
@@ -65,7 +65,7 @@ final class DocumentationSpecTests: XCTestCase {
                 returns: "Some value"
             )
         )
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testTagMultiline() {
@@ -84,7 +84,7 @@ final class DocumentationSpecTests: XCTestCase {
                 tag: "Some value"
             )
         )
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testMultiline() {
@@ -115,7 +115,7 @@ final class DocumentationSpecTests: XCTestCase {
                 tag: "Some tag"
             )
         )
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testContentSingle() {
@@ -126,7 +126,7 @@ final class DocumentationSpecTests: XCTestCase {
                              """
 
         let docString: String = generateString(documentationSpec(content, format: Documentation.Format.singleLine))
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testParametersSingle() {
@@ -153,7 +153,7 @@ final class DocumentationSpecTests: XCTestCase {
             )
         )
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testReturnValueSingle() {
@@ -171,7 +171,7 @@ final class DocumentationSpecTests: XCTestCase {
             )
         )
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testTagSingle() {
@@ -189,7 +189,7 @@ final class DocumentationSpecTests: XCTestCase {
             )
         )
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testSingle() {
@@ -218,7 +218,7 @@ final class DocumentationSpecTests: XCTestCase {
                 tag: "Some tag"
             )
         )
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     static var allTests: [(String, (DocumentationSpecTests) -> () -> ())] = [

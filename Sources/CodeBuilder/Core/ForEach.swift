@@ -41,14 +41,18 @@ public struct ForEach<T: RandomAccessCollection>: CodeRepresentable {
      */
     @inlinable
     public var asCode: Code {
-        let representables: [CodeRepresentable] = self.elements.map { (element) -> CodeRepresentable in
-            self.builder(element)
-        }
-
-        let fragments: [Fragment] = zip(representables, representables.dropFirst())
-            .flatMap { (first, second) -> [Fragment] in
-                first.asCode.fragments + [lineBreak()] + second.asCode.fragments
+        let representables: [CodeRepresentable] = self.elements
+            .map { (element) -> CodeRepresentable in
+                self.builder(element)
             }
-        return Code.fragments(fragments)
+        guard let first = representables.first else { return Code.fragments([]) }
+
+        return representables
+            .dropFirst()
+            .reduce(into: [first]) { (current: inout [CodeRepresentable], element: CodeRepresentable) -> Void in
+                current.append(lineBreak())
+                current.append(element)
+            }
+            .asCode
     }
 }

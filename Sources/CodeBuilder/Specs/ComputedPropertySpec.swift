@@ -30,5 +30,5 @@ public func computedPropertySpec(
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     let type: String = isStatic ? "static " : ""
     let content: String = "\(access)\(type)var \(name): \(returnValue) {"
-    return GroupFragment(fragments: [MultiLineFragment(content, body), end()])
+    return GroupFragment(children: [MultiLineFragment(content, body), end()].asCode)
 }

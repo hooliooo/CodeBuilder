@@ -151,7 +151,7 @@ public func elseSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRep
 public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBuilder elseBlock: () -> CodeRepresentable) -> CodeRepresentable {
     let statements: [Fragment] = statements().asCode.fragments
     var content: String = "guard"
-    var fragments: [Fragment]
+    var fragments: [CodeRepresentable]
     if statements.count > 1, let statements = statements as? [SingleLineFragment] {
         let lastStatement: SingleLineFragment = statements.last!
         let newStatements: [SingleLineFragment] = statements
@@ -172,7 +172,7 @@ public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBui
         fragments = []
     }
     fragments.append(end())
-    return GroupFragment(fragments: fragments)
+    return GroupFragment(children: fragments.asCode)
 }
 
 /**

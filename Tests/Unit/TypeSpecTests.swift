@@ -27,7 +27,7 @@ final class TypeSpecTests: XCTestCase {
         let docString2: String = generateString {
             typeSpec("Test", access: Access.public, type: DataType.struct)
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
         XCTAssertTrue(example2 == docString2, "Both strings should equal each other")
     }
 
@@ -61,7 +61,7 @@ final class TypeSpecTests: XCTestCase {
         let docString3: String = generateString {
             typeSpec("Test", type: DataType.struct, inheritingFrom: ["Hashable", "TestProtocolOne", "TestProtocolTwo"])
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
         XCTAssertTrue(example2 == docString2, "Both strings should equal each other")
         XCTAssertTrue(example3 == docString3, "Both strings should equal each other")
     }
@@ -92,7 +92,7 @@ final class TypeSpecTests: XCTestCase {
             }
         }
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testTypeSpecAll() {
@@ -135,7 +135,7 @@ final class TypeSpecTests: XCTestCase {
                 }
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testClassSpec() {
@@ -177,7 +177,7 @@ final class TypeSpecTests: XCTestCase {
                 }
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testStructSpec() {
@@ -219,7 +219,7 @@ final class TypeSpecTests: XCTestCase {
                 }
             }
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     static var allTests: [(String, (TypeSpecTests) -> () -> ())] = [

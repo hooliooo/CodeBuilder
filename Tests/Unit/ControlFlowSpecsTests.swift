@@ -21,7 +21,7 @@ final class ControlFlowSpecTest: XCTestCase {
             end()
         }
 
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testControlFlowWithElse() {
@@ -42,7 +42,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testControlFlowWithElseIf() {
@@ -63,7 +63,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testControlFlowWithElseIfAndElse() {
@@ -93,7 +93,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testGuardSpec() {
@@ -114,7 +114,7 @@ final class ControlFlowSpecTest: XCTestCase {
             )
 
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testGuardSpecMultiline() {
@@ -145,7 +145,7 @@ final class ControlFlowSpecTest: XCTestCase {
             )
 
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testDoSpecMultiline() {
@@ -163,7 +163,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testDoSpecSingleline() {
@@ -179,7 +179,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testCatchSpecMultiline() {
@@ -197,7 +197,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     func testCatchSpecSingleline() {
@@ -213,7 +213,7 @@ final class ControlFlowSpecTest: XCTestCase {
             }
             end()
         }
-        XCTAssertTrue(example == docString, "Both strings should equal each other")
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
     static var allTests: [(String, (ControlFlowSpecTest) -> () -> ())] = [

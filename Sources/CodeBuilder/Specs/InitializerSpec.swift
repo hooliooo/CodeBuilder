@@ -25,7 +25,7 @@ public func initializerSpec(access: Access = .internal, documentation: Documenta
     let content: String = "\(access)init(\(args)) {"
     let initializerFragment: MultiLineFragment = MultiLineFragment(content, body)
     let fragments: [Fragment?] = [documentation, initializerFragment, end()]
-    return GroupFragment(fragments: fragments.compactMap { $0 })
+    return GroupFragment(children: fragments.compactMap { $0 })
 }
 
 /**
@@ -39,7 +39,6 @@ public func initializerSpec(access: Access = .internal, documentation: Documenta
  */
 @inlinable
 public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument]) -> CodeRepresentable {
-    let fragments: [Fragment] = arguments.map { SingleLineFragment("self.\($0.name) = \($0.name)")}
-    let code: Code = Code.fragments(fragments)
+    let code: Code = arguments.map { SingleLineFragment("self.\($0.name) = \($0.name)")}.asCode
     return initializerSpec(access: access, documentation: documentation, arguments: arguments, { code })
 }
