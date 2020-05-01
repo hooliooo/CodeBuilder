@@ -51,42 +51,42 @@
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/GroupFragment.swift",
-      "line": 33,
+      "line": 25,
       "symbol": "GroupFragment.renderContent()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
-      "line": 70,
+      "line": 87,
       "symbol": "Access.fileprivate",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
-      "line": 70,
+      "line": 87,
       "symbol": "Access.internal",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
-      "line": 70,
+      "line": 87,
       "symbol": "Access.open",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
-      "line": 70,
+      "line": 87,
       "symbol": "Access.private",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
-      "line": 70,
+      "line": 87,
       "symbol": "Access.public",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
