@@ -45,7 +45,7 @@ public struct ForEach<T: RandomAccessCollection>: CodeRepresentable {
             .map { (element) -> CodeRepresentable in
                 self.builder(element)
             }
-        guard let first = representables.first else { return Code.fragments([]) }
+        guard let first = representables.first else { return Code.none }
 
         return representables
             .dropFirst()

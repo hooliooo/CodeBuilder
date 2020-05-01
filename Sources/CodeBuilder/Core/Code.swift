@@ -11,7 +11,7 @@ import Foundation
 /**
  An enum that can unify a single Fragment and an array of Fragments into one type
  */
-public enum Code: CodeRepresentable {
+public enum Code: CodeRepresentable, Equatable {
 
     /**
      A Fragment
@@ -24,6 +24,11 @@ public enum Code: CodeRepresentable {
     case fragments([Fragment])
 
     /**
+     No fragments
+     */
+    case none
+
+    /**
      Code as an array of Fragments
      */
     @inlinable
@@ -31,12 +36,22 @@ public enum Code: CodeRepresentable {
         switch self {
             case .fragment(let fragment): return [fragment]
             case .fragments(let fragments): return fragments
+            case .none: return []
         }
     }
 
     @inlinable
     public var asCode: Code {
         self
+    }
+
+    public static func == (lhs: Code, rhs: Code) -> Bool {
+        switch (lhs, rhs) {
+            case let (.fragment(lhsValue), .fragment(rhsValue)): return lhsValue.renderContent() == rhsValue.renderContent()
+            case let (.fragments(lhsValue), .fragments(rhsValue)): return lhsValue.map { $0.renderContent() } == rhsValue.map { $0.renderContent() }
+            case (.none, .none): return true
+            default: return false
+        }
     }
 }
 

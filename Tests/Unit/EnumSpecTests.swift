@@ -186,11 +186,9 @@ final class EnumSpecTests: XCTestCase {
     func testRawValueEnumSpecCases() {
         let example: String = """
                               enum Test: String {
-
                                   case test = "Hello"
                                   case testTwo = "World"
                                   case testThree
-
                               }
 
                               """
@@ -266,7 +264,6 @@ final class EnumSpecTests: XCTestCase {
     func testRawValueEnumSpecAll() {
         let example: String = """
                               private enum Test: String, TestProtocolOne, TestProtocolTwo {
-
                                   case test = "Hello"
                                   case testTwo = "World"
                                   case testThree

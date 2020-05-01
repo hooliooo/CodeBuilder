@@ -25,7 +25,7 @@ public func typeSpec(
     access: Access = .internal,
     type: DataType,
     inheritingFrom parents: [String] = [],
-    @CodeBuilder _ builder: () -> CodeRepresentable = { Code.fragments([]) }
+    @CodeBuilder _ builder: () -> CodeRepresentable = { Code.none }
 ) -> CodeRepresentable {
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     var content: String = "\(access)\(type.rawValue) \(name)"
@@ -81,7 +81,7 @@ public func enumSpec(
     access: Access = .internal,
     enumSpec: Enum,
     inheritingFrom protocols: [String] = [],
-    @CodeBuilder _ body: () -> CodeRepresentable = { Code.fragments([]) }
+    @CodeBuilder _ body: () -> CodeRepresentable = { Code.none }
 ) -> CodeRepresentable {
 
     let access: String = access == .internal ? "" : "\(access.rawValue) "
@@ -133,36 +133,42 @@ public func rawValueEnumSpec<T>(
     access: Access = .internal,
     enumSpec: RawValueEnum<T>,
     inheritingFrom protocols: [String] = [],
-    @CodeBuilder _ body: () -> CodeRepresentable = { Code.fragments([]) }
+    @CodeBuilder _ body: () -> CodeRepresentable = { Code.none }
 ) -> CodeRepresentable {
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     var content: String = "\(access)enum \(enumSpec.name): \(enumSpec.typeDeescription)"
     content += !protocols.isEmpty
         ? ", " + protocols.joined(separator: ", ")
         : ""
-    content += " {\n"
+    content += " {"
 
-    let fragments: [Fragment] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+    var fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+    let bodyCode: CodeRepresentable = body()
+
+    let addBody: Bool = bodyCode.asCode != Code.none
+
+    if addBody {
+        fragments.append(contentsOf: [lineBreak(), body()])
+    }
 
     switch enumSpec.cases.isEmpty {
         case true:
             return GroupFragment(
                 children: [
-                    MultiLineFragment(content, body),
+                    MultiLineFragment(
+                        content,
+                        {
+                            lineBreak()
+                            body()
+                        }
+                    ),
                     end()
                 ]
             )
         case false:
             return GroupFragment(
                 children: [
-                    MultiLineFragment(
-                        content,
-                        {
-                            Code.fragments(fragments)
-                            lineBreak()
-                            body()
-                        }
-                    ),
+                    MultiLineFragment(content, { fragments }),
                     end()
                 ]
             )
