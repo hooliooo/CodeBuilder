@@ -25,6 +25,17 @@ public protocol MixableEnumCase: EnumCase {}
  */
 public struct NormalEnumCase: MixableEnumCase {
 
+    /**
+     Initializer
+     - parameters:
+        - name: The name of the case
+     */
+    @inlinable
+    public init(name: String) {
+        self.name = name
+    }
+
+
     /// The name of the enum case
     public let name: String
 
@@ -47,6 +58,18 @@ public struct NormalEnumCase: MixableEnumCase {
  A Fragment that is rendered as a raw value enum case
  */
 public struct RawValueEnumCase<V>: EnumCase {
+
+    /**
+     Initializer
+     - parameters:
+        - name : The name of the case
+        - value: The value of the case
+     */
+    @inlinable
+    public init(name: String, value: V?) {
+        self.name = name
+        self.value = value
+    }
 
     /// The name of the enum case
     public let name: String
@@ -83,6 +106,18 @@ public struct RawValueEnumCase<V>: EnumCase {
  A Fragment that is rendered as an enum case with an associated value
  */
 public struct AssociatedValueEnumCase: MixableEnumCase {
+
+    /**
+     Initializer
+     - parameters:
+        - name : The name of the case
+        - types: The associated values of the case
+     */
+    @inlinable
+    public init(name: String, types: [String]) {
+        self.name = name
+        self.types = types
+    }
 
     /// The name of the enum case
     public let name: String
@@ -139,6 +174,18 @@ public struct RawValueEnum<T> {
 Represents an enum definition
 */
 public struct Enum {
+
+    /**
+     Initializer
+     - parameters:
+        - name : The name of the enum
+        - cases: The cases of the enum
+     */
+    @inlinable
+    public init(name: String, cases: [MixableEnumCase]) {
+        self.name = name
+        self.cases = cases
+    }
 
     /// The name of the enum definition
     public let name: String
