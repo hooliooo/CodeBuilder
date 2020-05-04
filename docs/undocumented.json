@@ -22,6 +22,27 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 21,
+      "symbol": "CodeBuilder.buildIf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 26,
+      "symbol": "CodeBuilder.buildEither(first:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 30,
+      "symbol": "CodeBuilder.buildEither(second:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
       "line": 15,
       "symbol": "DataType.class",
