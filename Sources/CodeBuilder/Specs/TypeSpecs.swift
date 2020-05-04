@@ -91,31 +91,22 @@ public func enumSpec(
         : ""
     content += " {\n"
 
-    let fragments: [Fragment] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+    let fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
 
-    switch enumSpec.cases.isEmpty {
-        case true:
-            return GroupFragment(
-                children: [
-                    MultiLineFragment(content, body),
-                    end()
-                ]
-            )
-        case false:
-            return GroupFragment(
-                children: [
-                    MultiLineFragment(
-                        content,
-                        {
-                            Code.fragments(fragments)
-                            lineBreak()
-                            body()
-                        }
-                    ),
-                    end()
-                ]
-            )
-    }
+    return GroupFragment(
+        children: [
+            MultiLineFragment(content) {
+                if enumSpec.cases.isEmpty {
+                    body()
+                } else {
+                    fragments
+                    lineBreak()
+                    body()
+                }
+            },
+            end()
+        ]
+    )
 }
 
 /**
@@ -151,26 +142,17 @@ public func rawValueEnumSpec<T>(
         fragments.append(contentsOf: [lineBreak(), body()])
     }
 
-    switch enumSpec.cases.isEmpty {
-        case true:
-            return GroupFragment(
-                children: [
-                    MultiLineFragment(
-                        content,
-                        {
-                            lineBreak()
-                            body()
-                        }
-                    ),
-                    end()
-                ]
-            )
-        case false:
-            return GroupFragment(
-                children: [
-                    MultiLineFragment(content, { fragments }),
-                    end()
-                ]
-            )
-    }
+    return GroupFragment(
+        children: [
+            MultiLineFragment(content) {
+                if enumSpec.cases.isEmpty {
+                    lineBreak()
+                    body()
+                } else {
+                    fragments
+                }
+            },
+            end()
+        ]
+    )
 }

@@ -11,23 +11,23 @@ import Foundation
 @_functionBuilder
 public struct CodeBuilder {
 //    public static func buildBlock() -> Code {
-//        return .fragments([])
+//        Code.none
 //    }
 
     public static func buildBlock(_ components: CodeRepresentable...) -> Code {
         components.asCode
     }
 
-//    public static func buildIf(_ component: CodeRepresentable?) -> Code {
-//        guard let component = component else { return .fragments([]) }
-//        return component.asCode
-//    }
+    public static func buildIf(_ component: CodeRepresentable?) -> Code {
+        guard let component = component else { return Code.none }
+        return component.asCode
+    }
 
-//    public static func buildEither(first: CodeRepresentable) -> Code {
-//        first.asCode
-//    }
-//
-//    public static func buildEither(second: CodeRepresentable) -> Code {
-//        second.asCode
-//    }
+    public static func buildEither(first: CodeRepresentable) -> Code {
+        first.asCode
+    }
+
+    public static func buildEither(second: CodeRepresentable) -> Code {
+        second.asCode
+    }
 }

@@ -23,7 +23,7 @@ public class GroupFragment: MultiLineFragment {
 
     @inlinable
     public override func renderContent() -> String {
-        self.children
+        self.children.lazy
             .compactMap { (fragment: Fragment) -> MultiLineFragment? in
                 fragment as? MultiLineFragment
             }
