@@ -13,15 +13,25 @@ import Foundation
  */
 public struct Argument: Fragment {
 
-    // MARK: Stored Properties
-
     /**
-     Name of the argument
+    Standard initializer.
+       - parameters:
+           - name: The name of the argument
+           - type: The text representation of the function argument type
+    */
+    public init(name: String, type: String) {
+        self.name = name
+        self.type = type
+    }
+
+    // MARK: Stored Properties
+    /**
+     The name of the argument
      */
     public let name: String
 
     /**
-     A text representation of the function argument type
+     The text representation of the function argument type
      */
     public let type: String
 
