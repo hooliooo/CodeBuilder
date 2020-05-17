@@ -85,3 +85,9 @@ documentation:
 	git add -A
 	git commit -m "Regenerated docs"
 	git push origin gh-pages
+
+# -- Update Git tag ---
+update-minor:
+	git checkout master
+	git tag "$(CURRENT_VERSION_MICRO)"
+	git push origin master --tags
