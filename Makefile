@@ -83,5 +83,5 @@ documentation:
 	jazzy
 	rm -rf ./build
 	git add -A
-	git commit -m "Regerated docs"
+	git commit -m "Regenerated docs"
 	git push origin docs
