@@ -78,7 +78,7 @@ commit-message:
 
 # -- Documentation ---
 documentation:
-	git checkout docs
+	git checkout gh-pages
 	git pull origin gh-pages
 	jazzy
 	rm -rf ./build
