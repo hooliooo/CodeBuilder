@@ -78,6 +78,10 @@ commit-message:
 
 # -- Documentation ---
 documentation:
-	
-	@jazzy
-	@rm -rf ./build
+	git checkout docs
+	git pull origin docs
+	jazzy
+	rm -rf ./build
+	git add -A
+	git commit -m "Regerated docs"
+	git push origin docs
