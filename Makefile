@@ -80,6 +80,9 @@ commit-message:
 documentation:
 	git checkout docs
 	git pull origin docs
+	git merge master
+	git commit -m "Merged master"
+	git push origin docs
 	jazzy
 	rm -rf ./build
 	git add -A
