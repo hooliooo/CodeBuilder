@@ -20,4 +20,3 @@ import Foundation
 public func fileSpec(fileName: String, indent: String, @CodeBuilder _ builder: () -> CodeRepresentable) -> File {
     File(name: fileName, indent: indent, body: builder)
 }
-

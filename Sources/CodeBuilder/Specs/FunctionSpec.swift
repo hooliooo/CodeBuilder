@@ -35,22 +35,31 @@ public func functionSpec(
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     let type: String = isStatic ? "static " : ""
     let args: String = !arguments.isEmpty ? arguments.map { $0.renderContent() }.joined(separator: ", ") : ""
-    let genericSignature: String = genericSignature != nil ? "<\(genericSignature!)>" : ""
+
+    let genericSignature: String = {
+        guard let signature = genericSignature else { return "" }
+        return "<\(signature)>"
+    }()
+
     let throwsError: String = throwsError ? " throws " : " "
-    let returnValue: String = returnValue != nil ? "\(throwsError)-> \(returnValue!) {" : "\(throwsError){"
+
+    let returnValue: String = {
+        guard let returnValue = returnValue else { return "\(throwsError){" }
+        return "\(throwsError)-> \(returnValue) {"
+    }()
+
     let functionSignature: String = "\(access)\(type)func \(name)\(genericSignature)(\(args))\(returnValue)"
 
-    if functionSignature.count > 120, arguments.count > 1 {
+    if functionSignature.count > 120, arguments.count > 1, let lastArgument = arguments.last {
 
         let fragments: [Fragment] = arguments
             .dropLast()
             .map { SingleLineFragment("\($0.renderContent()),") }
 
-        let lastFragment: Fragment = SingleLineFragment(arguments.last!.renderContent())
+        let lastFragment: Fragment = SingleLineFragment(lastArgument.renderContent())
         let children: Code = (fragments + [lastFragment]).asCode
         let first: MultiLineFragment = MultiLineFragment(
-            "\(access)\(type)func \(name)\(genericSignature)(",
-            { children }
+            "\(access)\(type)func \(name)\(genericSignature)(", { children }
         )
         let second: MultiLineFragment = MultiLineFragment(")\(returnValue)", builder)
         return GroupFragment(children: [first, second, end()])

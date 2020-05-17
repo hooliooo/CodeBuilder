@@ -47,10 +47,14 @@ public enum Code: CodeRepresentable, Equatable {
 
     public static func == (lhs: Code, rhs: Code) -> Bool {
         switch (lhs, rhs) {
-            case let (.fragment(lhsValue), .fragment(rhsValue)): return lhsValue.renderContent() == rhsValue.renderContent()
-            case let (.fragments(lhsValue), .fragments(rhsValue)): return lhsValue.map { $0.renderContent() } == rhsValue.map { $0.renderContent() }
-            case (.none, .none): return true
-            default: return false
+            case let (.fragment(lhsValue), .fragment(rhsValue)):
+                return lhsValue.renderContent() == rhsValue.renderContent()
+            case let (.fragments(lhsValue), .fragments(rhsValue)):
+                return lhsValue.map { $0.renderContent() } == rhsValue.map { $0.renderContent() }
+            case (.none, .none):
+                return true
+            default:
+                return false
         }
     }
 }

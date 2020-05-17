@@ -21,7 +21,7 @@ public func rawSpec(_ content: String) -> CodeRepresentable {
     return content
         .components(separatedBy: "\n")
         .lazy
-        .map { $0.replacingOccurrences(of: "\\s+$", with: "",options: .regularExpression) }
+        .map { $0.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression) }
         .map { SingleLineFragment($0) }
         .asCode
 }

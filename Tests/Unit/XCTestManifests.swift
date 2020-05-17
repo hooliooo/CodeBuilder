@@ -9,7 +9,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(DocumentationSpecTests.allTests),
         testCase(EnumSpecTests.allTests),
         testCase(FunctionSpecTests.allTests),
-        testCase(TypeSpecTests.allTests),
+        testCase(TypeSpecTests.allTests)
     ]
 }
 #endif

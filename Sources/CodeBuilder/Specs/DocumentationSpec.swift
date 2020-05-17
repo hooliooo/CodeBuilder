@@ -33,13 +33,15 @@ public func documentationSpec(
         ? parameters.reduce(into: [SingleLineFragment("- parameters:")]) { $0.append(SingleLineFragment($1.renderContent())) }
         : []
 
-    let returnString: Fragment? = returnsValue != nil
-        ? SingleLineFragment("- returns: \(returnsValue!)")
-        : nil
+    let returnString: Fragment? = {
+        guard let returnsValue = returnsValue else { return nil }
+        return SingleLineFragment("- returns: \(returnsValue)")
+    }()
 
-    let tag: Fragment? = tag != nil
-        ? SingleLineFragment("- Tag: \(tag!)")
-        : nil
+    let tag: Fragment? = {
+        guard let tag = tag else { return nil }
+        return SingleLineFragment("- Tag: \(tag)")
+    }()
 
     let fragments: [Fragment?] = parameters + [returnString, tag]
     return Documentation(content, format: format, { fragments.compactMap { $0 }.asCode })

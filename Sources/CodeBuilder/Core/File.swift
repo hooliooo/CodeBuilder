@@ -9,7 +9,6 @@
 import FileKit
 import Foundation
 
-
 /**
  A Swift file
  */

@@ -304,7 +304,7 @@ final class EnumSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
-    static var allTests: [(String, (EnumSpecTests) -> () -> ())] = [
+    static var allTests: [(String, (EnumSpecTests) -> () -> Void)] = [
         ("testEnumSpecAccess", testEnumSpecAccess),
         ("testEnumSpecCases", testEnumSpecCases),
         ("testEnumSpecInheritingProtocols", testEnumSpecInheritingProtocols),

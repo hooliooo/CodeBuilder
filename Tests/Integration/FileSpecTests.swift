@@ -1,5 +1,6 @@
 import XCTest
 @testable import CodeBuilder
+import Benchmark
 
 final class FileSpecTests: XCTestCase {
 
@@ -137,7 +138,6 @@ final class FileSpecTests: XCTestCase {
                              }
 
                              """
-        print(generateFile().string)
         XCTAssert(content == generateFile().string, "content should equal the file's content")
     }
 
@@ -220,7 +220,7 @@ final class FileSpecTests: XCTestCase {
 
     }
 
-    static var allTests: [(String, (FileSpecTests) -> () -> ())] = [
+    static var allTests: [(String, (FileSpecTests) -> () -> Void)] = [
         ("generateFile", testFileString),
         ("testFileDescription", testFileDescription),
         ("testWriteFile", testWriteFile)

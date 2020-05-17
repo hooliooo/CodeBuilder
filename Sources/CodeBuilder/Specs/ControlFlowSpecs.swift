@@ -152,8 +152,7 @@ public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBui
     let statements: [Fragment] = statements().asCode.fragments
     var content: String = "guard"
     var fragments: [CodeRepresentable]
-    if statements.count > 1, let statements = statements as? [SingleLineFragment] {
-        let lastStatement: SingleLineFragment = statements.last!
+    if statements.count > 1, let statements = statements as? [SingleLineFragment], let lastStatement = statements.last {
         let newStatements: [SingleLineFragment] = statements
             .dropLast()
             .map {
@@ -240,6 +239,9 @@ public func doSpec(@CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepre
 */
 @inlinable
 public func catchSpec(statement: String? = nil, @CodeBuilder _ builder: () -> CodeRepresentable) -> CodeRepresentable {
-    let statement: String = statement != nil ? " \(statement!) " : " "
+    let statement: String = {
+        guard let statement = statement else { return " " }
+        return " \(statement) "
+    }()
     return MultiLineFragment("} catch\(statement){", builder)
 }

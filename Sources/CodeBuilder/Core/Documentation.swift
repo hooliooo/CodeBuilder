@@ -44,12 +44,12 @@ public class Documentation: MultiLineFragment {
         A tuple that contains the content that was truncated to 130 characters and the rest of the content, if there is any.
      */
     @usableFromInline
-    func truncate(content: String) -> (content: String,  truncatedContent: String?) {
+    func truncate(content: String) -> (content: String, truncatedContent: String?) {
         guard content.count > 130 else { return (content, nil) }
         let index: String.Index = content.index(content.startIndex, offsetBy: 130)
-        let words: Array<Substring> = content.split(separator: " ")
+        let words: [Substring] = content.split(separator: " ")
 
-        let word: Substring = words.first(where: { $0.indices.contains(index) })!
+        let word: Substring = words.first(where: { $0.indices.contains(index) })! // swiftlint:disable:this force_unwrapping
         let truncateIndex: Substring.Index = word.indices.endIndex
         let truncatedContent: Substring.SubSequence = content[truncateIndex...].dropFirst()
         let newContent: String.SubSequence = content[..<truncateIndex]
@@ -76,7 +76,9 @@ public class Documentation: MultiLineFragment {
         self.setUpChildren()
         let prefix: String = self.format == .singleLine ? "/// " : " "
         let (newContent, truncatedContent) = self.truncate(content: self.content)
-        var content: String = (self.format == .singleLine ? newContent.trimmingCharacters(in: CharacterSet.whitespaces) : "/**") + "\n"
+        var content: String = (self.format == .singleLine
+            ? newContent.trimmingCharacters(in: CharacterSet.whitespaces)
+            : "/**") + "\n"
 
         let indent: String = self.createIndent(with: 0)
 
@@ -90,7 +92,7 @@ public class Documentation: MultiLineFragment {
             var moreTruncated = self.truncate(content: truncatedContent)
             repeat {
                 content += (indent + prefix + SingleLineFragment(moreTruncated.content).renderContent())
-                moreTruncated = self.truncate(content: moreTruncated.truncatedContent!)
+                moreTruncated = self.truncate(content: moreTruncated.truncatedContent!) // swiftlint:disable:this force_unwrapping
             } while moreTruncated.truncatedContent != nil
         }
 
@@ -120,5 +122,5 @@ public class Documentation: MultiLineFragment {
          */
         case multiline
     }
-    
+
 }

@@ -216,7 +216,7 @@ final class ControlFlowSpecTest: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
-    static var allTests: [(String, (ControlFlowSpecTest) -> () -> ())] = [
+    static var allTests: [(String, (ControlFlowSpecTest) -> () -> Void)] = [
         ("testControlFlow", testControlFlow),
         ("testControlFlowWithElse", testControlFlowWithElse),
         ("testControlFlowWithElseIf", testControlFlowWithElseIf),

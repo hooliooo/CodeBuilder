@@ -22,10 +22,10 @@ final class DocumentationSpecTests: XCTestCase {
     }
 
     func testParametersMultiline() {
-        let parameters = [
+        let parameters: [Parameter] = [
             Parameter(name: "testOne", documentation: "testOne represents some documentation"),
             Parameter(name: "testTwo", documentation: "testTwo represents some documentation"),
-            Parameter(name: "testThree", documentation: "testThree represents some documentation"),
+            Parameter(name: "testThree", documentation: "testThree represents some documentation")
         ]
 
         let example: String = """
@@ -88,10 +88,10 @@ final class DocumentationSpecTests: XCTestCase {
     }
 
     func testMultiline() {
-        let parameters = [
+        let parameters: [Parameter] = [
             Parameter(name: "testOne", documentation: "testOne represents some documentation"),
             Parameter(name: "testTwo", documentation: "testTwo represents some documentation"),
-            Parameter(name: "testThree", documentation: "testThree represents some documentation"),
+            Parameter(name: "testThree", documentation: "testThree represents some documentation")
         ]
         let example: String = """
                              /**
@@ -130,10 +130,10 @@ final class DocumentationSpecTests: XCTestCase {
     }
 
     func testParametersSingle() {
-        let parameters = [
+        let parameters: [Parameter] = [
             Parameter(name: "testOne", documentation: "testOne represents some documentation"),
             Parameter(name: "testTwo", documentation: "testTwo represents some documentation"),
-            Parameter(name: "testThree", documentation: "testThree represents some documentation"),
+            Parameter(name: "testThree", documentation: "testThree represents some documentation")
         ]
 
         let example: String = """
@@ -193,10 +193,10 @@ final class DocumentationSpecTests: XCTestCase {
     }
 
     func testSingle() {
-        let parameters = [
+        let parameters: [Parameter] = [
             Parameter(name: "testOne", documentation: "testOne represents some documentation"),
             Parameter(name: "testTwo", documentation: "testTwo represents some documentation"),
-            Parameter(name: "testThree", documentation: "testThree represents some documentation"),
+            Parameter(name: "testThree", documentation: "testThree represents some documentation")
         ]
         let example: String = """
                              /// Some content
@@ -221,7 +221,7 @@ final class DocumentationSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
-    static var allTests: [(String, (DocumentationSpecTests) -> () -> ())] = [
+    static var allTests: [(String, (DocumentationSpecTests) -> () -> Void)] = [
         ("testContentMultiline", testContentMultiline),
         ("testParametersMultiline", testParametersMultiline),
         ("testReturnValueMultiline", testReturnValueMultiline),

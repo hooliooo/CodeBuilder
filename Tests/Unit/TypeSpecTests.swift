@@ -115,8 +115,8 @@ final class TypeSpecTests: XCTestCase {
 
                               """
 
-        let propOne = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
-        let propTwo = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let propOne: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
         let docString: String = generateString {
             typeSpec(
                 "Test",
@@ -158,8 +158,8 @@ final class TypeSpecTests: XCTestCase {
 
                               """
 
-        let propOne = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
-        let propTwo = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let propOne: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
         let docString: String = generateString {
             classSpec(
                 "Test",
@@ -200,8 +200,8 @@ final class TypeSpecTests: XCTestCase {
 
                               """
 
-        let propOne = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
-        let propTwo = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let propOne: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
         let docString: String = generateString {
             structSpec(
                 "Test",
@@ -222,7 +222,7 @@ final class TypeSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
-    static var allTests: [(String, (TypeSpecTests) -> () -> ())] = [
+    static var allTests: [(String, (TypeSpecTests) -> () -> Void)] = [
         ("testTypeSpecAccess", testTypeSpecAccess),
         ("testTypeSpecInheritance", testTypeSpecInheritance),
         ("testTypeSpecBody", testTypeSpecBody),

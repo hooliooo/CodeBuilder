@@ -35,7 +35,6 @@ public struct NormalEnumCase: MixableEnumCase {
         self.name = name
     }
 
-
     /// The name of the enum case
     public let name: String
 

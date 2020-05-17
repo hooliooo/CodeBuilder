@@ -240,7 +240,7 @@ final class FunctionSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
-    static var allTests: [(String, (FunctionSpecTests) -> () -> ())] = [
+    static var allTests: [(String, (FunctionSpecTests) -> () -> Void)] = [
         ("testFunc", testFunc),
         ("testFuncWithOpenAccess", testFuncWithOpenAccess),
         ("testFuncWithPublicAccess", testFuncWithPublicAccess),

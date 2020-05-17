@@ -59,10 +59,8 @@ final class FreeFunctionTests: XCTestCase {
             }
 
         }.string
-        print(actual)
         XCTAssert(expected == actual, "The two strings should equal each other")
 
     }
 
 }
-
