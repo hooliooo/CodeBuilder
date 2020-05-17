@@ -79,9 +79,9 @@ commit-message:
 # -- Documentation ---
 documentation:
 	git checkout docs
-	git pull origin docs
+	git pull origin gh-pages
 	jazzy
 	rm -rf ./build
 	git add -A
 	git commit -m "Regenerated docs"
-	git push origin docs
+	git push origin gh-pages
