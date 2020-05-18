@@ -11,7 +11,7 @@ import Foundation
 /**
  A Fragment formatted as an argument
  */
-public struct Argument: Fragment {
+public struct Argument: Fragment, Hashable {
 
     /**
     Standard initializer.
