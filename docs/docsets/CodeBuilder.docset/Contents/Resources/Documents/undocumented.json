@@ -1,0 +1,117 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Argument.swift",
+      "line": 39,
+      "symbol": "Argument.asParameter(documentation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 12,
+      "symbol": "CodeBuilder",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 17,
+      "symbol": "CodeBuilder.buildBlock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 21,
+      "symbol": "CodeBuilder.buildIf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 26,
+      "symbol": "CodeBuilder.buildEither(first:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/CodeBuilder.swift",
+      "line": 30,
+      "symbol": "CodeBuilder.buildEither(second:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.class",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.enum",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/DataType.swift",
+      "line": 15,
+      "symbol": "DataType.struct",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/Enum.swift",
+      "line": 15,
+      "symbol": "EnumCase.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/GroupFragment.swift",
+      "line": 25,
+      "symbol": "GroupFragment.renderContent()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 87,
+      "symbol": "Access.fileprivate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 87,
+      "symbol": "Access.internal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 87,
+      "symbol": "Access.open",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 87,
+      "symbol": "Access.private",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hooliooo/Swift/CodeBuilder/Sources/CodeBuilder/Core/StoredProperty.swift",
+      "line": 87,
+      "symbol": "Access.public",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/hooliooo/Swift/CodeBuilder"
+}
