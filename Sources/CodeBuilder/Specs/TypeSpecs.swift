@@ -92,21 +92,33 @@ public func enumSpec(
     content += " {\n"
 
     let fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+    return GroupFragment {
+        MultiLineFragment(content) {
+            if enumSpec.cases.isEmpty {
+                body()
+            } else {
+                fragments
+                lineBreak()
+                body()
+            }
+        }
+        end()
+    }
 
-    return GroupFragment(
-        children: [
-            MultiLineFragment(content) {
-                if enumSpec.cases.isEmpty {
-                    body()
-                } else {
-                    fragments
-                    lineBreak()
-                    body()
-                }
-            },
-            end()
-        ]
-    )
+//    return GroupFragment(
+//        children: [
+//            MultiLineFragment(content) {
+//                if enumSpec.cases.isEmpty {
+//                    body()
+//                } else {
+//                    fragments
+//                    lineBreak()
+//                    body()
+//                }
+//            },
+//            end()
+//        ]
+//    )
 }
 
 /**

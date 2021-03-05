@@ -18,9 +18,13 @@ public struct CodeBuilder {
         components.asCode
     }
 
-    public static func buildIf(_ component: CodeRepresentable?) -> Code {
+    public static func buildOptional(_ component: CodeRepresentable?) -> Code {
         guard let component = component else { return Code.none }
         return component.asCode
+    }
+
+    public static func buildArray(_ components: [CodeRepresentable]) -> Code {
+        components.asCode
     }
 
     public static func buildEither(first: CodeRepresentable) -> Code {

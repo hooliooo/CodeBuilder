@@ -1,6 +1,5 @@
 import XCTest
 @testable import CodeBuilder
-import Benchmark
 
 final class FileSpecTests: XCTestCase {
 
