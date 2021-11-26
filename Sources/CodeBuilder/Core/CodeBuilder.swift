@@ -8,22 +8,14 @@
 
 import Foundation
 
-@_functionBuilder
+@resultBuilder
 public struct CodeBuilder {
-//    public static func buildBlock() -> Code {
-//        Code.none
-//    }
 
-    public static func buildBlock(_ components: CodeRepresentable...) -> Code {
+    public static func buildArray(_ components: [CodeRepresentable]) -> Code {
         components.asCode
     }
 
-    public static func buildOptional(_ component: CodeRepresentable?) -> Code {
-        guard let component = component else { return Code.none }
-        return component.asCode
-    }
-
-    public static func buildArray(_ components: [CodeRepresentable]) -> Code {
+    public static func buildBlock(_ components: CodeRepresentable...) -> Code {
         components.asCode
     }
 
@@ -33,5 +25,14 @@ public struct CodeBuilder {
 
     public static func buildEither(second: CodeRepresentable) -> Code {
         second.asCode
+    }
+
+    public static func buildExpression(_ expression: CodeRepresentable) -> Code {
+        expression.asCode
+    }
+
+    public static func buildOptional(_ component: CodeRepresentable?) -> Code {
+        guard let component = component else { return Code.none }
+        return component.asCode
     }
 }

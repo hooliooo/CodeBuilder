@@ -42,7 +42,7 @@ public struct ForEach<T: RandomAccessCollection>: CodeRepresentable {
     @inlinable
     public var asCode: Code {
         let representables: [CodeRepresentable] = self.elements
-            .map { (element) -> CodeRepresentable in
+            .map { (element: T.Element) -> CodeRepresentable in
                 self.builder(element)
             }
         guard let first = representables.first else { return Code.none }
