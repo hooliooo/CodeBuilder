@@ -148,10 +148,10 @@ public func rawValueEnumSpec<T>(
     var fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
     let bodyCode: CodeRepresentable = body()
 
-    let addBody: Bool = bodyCode.asCode != Code.none
+    let addBody: Bool = !bodyCode.asCode.fragments.isEmpty
 
     if addBody {
-        fragments.append(contentsOf: [lineBreak(), body()])
+        fragments.append(contentsOf: [lineBreak(), bodyCode])
     }
 
     return GroupFragment(
