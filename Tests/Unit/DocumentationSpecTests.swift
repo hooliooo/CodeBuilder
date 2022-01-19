@@ -220,6 +220,23 @@ final class DocumentationSpecTests: XCTestCase {
         )
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
+    
+    func testTruncateWhen130thCharIsWhitespace() {
+        let documentation: String = "The date the Allocation was created. Created to the 30 days expiration of storing latitude and longitude values as outlined by the Google Maps terms and conditions. The date format is dd-mm-yyyy."
+        
+        let example: String = """
+                             /// The date the Allocation was created. Created to the 30 days expiration of storing latitude and longitude values as outlined by
+                             /// the Google Maps terms and conditions. The date format is dd-mm-yyyy.
+                             
+                             """
+
+        
+        let docString: String = generateString(
+            documentationSpec(documentation)
+        )
+        
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
 
     static var allTests: [(String, (DocumentationSpecTests) -> () -> Void)] = [
         ("testContentMultiline", testContentMultiline),
@@ -231,7 +248,8 @@ final class DocumentationSpecTests: XCTestCase {
         ("testParametersSingle", testParametersSingle),
         ("testReturnValueSingle", testReturnValueSingle),
         ("testTagSingle", testTagSingle),
-        ("testSingle", testSingle)
+        ("testSingle", testSingle),
+        ("testTruncateWhen130thCharIsWhitespace", testTruncateWhen130thCharIsWhitespace)
     ]
 
 }
