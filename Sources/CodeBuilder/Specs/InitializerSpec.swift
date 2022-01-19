@@ -14,15 +14,22 @@ import Foundation
     - access       : The access level of the initializer
     - documentation: The documentation of the initializer
     - arguments    : The arguments of the initializer
+    - throwsError : Bool flag indicating if the initializer throws or not
     - body         : The body of the initializer
 
  - returns: A GroupFragment typed as a CodeRepresentable
  */
 @inlinable
-public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument], @CodeBuilder _ body: () -> CodeRepresentable) -> CodeRepresentable {
+public func initializerSpec(
+    access: Access = .internal,
+    documentation: Documentation? = nil,
+    arguments: [Argument],
+    throwsError: Bool,
+    @CodeBuilder _ body: () -> CodeRepresentable
+) -> CodeRepresentable {
     let access: String = access == .internal ? "" : "\(access.rawValue) "
     let args: String = !arguments.isEmpty ? arguments.map { $0.renderContent() }.joined(separator: ", ") : ""
-    let content: String = "\(access)init(\(args)) {"
+    let content: String = "\(access)init(\(args))\(throwsError ? " throws " : " "){"
     let initializerFragment: MultiLineFragment = MultiLineFragment(content, body)
     let fragments: [Fragment?] = [documentation, initializerFragment, end()]
     return GroupFragment(children: fragments.compactMap { $0 })
@@ -34,11 +41,17 @@ public func initializerSpec(access: Access = .internal, documentation: Documenta
     - access       : The access level of the initializer
     - documentation: The documentation of the initializer
     - arguments    : The arguments of the initializer
+    - throwsError : Bool flag indicating if the initializer throws or not
 
  - returns: A GroupFragment typed as a CodeRepresentable
  */
 @inlinable
-public func initializerSpec(access: Access = .internal, documentation: Documentation? = nil, arguments: [Argument]) -> CodeRepresentable {
+public func initializerSpec(
+    access: Access = .internal,
+    documentation: Documentation? = nil,
+    arguments: [Argument],
+    throwsError: Bool = false
+) -> CodeRepresentable {
     let code: Code = arguments.map { SingleLineFragment("self.\($0.name) = \($0.name)")}.asCode
-    return initializerSpec(access: access, documentation: documentation, arguments: arguments, { code })
+    return initializerSpec(access: access, documentation: documentation, arguments: arguments, throwsError: throwsError, { code })
 }

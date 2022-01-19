@@ -179,6 +179,48 @@ final class TypeSpecTests: XCTestCase {
         }
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
+    
+    func testClassSpecWithThrowingInit() {
+        let example: String = """
+                              open class Test: NSObject, TestProtocolOne, TestProtocolTwo {
+
+                                  init(testOne: String, testTwo: String) throws {
+                                      self.testOne = testOne
+                                      self.testTwo = testTwo
+                                  }
+
+                                  var testOne: String = "this"
+
+                                  var testTwo: String = "this"
+
+                                  func test() {
+                                      print("Hello, World")
+                                  }
+                              }
+
+                              """
+
+        let propOne: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testOne", type: "String", value: "\"this\"")
+        let propTwo: StoredProperty = StoredProperty(access: Access.internal, isMutable: true, name: "testTwo", type: "String", value: "\"this\"")
+        let docString: String = generateString {
+            classSpec(
+                "Test",
+                access: Access.open,
+                inheritingFrom: ["NSObject", "TestProtocolOne", "TestProtocolTwo"]
+            ) {
+                initializerSpec(arguments: [propOne.asArgument, propTwo.asArgument], throwsError: true)
+                lineBreak()
+                propOne
+                lineBreak()
+                propTwo
+                lineBreak()
+                functionSpec("test") {
+                    statement("print(\"Hello, World\")")
+                }
+            }
+        }
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
 
     func testStructSpec() {
         let example: String = """
@@ -221,13 +263,14 @@ final class TypeSpecTests: XCTestCase {
         }
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
-
+    
     static var allTests: [(String, (TypeSpecTests) -> () -> Void)] = [
         ("testTypeSpecAccess", testTypeSpecAccess),
         ("testTypeSpecInheritance", testTypeSpecInheritance),
         ("testTypeSpecBody", testTypeSpecBody),
         ("testTypeSpecAll", testTypeSpecAll),
         ("testClassSpec", testClassSpec),
+        ("testClassSpecWithThrowingInit", testClassSpecWithThrowingInit),
         ("testStructSpec", testStructSpec)
     ]
 }
