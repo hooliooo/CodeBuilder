@@ -92,21 +92,33 @@ public func enumSpec(
     content += " {\n"
 
     let fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
+    return GroupFragment {
+        MultiLineFragment(content) {
+            if enumSpec.cases.isEmpty {
+                body()
+            } else {
+                fragments
+                lineBreak()
+                body()
+            }
+        }
+        end()
+    }
 
-    return GroupFragment(
-        children: [
-            MultiLineFragment(content) {
-                if enumSpec.cases.isEmpty {
-                    body()
-                } else {
-                    fragments
-                    lineBreak()
-                    body()
-                }
-            },
-            end()
-        ]
-    )
+//    return GroupFragment(
+//        children: [
+//            MultiLineFragment(content) {
+//                if enumSpec.cases.isEmpty {
+//                    body()
+//                } else {
+//                    fragments
+//                    lineBreak()
+//                    body()
+//                }
+//            },
+//            end()
+//        ]
+//    )
 }
 
 /**
@@ -136,18 +148,17 @@ public func rawValueEnumSpec<T>(
     var fragments: [CodeRepresentable] = enumSpec.cases.map { SingleLineFragment($0.renderContent()) }
     let bodyCode: CodeRepresentable = body()
 
-    let addBody: Bool = bodyCode.asCode != Code.none
+    let bodyIsNotEmpty: Bool = !bodyCode.asCode.fragments.isEmpty
 
-    if addBody {
-        fragments.append(contentsOf: [lineBreak(), body()])
+    if bodyIsNotEmpty {
+        fragments.append(contentsOf: [lineBreak(), bodyCode])
     }
 
     return GroupFragment(
         children: [
             MultiLineFragment(content) {
-                if enumSpec.cases.isEmpty {
+                if fragments.isEmpty {
                     lineBreak()
-                    body()
                 } else {
                     fragments
                 }

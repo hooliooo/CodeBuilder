@@ -47,8 +47,15 @@ public class Documentation: MultiLineFragment {
     func truncate(content: String) -> (content: String, truncatedContent: String?) {
         guard content.count > 130 else { return (content, nil) }
         let index: String.Index = content.index(content.startIndex, offsetBy: 130)
+        
+        if content[index].isWhitespace {
+            let newContent: String.SubSequence = content[..<index]
+            let truncatedContent: Substring.SubSequence = content[index...].dropFirst()
+            return (String(newContent), String(truncatedContent))
+        }
+        
         let words: [Substring] = content.split(separator: " ")
-
+        
         let word: Substring = words.first(where: { $0.indices.contains(index) })! // swiftlint:disable:this force_unwrapping
         let truncateIndex: Substring.Index = word.indices.endIndex
         let truncatedContent: Substring.SubSequence = content[truncateIndex...].dropFirst()
@@ -90,9 +97,11 @@ public class Documentation: MultiLineFragment {
 
         if let truncatedContent = truncatedContent {
             var moreTruncated = self.truncate(content: truncatedContent)
+            
             repeat {
                 content += (indent + prefix + SingleLineFragment(moreTruncated.content).renderContent())
-                moreTruncated = self.truncate(content: moreTruncated.truncatedContent!) // swiftlint:disable:this force_unwrapping
+                guard let truncatedContent = moreTruncated.truncatedContent else { break }
+                moreTruncated = self.truncate(content: truncatedContent)
             } while moreTruncated.truncatedContent != nil
         }
 

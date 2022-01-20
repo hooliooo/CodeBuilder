@@ -18,3 +18,4 @@ extension Array: CodeRepresentable where Array.Element == CodeRepresentable {
         return .fragments(self.flatMap { $0.asCode.fragments })
     }
 }
+

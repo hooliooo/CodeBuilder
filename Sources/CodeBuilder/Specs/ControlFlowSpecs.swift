@@ -158,8 +158,10 @@ public func guardSpec(@CodeBuilder statements: () -> CodeRepresentable, @CodeBui
             .map {
                 SingleLineFragment($0.content + ",")
             }
+
+        let guardBlock: CodeRepresentable = newStatements + [lastStatement]
         fragments = [
-            MultiLineFragment(content, { newStatements + [lastStatement] }),
+            MultiLineFragment(content, { guardBlock }),
             MultiLineFragment("else {", elseBlock)
         ]
     } else if let statement = statements.first {

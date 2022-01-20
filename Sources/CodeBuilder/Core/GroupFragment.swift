@@ -22,6 +22,11 @@ public class GroupFragment: MultiLineFragment {
     }
 
     @inlinable
+    public init(@CodeBuilder _ builder: () -> CodeRepresentable) {
+        super.init("", builder)
+    }
+
+    @inlinable
     public override func renderContent() -> String {
         self.children.lazy
             .compactMap { (fragment: Fragment) -> MultiLineFragment? in

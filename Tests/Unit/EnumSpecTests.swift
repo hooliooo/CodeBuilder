@@ -303,6 +303,34 @@ final class EnumSpecTests: XCTestCase {
         }
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
+    
+    func testRawValueEnumSpecWithoutExtraCode() {
+        let example: String = """
+                              public enum Status: String {
+                                  case placed
+                                  case approved
+                                  case delivered
+                              }
+                              
+                              """
+        let docString = generateString {
+            rawValueEnumSpec(
+                access: .public,
+                enumSpec: RawValueEnum<String>(
+                    name: "Status",
+                    cases: [
+                        RawValueEnumCase(name: "placed", value: nil),
+                        RawValueEnumCase(name: "approved", value: nil),
+                        RawValueEnumCase(name: "delivered", value: nil)
+                    ]
+                ),
+                inheritingFrom: [],
+                { Code.none }
+            )
+        }
+        
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
 
     static var allTests: [(String, (EnumSpecTests) -> () -> Void)] = [
         ("testEnumSpecAccess", testEnumSpecAccess),
@@ -314,6 +342,7 @@ final class EnumSpecTests: XCTestCase {
         ("testRawValueEnumSpecCases", testRawValueEnumSpecCases),
         ("testRawValueEnumSpecInheritingProtocols", testRawValueEnumSpecInheritingProtocols),
         ("testRawValueEnumSpecBody", testRawValueEnumSpecBody),
-        ("testRawValueEnumSpecAll", testRawValueEnumSpecAll)
+        ("testRawValueEnumSpecAll", testRawValueEnumSpecAll),
+        ("testRawValueEnumSpecWithoutExtraCode", testRawValueEnumSpecWithoutExtraCode)
     ]
 }
