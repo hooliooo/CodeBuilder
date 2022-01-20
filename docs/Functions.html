@@ -23,25 +23,25 @@
         <a class="header-link" href="index.html">
           CodeBuilder Docs
         </a>
-         (88% documented)
+         (86% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/hooliooo/CodeBuilder">
-            <img class="header-icon" src="img/gh.png"/>
+            <img class="header-icon" src="img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="dash-feed://https%3A%2F%2Fhooliooo%2Egithub%2Eio%2FCodeBuilder%2Fdocsets%2FCodeBuilder%2Exml">
-            <img class="header-icon" src="img/dash.png"/>
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fhooliooo.github.io%2FCodeBuilder%2Fdocsets%2FCodeBuilder.xml">
+            <img class="header-icon" src="img/dash.png" alt="Dash"/>
             Install in Dash
           </a>
         </p>
@@ -49,7 +49,7 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">CodeBuilder Reference</a>
-      <img class="carat" src="img/carat.png" />
+      <img class="carat" src="img/carat.png" alt=""/>
       Functions  Reference
     </p>
 
@@ -141,10 +141,10 @@
                 <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder9guardSpec10statements9elseBlockAA0A13Representable_pAaE_pyXE_AaE_pyXEtF">guardSpec(statements:elseBlock:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder15initializerSpec6access13documentation9argumentsAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGtF">initializerSpec(access:documentation:arguments:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsErrorAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbtF">initializerSpec(access:documentation:arguments:throwsError:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder15initializerSpec6access13documentation9arguments_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGAaF_pyXEtF">initializerSpec(access:documentation:arguments:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsError_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbAaG_pyXEtF">initializerSpec(access:documentation:arguments:throwsError:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder9lineBreakAA8Fragment_pyF">lineBreak()</a>
@@ -266,7 +266,7 @@
     <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
     <span class="nv">isStatic</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nv">returnValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
@@ -381,7 +381,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">controlFlowSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">controlFlowSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -464,7 +464,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">elseIfSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">elseIfSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -552,7 +552,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">elseSpec</span><span class="p">(</span><span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">elseSpec</span><span class="p">(</span><span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -632,7 +632,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">guardSpec</span><span class="p">(</span><span class="kd">@CodeBuilder</span> <span class="nv">statements</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">,</span> <span class="kd">@CodeBuilder</span> <span class="nv">elseBlock</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">guardSpec</span><span class="p">(</span><span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="nv">statements</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">,</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="nv">elseBlock</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -712,7 +712,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">doSpec</span><span class="p">(</span><span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">doSpec</span><span class="p">(</span><span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -787,7 +787,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">catchSpec</span><span class="p">(</span><span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">catchSpec</span><span class="p">(</span><span class="nv">statement</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -960,7 +960,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fileSpec</span><span class="p">(</span><span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Structs/File.html">File</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fileSpec</span><span class="p">(</span><span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Structs/File.html">File</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1043,7 +1043,7 @@
     <span class="nv">genericSignature</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">returnValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
@@ -1276,9 +1276,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder15initializerSpec6access13documentation9arguments_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGAaF_pyXEtF"></a>
-                    <a name="//apple_ref/swift/Function/initializerSpec(access:documentation:arguments:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder15initializerSpec6access13documentation9arguments_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGAaF_pyXEtF">initializerSpec(access:<wbr>documentation:<wbr>arguments:<wbr>_:<wbr>)</a>
+                    <a name="/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsError_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbAaG_pyXEtF"></a>
+                    <a name="//apple_ref/swift/Function/initializerSpec(access:documentation:arguments:throwsError:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsError_AA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbAaG_pyXEtF">initializerSpec(access:<wbr>documentation:<wbr>arguments:<wbr>throwsError:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1294,7 +1294,13 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">initializerSpec</span><span class="p">(</span><span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="nv">documentation</span><span class="p">:</span> <span class="kt"><a href="Classes/Documentation.html">Documentation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">],</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">initializerSpec</span><span class="p">(</span>
+    <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
+    <span class="nv">documentation</span><span class="p">:</span> <span class="kt"><a href="Classes/Documentation.html">Documentation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">],</span>
+    <span class="nv">throwsError</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1335,6 +1341,18 @@
                               <td>
                                 <div>
                                   <p>The arguments of the initializer</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>throwsError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bool flag indicating if the initializer throws or not</p>
                                 </div>
                               </td>
                             </tr>
@@ -1363,9 +1381,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder15initializerSpec6access13documentation9argumentsAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGtF"></a>
-                    <a name="//apple_ref/swift/Function/initializerSpec(access:documentation:arguments:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder15initializerSpec6access13documentation9argumentsAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGtF">initializerSpec(access:<wbr>documentation:<wbr>arguments:<wbr>)</a>
+                    <a name="/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsErrorAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbtF"></a>
+                    <a name="//apple_ref/swift/Function/initializerSpec(access:documentation:arguments:throwsError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CodeBuilder15initializerSpec6access13documentation9arguments11throwsErrorAA0A13Representable_pAA6AccessO_AA13DocumentationCSgSayAA8ArgumentVGSbtF">initializerSpec(access:<wbr>documentation:<wbr>arguments:<wbr>throwsError:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1381,7 +1399,12 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">initializerSpec</span><span class="p">(</span><span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="nv">documentation</span><span class="p">:</span> <span class="kt"><a href="Classes/Documentation.html">Documentation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">initializerSpec</span><span class="p">(</span>
+    <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
+    <span class="nv">documentation</span><span class="p">:</span> <span class="kt"><a href="Classes/Documentation.html">Documentation</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">],</span>
+    <span class="nv">throwsError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1422,6 +1445,18 @@
                               <td>
                                 <div>
                                   <p>The arguments of the initializer</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>throwsError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bool flag indicating if the initializer throws or not</p>
                                 </div>
                               </td>
                             </tr>
@@ -1514,7 +1549,7 @@
     <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
     <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="Enums/DataType.html">DataType</a></span><span class="p">,</span>
     <span class="n">inheritingFrom</span> <span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
@@ -1614,7 +1649,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">classSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="n">inheritingFrom</span> <span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">classSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="n">inheritingFrom</span> <span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">builder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1701,7 +1736,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">structSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="n">inheritingFrom</span> <span class="nv">protocols</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">structSpec</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span> <span class="n">inheritingFrom</span> <span class="nv">protocols</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1792,7 +1827,7 @@
     <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
     <span class="nv">enumSpec</span><span class="p">:</span> <span class="kt"><a href="Structs/Enum.html">Enum</a></span><span class="p">,</span>
     <span class="n">inheritingFrom</span> <span class="nv">protocols</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
@@ -1884,7 +1919,7 @@
     <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
     <span class="nv">enumSpec</span><span class="p">:</span> <span class="kt"><a href="Structs/RawValueEnum.html">RawValueEnum</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="n">inheritingFrom</span> <span class="nv">protocols</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-    <span class="kd">@CodeBuilder</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
+    <span class="kd"><a href="Structs/CodeBuilder.html">@CodeBuilder</a></span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span> <span class="o">=</span> <span class="p">{</span> <span class="kt"><a href="Enums/Code.html">Code</a></span><span class="o">.</span><span class="k">none</span> <span class="p">}</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="Protocols/CodeRepresentable.html">CodeRepresentable</a></span></code></pre>
 
                         </div>
@@ -1959,9 +1994,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://hooliooo.github.io" target="_blank" rel="external">Julio Alorro</a>. All rights reserved. (Last updated: 2020-05-18)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2022 <a class="link" href="https://hooliooo.github.io" target="_blank" rel="external noopener">Julio Alorro</a>. All rights reserved. (Last updated: 2022-01-20)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>
