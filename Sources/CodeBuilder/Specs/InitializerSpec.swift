@@ -1,9 +1,7 @@
 //
-//  InitializerSpec.swift
-//
-//  Copyright (c) Julio Miguel Alorro 2020
-//  MIT license, see LICENSE file for details
-//  Created by Julio Miguel Alorro on 4/11/20.
+//  CodeBuilder
+//  Copyright (c) Julio Miguel Alorro
+//  Licensed under the MIT license. See LICENSE file
 //
 
 import Foundation

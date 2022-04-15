@@ -112,6 +112,24 @@ final class FunctionSpecTests: XCTestCase {
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
     }
 
+    func testAsyncFunc() {
+        let example: String = """
+                             func testOne() async {
+                                 try? await Task.sleep(nanoseconds: 1_000_000_000)
+                                 print(\"Hello, World\")
+                             }
+
+                             """
+        let docString: String = generateString {
+            functionSpec("testOne", keywords: [.async]) {
+                statement("try? await Task.sleep(nanoseconds: 1_000_000_000)")
+                statement("print(\"Hello, World\")")
+            }
+        }
+
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
+
     func testThrowingFunc() {
         let example: String = """
                              func testOne() throws {
@@ -120,11 +138,67 @@ final class FunctionSpecTests: XCTestCase {
 
                              """
         let docString: String = generateString {
-            functionSpec("testOne", throwsError: true) {
+            functionSpec("testOne", keywords: [.throwing(.throws)]) {
                 statement("print(\"Hello, World\")")
             }
         }
         XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
+
+    func testThrowsRethrowsFunc() {
+        let example: String = """
+                              public func copy(with changes: (inout Self) throws -> Void) rethrows -> Self {
+                                  var mutableSelf = self
+                                  try changes(&mutableSelf)
+                                  return mutableSelf
+                              }
+
+                              """
+        let docString: String = generateString {
+            functionSpec(
+                "copy",
+                access: Access.public,
+                keywords: [.throwing(.rethrows)],
+                arguments: [
+                    Argument(name: "with changes", type: "(inout Self) throws -> Void")
+                ],
+                returnValue: "Self") {
+                    statement("var mutableSelf = self")
+                    statement("try changes(&mutableSelf)")
+                    statement("return mutableSelf")
+                }
+        }
+
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
+
+    func testAsyncThrowsFunc() {
+        let example: String = """
+                             func testOne() async throws {
+                                 try await Task.sleep(nanoseconds: 1_000_000_000)
+                                 print(\"Hello, World\")
+                             }
+
+                             """
+        let docString: String = generateString {
+            functionSpec("testOne", keywords: [.throwing(.throws), .async]) {
+                statement("try await Task.sleep(nanoseconds: 1_000_000_000)")
+                statement("print(\"Hello, World\")")
+            }
+        }
+
+        XCTAssertTrue(example == docString, self.message(expected: example, actual: docString))
+    }
+
+    func testThrowsRethrowsTogetherReturnsNone() {
+        let example: String = ""
+        let docString: String = generateString {
+            functionSpec("testOne", keywords: [.throwing(.throws), .async, .throwing(.rethrows)]) {
+                statement("try await Task.sleep(nanoseconds: 1_000_000_000)")
+                statement("print(\"Hello, World\")")
+            }
+        }
+        XCTAssertEqual(docString.isEmpty, example.isEmpty)
     }
 
     func testGenericFunc() {
@@ -248,6 +322,10 @@ final class FunctionSpecTests: XCTestCase {
         ("testFuncWithFileprivateAccess", testFuncWithFileprivateAccess),
         ("testFuncWithPrivateAccess", testFuncWithPrivateAccess),
         ("testStaticFunc", testStaticFunc),
+        ("testAsyncFunc", testAsyncFunc),
+        ("testThrowingFunc", testThrowingFunc),
+        ("testThrowsRethrowsFunc", testThrowsRethrowsFunc),
+        ("testAsyncThrowsFunc", testAsyncThrowsFunc),
         ("testGenericFunc", testGenericFunc),
         ("testFuncWithArgs", testFuncWithArgs),
         ("testFuncWithReturnValue", testFuncWithReturnValue),
