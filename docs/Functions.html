@@ -23,7 +23,7 @@
         <a class="header-link" href="index.html">
           CodeBuilder Docs
         </a>
-         (86% documented)
+         (87% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -85,6 +85,15 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/DataType.html">DataType</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FunctionKeyword.html">FunctionKeyword</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FunctionSpecError.html">FunctionSpecError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ThrowKeyword.html">ThrowKeyword</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -135,7 +144,7 @@
                 <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder8fileSpec0C4Name6indent_AA4FileVSS_SSAA0A13Representable_pyXEtF">fileSpec(fileName:indent:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder12functionSpec_6access8isStatic11throwsError16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOS2bSSSgSayAA8ArgumentVGAlaI_pyXEtF">functionSpec(_:access:isStatic:throwsError:genericSignature:arguments:returnValue:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder12functionSpec_6access8isStatic8keywords16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOSbShyAA15FunctionKeywordOGSSSgSayAA8ArgumentVGAoaI_pyXEtF">functionSpec(_:access:isStatic:keywords:genericSignature:arguments:returnValue:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Functions.html#/s:11CodeBuilder9guardSpec10statements9elseBlockAA0A13Representable_pAaE_pyXE_AaE_pyXEtF">guardSpec(statements:elseBlock:)</a>
@@ -1017,9 +1026,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder12functionSpec_6access8isStatic11throwsError16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOS2bSSSgSayAA8ArgumentVGAlaI_pyXEtF"></a>
-                    <a name="//apple_ref/swift/Function/functionSpec(_:access:isStatic:throwsError:genericSignature:arguments:returnValue:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder12functionSpec_6access8isStatic11throwsError16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOS2bSSSgSayAA8ArgumentVGAlaI_pyXEtF">functionSpec(_:<wbr>access:<wbr>isStatic:<wbr>throwsError:<wbr>genericSignature:<wbr>arguments:<wbr>returnValue:<wbr>_:<wbr>)</a>
+                    <a name="/s:11CodeBuilder12functionSpec_6access8isStatic8keywords16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOSbShyAA15FunctionKeywordOGSSSgSayAA8ArgumentVGAoaI_pyXEtF"></a>
+                    <a name="//apple_ref/swift/Function/functionSpec(_:access:isStatic:keywords:genericSignature:arguments:returnValue:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CodeBuilder12functionSpec_6access8isStatic8keywords16genericSignature9arguments11returnValue_AA0A13Representable_pSS_AA6AccessOSbShyAA15FunctionKeywordOGSSSgSayAA8ArgumentVGAoaI_pyXEtF">functionSpec(_:<wbr>access:<wbr>isStatic:<wbr>keywords:<wbr>genericSignature:<wbr>arguments:<wbr>returnValue:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1039,7 +1048,7 @@
     <span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">access</span><span class="p">:</span> <span class="kt"><a href="Enums/Access.html">Access</a></span> <span class="o">=</span> <span class="o">.</span><span class="kd">internal</span><span class="p">,</span>
     <span class="nv">isStatic</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nv">throwsError</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">keywords</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="Enums/FunctionKeyword.html">FunctionKeyword</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">genericSignature</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="nv">arguments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Structs/Argument.html">Argument</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">returnValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -1994,8 +2003,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://hooliooo.github.io" target="_blank" rel="external noopener">Julio Alorro</a>. All rights reserved. (Last updated: 2022-01-20)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2022 <a class="link" href="https://hooliooo.github.io" target="_blank" rel="external noopener">Julio Alorro</a>. All rights reserved. (Last updated: 2022-04-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>

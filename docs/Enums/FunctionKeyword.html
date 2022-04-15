@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Parameter Structure Reference</title>
+    <title>FunctionKeyword Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/Parameter" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/FunctionKeyword" class="dashAnchor"></a>
 
-    <a title="Parameter Structure Reference"></a>
+    <a title="FunctionKeyword Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -50,7 +50,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">CodeBuilder Reference</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      Parameter Structure Reference
+      FunctionKeyword Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -239,15 +239,16 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Parameter</h1>
+            <h1>FunctionKeyword</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Parameter</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Fragment.html">Fragment</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FunctionKeyword</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FunctionKeyword</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents a parameter documentation in the proper format</p>
+            <p>Represents keywords on a function after the arguments</p>
 
           </div>
         </section>
@@ -259,9 +260,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder9ParameterV4name13documentationACSS_SStcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(name:documentation:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder9ParameterV4name13documentationACSS_SStcfc">init(name:<wbr>documentation:<wbr>)</a>
+                    <a name="/s:11CodeBuilder15FunctionKeywordO5asyncyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/async" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CodeBuilder15FunctionKeywordO5asyncyA2CmF">async</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -269,85 +270,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Standard initializer.</p>
+                        <p>THe async keyword</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">documentation</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>name</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The name of the parameter</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>documentation</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The documentation that describes the parameter</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Stored%20Properties"></a>
-                <a name="//apple_ref/swift/Section/Stored Properties" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Stored%20Properties"></a>
-                  <h3 class="section-name"><span>Stored Properties</span>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:11CodeBuilder9ParameterV4nameSSvp"></a>
-                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder9ParameterV4nameSSvp">name</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The name of the parameter</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">async</span></code></pre>
 
                         </div>
                       </div>
@@ -357,9 +287,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder9ParameterV13documentationSSvp"></a>
-                    <a name="//apple_ref/swift/Property/documentation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder9ParameterV13documentationSSvp">documentation</a>
+                    <a name="/s:11CodeBuilder15FunctionKeywordO8throwingyAcA05ThrowD0OcACmF"></a>
+                    <a name="//apple_ref/swift/Element/throwing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CodeBuilder15FunctionKeywordO8throwingyAcA05ThrowD0OcACmF">throwing(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -367,39 +297,27 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The documentation that describes the parameter</p>
+                        <p>The throw or rethrows keyword. Represented as an associated value because in a given function,
+either throws or rethrows is used but not both at the same time</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">documentation</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">throwing</span><span class="p">(</span><span class="kt"><a href="../Enums/ThrowKeyword.html">ThrowKeyword</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Methods"></a>
-                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Methods"></a>
-                  <h3 class="section-name"><span>Methods</span>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CodeBuilder9ParameterV13renderContentSSyF"></a>
-                    <a name="//apple_ref/swift/Method/renderContent()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CodeBuilder9ParameterV13renderContentSSyF">renderContent()</a>
+                    <a name="/s:SL1loiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SL1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -407,19 +325,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Renders this Parameter as a string.</p>
-
-<p>The String format is as follows:</p>
-<pre class="highlight swift"><code><span class="s">"   - </span><span class="se">\(</span><span class="k">self</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">: </span><span class="se">\(</span><span class="k">self</span><span class="o">.</span><span class="n">documentation</span><span class="se">)</span><span class="s">"</span>
-</code></pre>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">renderContent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">FunctionKeyword</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">FunctionKeyword</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
