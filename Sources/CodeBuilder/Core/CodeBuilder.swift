@@ -1,9 +1,7 @@
 //
-//  CodeBuilder.swift
-//  
-//  Copyright (c) Julio Miguel Alorro 2020
-//  MIT license, see LICENSE file for details
-//  Created by Julio Miguel Alorro on 01.03.20.
+//  CodeBuilder
+//  Copyright (c) Julio Miguel Alorro
+//  Licensed under the MIT license. See LICENSE file
 //
 
 import Foundation
@@ -11,9 +9,9 @@ import Foundation
 @resultBuilder
 public struct CodeBuilder {
 
-    public static func buildArray(_ components: [CodeRepresentable]) -> Code {
-        components.asCode
-    }
+//    public static func buildArray(_ components: [CodeRepresentable]) -> Code {
+//        components.asCode
+//    }
 
     public static func buildBlock(_ components: CodeRepresentable...) -> Code {
         components.asCode
@@ -27,12 +25,12 @@ public struct CodeBuilder {
         second.asCode
     }
 
-    public static func buildExpression(_ expression: CodeRepresentable) -> Code {
-        expression.asCode
-    }
+//    public static func buildExpression(_ expression: CodeRepresentable) -> Code {
+//        expression.asCode
+//    }
 
-    public static func buildOptional(_ component: CodeRepresentable?) -> Code {
-        guard let component = component else { return Code.none }
-        return component.asCode
-    }
+//    public static func buildOptional(_ component: CodeRepresentable?) -> Code {
+//        guard let component = component else { return Code.none }
+//        return component.asCode
+//    }
 }

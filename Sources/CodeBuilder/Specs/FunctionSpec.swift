@@ -1,9 +1,7 @@
 //
-//  FunctionSpec.swift
-//
-//  Copyright (c) Julio Miguel Alorro 2020
-//  MIT license, see LICENSE file for details
-//  Created by Julio Miguel Alorro on 15.03.20.
+//  CodeBuilder
+//  Copyright (c) Julio Miguel Alorro
+//  Licensed under the MIT license. See LICENSE file
 //
 
 import Foundation
@@ -26,7 +24,7 @@ public func functionSpec(
     _ name: String,
     access: Access = .internal,
     isStatic: Bool = false,
-    throwsError: Bool = false,
+    keywords: Set<FunctionKeyword> = [],
     genericSignature: String? = nil,
     arguments: [Argument] = [],
     returnValue: String? = nil,
@@ -41,11 +39,24 @@ public func functionSpec(
         return "<\(signature)>"
     }()
 
-    let throwsError: String = throwsError ? " throws " : " "
+    let doesNotContainBoth: Bool = (keywords.contains(FunctionKeyword.throwing(ThrowKeyword.throws)) &&
+        keywords.contains(FunctionKeyword.throwing(ThrowKeyword.rethrows))) == false
+    guard doesNotContainBoth else { return Code.none }
+
+    let keywordString = keywords
+        .sorted(by: <)
+        .reduce(into: " ") { (currentResult: inout String, keyword: FunctionKeyword) -> Void in
+          switch keyword {
+              case .async:
+                  currentResult += "async "
+              case .throwing(let throwKeyword):
+                  currentResult += "\(throwKeyword.rawValue) "
+          }
+        }
 
     let returnValue: String = {
-        guard let returnValue = returnValue else { return "\(throwsError){" }
-        return "\(throwsError)-> \(returnValue) {"
+        guard let returnValue = returnValue else { return "\(keywordString){" }
+        return "\(keywordString)-> \(returnValue) {"
     }()
 
     let functionSignature: String = "\(access)\(type)func \(name)\(genericSignature)(\(args))\(returnValue)"
@@ -66,4 +77,8 @@ public func functionSpec(
     } else {
         return GroupFragment(children: [MultiLineFragment(functionSignature, builder), end()])
     }
+}
+
+public enum FunctionSpecError: Error {
+    case invalidFunction
 }
